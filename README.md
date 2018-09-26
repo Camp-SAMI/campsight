@@ -1,5 +1,7 @@
 # Campsight
 
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/Camp-SAMI/campsight.svg?columns=all)](https://waffle.io/Camp-SAMI/campsight)
+
 _Good things come in pairs_
 
 Looking to mix up a backend with express/sequelize and a frontend with react/redux? That's `campsight`!
