@@ -22,15 +22,23 @@ const Reservation = require('./reservation');
 Campground.hasMany(Campsite, { foreignKey: 'campgroundId', allowNull: false });
 Campsite.belongsTo(Campground);
 
-Campsite.hasMany(Reservation);
+Campsite.hasMany(Reservation, { foreignKey: 'campsiteId', allowNull: false });
 Campsite.belongsToMany(Reservation, {through: 'campsite_reservations', constraints: false });
 Reservation.belongsTo(Campsite);
 
 Amenity.belongsToMany(Campsite, {through: 'campsite_amenities'});
 Campsite.hasMany(Amenity);
 
+Reservation.belongsTo(Camper);
+Camper.hasMany(Reservation);
+
 
 
 module.exports = {
-  User
+  User,
+  Camper,
+  Campground,
+  Campsite,
+  Amenity,
+  Reservation
 }
