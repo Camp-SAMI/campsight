@@ -1,17 +1,20 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 const campsite = db.define('campsite', {
-    location: {
-        type: Sequelize.GEOMETRY('POINT'),
-        allowNull: false
-    },
-    coverImage: {
-        type: Sequelize.STRING
-    },
-    images: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
-    }
-});
+  location: {
+    type: Sequelize.GEOMETRY('POINT'),
+    allowNull: false
+  },
+  coverImage: {
+    type: Sequelize.STRING
+  },
+  images: {
+    type: Sequelize.ARRAY(Sequelize.STRING)
+  },
+  campsiteType: {
+    type: Sequelize.ENUM('tent', 'trailer')
+  }
+})
 
-module.exports = campsite;
+module.exports = campsite
