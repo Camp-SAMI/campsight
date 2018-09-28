@@ -2,6 +2,10 @@ const router = require('express').Router();
 const { Campsite, Amenity, Reservation, Campground } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
+    // commented out variables are for when we cover query params.
+    // const startTime = req.query.startTime;
+    // const endTime = req.query.endTime;
+    // const amenities = req.query.amenities;
     try {
         const campsites = await Campsite.findAll({
             include: [{model: Amenity}, {model: Reservation}]
@@ -28,13 +32,14 @@ router.get('/:campsiteId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const newCampsite = await Campsite.create({
-          location : {
-              type: 'Point',
-              coordinates: [req.body.location.longitude, req.body.location.latitude],
-              campgroundId: req.body.campgroundId
-          },
-          coverImage: req.body.coverImage ? req.body.coverImage : '',
-          images: req.body.images.length ? req.body.images : []
+            location : {
+                type: 'Point',
+                coordinates: [req.body.location.longitude, req.body.location.latitude]
+            },
+            campgroundId: req.body.campgroundId,
+            coverImage: req.body.coverImage ? req.body.coverImage : '',
+            images: req.body.images.length ? req.body.images : [],
+            typing: req.body.typing
         });
         res.json(newCampsite);
     }

@@ -3,8 +3,12 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
+import campsite from './campsite';
+import campsites from './campsites';
+import reservation from './reservation';
+import reservations from './reservations';
 
-const reducer = combineReducers({user})
+const reducer = combineReducers({campsite, campsites, reservation, reservations, user})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
