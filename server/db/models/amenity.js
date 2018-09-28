@@ -8,7 +8,8 @@ const amenity = db.define('amenity', {
             'Shower',
             'Power',
             'WiFi'
-        )
+        ),
+        notNull: true
     }
 });
 
