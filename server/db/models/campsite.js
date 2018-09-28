@@ -11,6 +11,12 @@ const campsite = db.define('campsite', {
     },
     images: {
         type: Sequelize.ARRAY(Sequelize.STRING)
+    },
+    typing: {
+        type: Sequelize.ENUM(
+            'tent',
+            'trailer'
+        )
     }
 });
 
