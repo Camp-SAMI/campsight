@@ -22,18 +22,6 @@ const campsite = db.define('campsite', {
             'trailer',
             'cabin'
         )
-    }, 
-    power: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-    },
-    water: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
-    },
-    sewage: {
-        type: Sequelize.BOOLEAN,
-        allowNull: false
     }
 });
 
