@@ -26,11 +26,11 @@ Campsite.hasMany(Reservation, { foreignKey: 'campsiteId', allowNull: false });
 Campsite.belongsToMany(Reservation, {through: 'campsite_reservations', constraints: false });
 Reservation.belongsTo(Campsite);
 
-Amenity.belongsToMany(Campsite, {through: 'campsite_amenities'});
+Amenity.belongsToMany(Campsite, {through: 'campsite_amenities', constraints: false});
 Campsite.hasMany(Amenity);
 
-Reservation.belongsTo(Camper);
 Camper.hasMany(Reservation, {foreignKey: 'camperId', allowNull: false});
+Reservation.belongsTo(Camper);
 
 
 
