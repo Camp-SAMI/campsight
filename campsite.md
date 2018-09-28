@@ -130,7 +130,7 @@
 58:{ type: 'Point', coordinates: [43.770135,-89.204023]}
 59:{ type: 'Point', coordinates: [43.770094,-89.204260]} -->
 
-60:{ type: 'Point', coordinates: [43.770325,-89.203625]}
+<!-- 60:{ type: 'Point', coordinates: [43.770325,-89.203625]}
 
 61:{ type: 'Point', coordinates: [43.770296,-89.203773]}
 
@@ -146,8 +146,8 @@
 76:{ type: 'Point', coordinates: [43.769876,-89.204126]}
 77:{ type: 'Point', coordinates: [43.769911,-89.203989]}
 
-78:{ type: 'Point', coordinates: [43.769936,-89.203773]}
-
+78:{ type: 'Point', coordinates: [43.769936,-89.203773]} -->
+<!-- 
 79:{ type: 'Point', coordinates: [43.769998,-89.203639]}
 80:{ type: 'Point', coordinates: [43.769580,-89.204652]}
 81:{ type: 'Point', coordinates: [43.769643,-89.204462]}
@@ -158,9 +158,9 @@
 
 92:{ type: 'Point', coordinates: [43.769291,-89.204602]}
 
-93:{ type: 'Point', coordinates: [43.769373,-89.204652]}
+93:{ type: 'Point', coordinates: [43.769373,-89.204652]} -->
 
-101:{ type: 'Point', coordinates: [43.769189,-89.203889]}
+<!-- 101:{ type: 'Point', coordinates: [43.769189,-89.203889]}
 102:{ type: 'Point', coordinates: [43.769170,-89.204061]}
 103:{ type: 'Point', coordinates: [43.769113,-89.204258]}
 104:{ type: 'Point', coordinates: [43.769085,-89.204386]}
@@ -173,9 +173,9 @@
 
 111:{ type: 'Point', coordinates: [43.769220,-89.204940]}
 
-112:{ type: 'Point', coordinates: [43.769035,-89.204642]}
+112:{ type: 'Point', coordinates: [43.769035,-89.204642]} -->
 
-115:{ type: 'Point', coordinates: [43.769677,-89.203610]}
+<!-- 115:{ type: 'Point', coordinates: [43.769677,-89.203610]}
 116:{ type: 'Point', coordinates: [43.769613,-89.203774]}
 117:{ type: 'Point', coordinates: [43.769600,-89.203873]}
 118:{ type: 'Point', coordinates: [43.769503,-89.204273]}
@@ -185,9 +185,9 @@
 
 121:{ type: 'Point', coordinates: [43.769405,-89.204155]}
 
-122:{ type: 'Point', coordinates: [43.769368,-89.204380]}
+122:{ type: 'Point', coordinates: [43.769368,-89.204380]} -->
 
-123:{ type: 'Point', coordinates: [43.768439,-89.202691]}
+<!-- 123:{ type: 'Point', coordinates: [43.768439,-89.202691]}
 124:{ type: 'Point', coordinates: [43.768595,-89.203138]}
 125:{ type: 'Point', coordinates: [43.768808,-89.203193]}
 126:{ type: 'Point', coordinates: [43.768974,-89.203195]}
@@ -202,7 +202,7 @@
 135:{ type: 'Point', coordinates: [43.768736,-89.202703]}
 136:{ type: 'Point', coordinates: [43.768862,-89.202685]}
 137:{ type: 'Point', coordinates: [43.769043,-89.202666]}
-138:{ type: 'Point', coordinates: [43.769180,-89.202669]}
+138:{ type: 'Point', coordinates: [43.769180,-89.202669]} -->
 
 145:{ type: 'Point', coordinates: [43.768615,-89.202245]}
 
