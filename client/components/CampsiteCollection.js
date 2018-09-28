@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { fetchCampsites } from '../store/campsites';
 import { fetchAmenities } from '../store/amenities';
+import CampsiteBlock from './CampsiteBlock';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -45,8 +46,7 @@ class CampsiteCollection extends Component {
                 campsites: campsites,
                 amenities: amenities,
                 numPages: numPages
-            })
-
+            });
         }
     }
 
@@ -67,9 +67,11 @@ class CampsiteCollection extends Component {
                     <br />
                     {/* Until a block view of the campsite is written, the mapped campsites displayed are just the list of ids */}
                     {/* Additionally, each block view should take in a handleClick component that opens up the detailed view of that campsite */}
-                    {this.props.campsites.map(
-                        campsite => <div key={campsite.id}>{campsite.id}</div>
-                    )}
+                    <ul>
+                        {this.props.campsites.map(
+                            campsite => <CampsiteBlock key={campsite.id} campsite={campsite} />
+                        )}
+                    </ul>
                 </div>
             )
         }
