@@ -45,7 +45,7 @@
 
 # Orange section
 
-1G:{ type: 'Point', coordinates: [43.770392,-89.202682]}
+<!-- 1G:{ type: 'Point', coordinates: [43.770392,-89.202682]}
 2G:{ type: 'Point', coordinates: [43.770523,-89.203396]}
 3G:{ type: 'Point', coordinates: [43.770382,-89.204436]}
 4G:{ type: 'Point', coordinates: [43.770330,-89.205194]}
@@ -55,7 +55,7 @@
 11:{ type: 'Point', coordinates: [43.769168,-89.199612]}
 12:{ type: 'Point', coordinates: [43.769318,-89.199652]}
 13:{ type: 'Point', coordinates: [43.769467,-89.199746]}
-14:{ type: 'Point', coordinates: [43.769504,-89.199779]}
+14:{ type: 'Point', coordinates: [43.769504,-89.199779]} -->
 
 <!-- 34:{ type: 'Point', coordinates: [43.768630,-89.199685]}
 
@@ -68,12 +68,12 @@
 41:{ type: 'Point', coordinates: [43.769630,-89.200744]} -->
 
 
-
+<!-- 
 51:{ type: 'Point', coordinates: [43.770540,-89.202955]}
 52:{ type: 'Point', coordinates: [43.770511,-89.203173]}
 56:{ type: 'Point', coordinates: [43.770398,-89.204305]}
 63:{ type: 'Point', coordinates: [43.770340,-89.204714]}
-64:{ type: 'Point', coordinates: [43.770318,-89.204975]}
+64:{ type: 'Point', coordinates: [43.770318,-89.204975]} -->
 
 <!-- 65:{ type: 'Point', coordinates: [43.769894,-89.204830]}
 66:{ type: 'Point', coordinates: [43.769997,-89.204937]}
@@ -84,7 +84,7 @@
 71:{ type: 'Point', coordinates: [43.769914,-89.204571]}
 72:{ type: 'Point', coordinates: [43.769852,-89.204709]} -->
 
-88:{ type: 'Point', coordinates: [43.769950,-89.205151]}
+<!-- 88:{ type: 'Point', coordinates: [43.769950,-89.205151]}
 
 97:{ type: 'Point', coordinates: [43.768917,-89.204109]}
 98:{ type: 'Point', coordinates: [43.768854,-89.204414]}
@@ -102,11 +102,11 @@
 216:{ type: 'Point', coordinates: [43.770424,-89.204181]}
 
 228:{ type: 'Point', coordinates: [43.770180,-89.205758]}
-229:{ type: 'Point', coordinates: [43.770250,-89.205528]}
+229:{ type: 'Point', coordinates: [43.770250,-89.205528]} -->
 
 #Yellow
 
-25:{ type: 'Point', coordinates: [43.769849,-89.200648]}
+<!-- 25:{ type: 'Point', coordinates: [43.769849,-89.200648]}
 26:{ type: 'Point', coordinates: [43.769901,-89.200520]}
 
 27:{ type: 'Point', coordinates: [43.769948,-89.200218]}
@@ -121,14 +121,14 @@
 46:{ type: 'Point', coordinates: [43.769612,-89.201592]}
 47:{ type: 'Point', coordinates: [43.769495,-89.201612]}
 48:{ type: 'Point', coordinates: [43.769365,-89.201681]}
-49:{ type: 'Point', coordinates: [43.769243,-89.201798]}
-
+49:{ type: 'Point', coordinates: [43.769243,-89.201798]} -->
+<!-- 
 53:{ type: 'Point', coordinates: [43.770297,-89.203333]}
 54:{ type: 'Point', coordinates: [43.770219,-89.203483]}
 55:{ type: 'Point', coordinates: [43.770178,-89.203647]}
 57:{ type: 'Point', coordinates: [43.770161,-89.203812]}
 58:{ type: 'Point', coordinates: [43.770135,-89.204023]}
-59:{ type: 'Point', coordinates: [43.770094,-89.204260]}
+59:{ type: 'Point', coordinates: [43.770094,-89.204260]} -->
 
 60:{ type: 'Point', coordinates: [43.770325,-89.203625]}
 
