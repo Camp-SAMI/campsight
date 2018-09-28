@@ -1,7 +1,7 @@
 # List of campsites and there GEO tags
 
-#Purple section 
-1:{ type: 'Point', coordinates: [43.770223,-89.203063]}
+#Purple section
+<!-- 1:{ type: 'Point', coordinates: [43.770223,-89.203063]}
 2:{ type: 'Point', coordinates: [43.770094,-89.203227]}
 3:{ type: 'Point', coordinates: [43.769856,-89.203265]}
 4:{ type: 'Point', coordinates: [43.769730,-89.203300]}
@@ -15,12 +15,11 @@
 
 87:{ type: 'Point', coordinates: [43.769795,-89.204989]}
 89:{ type: 'Point', coordinates: [43.770148,-89.205217]}
-90:{ type: 'Point', coordinates: [43.770101,-89.205304]}
+90:{ type: 'Point', coordinates: [43.770101,-89.205304]} -->
 
-217:{ type: 'Point', coordinates: [43.769036,-89.205410]}
+<!-- 217:{ type: 'Point', coordinates: [43.769036,-89.205410]}
 218:{ type: 'Point', coordinates: [43.769128,-89.205674]}
 219:{ type: 'Point', coordinates: [43.769190,-89.205815]}
-
 
 222:{ type: 'Point', coordinates: [43.769739,-89.205956]}
 
@@ -42,10 +41,10 @@
 239:{ type: 'Point', coordinates: [43.769450,-89.206353]}
 240:{ type: 'Point', coordinates: [43.769361,-89.206295]}
 241:{ type: 'Point', coordinates: [43.769171,-89.206187]}
-242:{ type: 'Point', coordinates: [43.769097,-89.206025]}
-
+242:{ type: 'Point', coordinates: [43.769097,-89.206025]} -->
 
 # Orange section
+
 1G:{ type: 'Point', coordinates: [43.770392,-89.202682]}
 2G:{ type: 'Point', coordinates: [43.770523,-89.203396]}
 3G:{ type: 'Point', coordinates: [43.770382,-89.204436]}
@@ -53,20 +52,21 @@
 6G:{ type: 'Point', coordinates: [43.770127,-89.205888]}
 7G:{ type: 'Point', coordinates: [43.768787,-89.204974]}
 
-
 11:{ type: 'Point', coordinates: [43.769168,-89.199612]}
 12:{ type: 'Point', coordinates: [43.769318,-89.199652]}
 13:{ type: 'Point', coordinates: [43.769467,-89.199746]}
 14:{ type: 'Point', coordinates: [43.769504,-89.199779]}
 
-
-
-
-34:{ type: 'Point', coordinates: [43.768630,-89.199685]}
+<!-- 34:{ type: 'Point', coordinates: [43.768630,-89.199685]}
 
 35:{ type: 'Point', coordinates: [43.768766,-89.199941]}
 36:{ type: 'Point', coordinates: [43.768884,-89.200007]}
-37:{ type: 'Point', coordinates: [43.768877,-89.200165]}
+37:{ type: 'Point', coordinates: [43.768877,-89.200165]} -->
+<!-- 38:{ type: 'Point', coordinates: [43.769282,-89.200445]}
+39:{ type: 'Point', coordinates: [43.769372,-89.200516]}
+40:{ type: 'Point', coordinates: [43.769508,-89.200645]}
+41:{ type: 'Point', coordinates: [43.769630,-89.200744]} -->
+
 
 
 51:{ type: 'Point', coordinates: [43.770540,-89.202955]}
@@ -75,18 +75,16 @@
 63:{ type: 'Point', coordinates: [43.770340,-89.204714]}
 64:{ type: 'Point', coordinates: [43.770318,-89.204975]}
 
-65:{ type: 'Point', coordinates: [43.769894,-89.204830]}
+<!-- 65:{ type: 'Point', coordinates: [43.769894,-89.204830]}
 66:{ type: 'Point', coordinates: [43.769997,-89.204937]}
 67:{ type: 'Point', coordinates: [43.770149,-89.204963]}
 68:{ type: 'Point', coordinates: [43.770189,-89.204761]}
 69:{ type: 'Point', coordinates: [43.770156,-89.204589]}
-70:{ type: 'Point', coordinates: [43.770156,-89.204589]}
+70:{ type: 'Point', coordinates: [43.769962,-89.204588]}
 71:{ type: 'Point', coordinates: [43.769914,-89.204571]}
-72:{ type: 'Point', coordinates: [43.769852,-89.204709]}
-
+72:{ type: 'Point', coordinates: [43.769852,-89.204709]} -->
 
 88:{ type: 'Point', coordinates: [43.769950,-89.205151]}
-
 
 97:{ type: 'Point', coordinates: [43.768917,-89.204109]}
 98:{ type: 'Point', coordinates: [43.768854,-89.204414]}
@@ -95,10 +93,6 @@
 100:{ type: 'Point', coordinates: [43.768792,-89.204824]}
 113:{ type: 'Point', coordinates: [43.768792,-89.204824]}
 114:{ type: 'Point', coordinates: [43.768833,-89.205175]}
-
-
-
-
 
 212:{ type: 'Point', coordinates: [43.770520,-89.203236]}
 213:{ type: 'Point', coordinates: [43.770506,-89.203658]}
@@ -110,19 +104,10 @@
 228:{ type: 'Point', coordinates: [43.770180,-89.205758]}
 229:{ type: 'Point', coordinates: [43.770250,-89.205528]}
 
-
-
-
-
 #Yellow
-
-
-
-
 
 25:{ type: 'Point', coordinates: [43.769849,-89.200648]}
 26:{ type: 'Point', coordinates: [43.769901,-89.200520]}
-
 
 27:{ type: 'Point', coordinates: [43.769948,-89.200218]}
 28:{ type: 'Point', coordinates: [43.769891,-89.200048]}
@@ -151,7 +136,6 @@
 
 62:{ type: 'Point', coordinates: [43.770249,-89.204093]}
 
-
 62:{ type: 'Point', coordinates: [43.770249,-89.204093]}
 73:{ type: 'Point', coordinates: [43.769667,-89.204670]}
 
@@ -176,14 +160,12 @@
 
 93:{ type: 'Point', coordinates: [43.769373,-89.204652]}
 
-
 101:{ type: 'Point', coordinates: [43.769189,-89.203889]}
 102:{ type: 'Point', coordinates: [43.769170,-89.204061]}
 103:{ type: 'Point', coordinates: [43.769113,-89.204258]}
 104:{ type: 'Point', coordinates: [43.769085,-89.204386]}
 106:{ type: 'Point', coordinates: [43.768963,-89.204678]}
 107:{ type: 'Point', coordinates: [43.769053,-89.204954]}
-
 
 109:{ type: 'Point', coordinates: [43.769194,-89.205157]}
 
@@ -192,7 +174,6 @@
 111:{ type: 'Point', coordinates: [43.769220,-89.204940]}
 
 112:{ type: 'Point', coordinates: [43.769035,-89.204642]}
-
 
 115:{ type: 'Point', coordinates: [43.769677,-89.203610]}
 116:{ type: 'Point', coordinates: [43.769613,-89.203774]}
@@ -223,10 +204,6 @@
 137:{ type: 'Point', coordinates: [43.769043,-89.202666]}
 138:{ type: 'Point', coordinates: [43.769180,-89.202669]}
 
-
-
-
-
 145:{ type: 'Point', coordinates: [43.768615,-89.202245]}
 
 146:{ type: 'Point', coordinates: [43.768741,-89.202177]}
@@ -249,7 +226,6 @@
 159:{ type: 'Point', coordinates: [43.770542,-89.200412]}
 160:{ type: 'Point', coordinates: [43.770453,-89.200278]}
 161:{ type: 'Point', coordinates: [43.770380,-89.200240]}
-
 
 163:{ type: 'Point', coordinates: [43.770239,-89.200531]}
 164:{ type: 'Point', coordinates: [43.770068,-89.200624]}
@@ -280,24 +256,12 @@
 186:{ type: 'Point', coordinates: [43.768902,-89.200591]}
 188:{ type: 'Point', coordinates: [43.768891,-89.200398]}
 
-
-
-
-
-
-
-
-
-
 189:{ type: 'Point', coordinates: [43.769025,-89.201811]}
 
 190:{ type: 'Point', coordinates: [43.768903,-89.201944]}
 
 191:{ type: 'Point', coordinates: [43.768758,-89.201881]}
 192:{ type: 'Point', coordinates: [43.768799,-89.201742]}
-
-
-
 
 #Red
 139:{ type: 'Point', coordinates: [43.769245,-89.202360]}
@@ -311,10 +275,8 @@
 143:{ type: 'Point', coordinates: [43.768773,-89.202457]}
 144:{ type: 'Point', coordinates: [43.768665,-89.202462]}
 
-
-
 #Cabins
-Otter:{ type: 'Point', coordinates: [43.769974,-89.205607]}
+<!-- Otter:{ type: 'Point', coordinates: [43.769974,-89.205607]}
 Eagle:{ type: 'Point', coordinates: [43.770013,-89.205671]}
 Owl:{ type: 'Point', coordinates: [43.769859,-89.205708]}
 Heron:{ type: 'Point', coordinates: [43.769578,-89.205893]}
@@ -327,6 +289,4 @@ Oak:{ type: 'Point', coordinates: [43.769424,-89.205361]}
 Fox:{ type: 'Point', coordinates: [43.769343,-89.205463]}
 Badger:{ type: 'Point', coordinates: [43.769446,-89.205519]}
 Cardinal:{ type: 'Point', coordinates: [43.769283,-89.203287]}
-Mangold:{ type: 'Point', coordinates: [43.769244,-89.203428]}
-
-
+Mangold:{ type: 'Point', coordinates: [43.769244,-89.203428]} -->
