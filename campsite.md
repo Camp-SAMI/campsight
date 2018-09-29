@@ -204,7 +204,7 @@
 137:{ type: 'Point', coordinates: [43.769043,-89.202666]}
 138:{ type: 'Point', coordinates: [43.769180,-89.202669]} -->
 
-145:{ type: 'Point', coordinates: [43.768615,-89.202245]}
+<!-- 145:{ type: 'Point', coordinates: [43.768615,-89.202245]}
 
 146:{ type: 'Point', coordinates: [43.768741,-89.202177]}
 
@@ -217,9 +217,9 @@
 151:{ type: 'Point', coordinates: [43.770147,-89.201383]}
 152:{ type: 'Point', coordinates: [43.770040,-89.201261]}
 153:{ type: 'Point', coordinates: [43.770181,-89.201125]}
-154:{ type: 'Point', coordinates: [43.770281,-89.200996]}
+154:{ type: 'Point', coordinates: [43.770281,-89.200996]} -->
 
-156:{ type: 'Point', coordinates: [43.770577,-89.201003]}
+<!-- 156:{ type: 'Point', coordinates: [43.770577,-89.201003]}
 157:{ type: 'Point', coordinates: [43.770531,-89.200806]}
 
 158:{ type: 'Point', coordinates: [43.770535,-89.200624]}
@@ -232,8 +232,8 @@
 165:{ type: 'Point', coordinates: [43.770012,-89.200772]}
 166:{ type: 'Point', coordinates: [43.769960,-89.200944]}
 167:{ type: 'Point', coordinates: [43.770153,-89.200801]}
-168:{ type: 'Point', coordinates: [43.770268,-89.200725]}
-
+168:{ type: 'Point', coordinates: [43.770268,-89.200725]} -->
+<!-- 
 169:{ type: 'Point', coordinates: [43.770359,-89.200575]}
 170:{ type: 'Point', coordinates: [43.769610,-89.201134]}
 171:{ type: 'Point', coordinates: [43.769462,-89.200872]}
@@ -247,9 +247,9 @@
 179:{ type: 'Point', coordinates: [43.769102,-89.200684]}
 
 180:{ type: 'Point', coordinates: [43.768990,-89.201178]}
-181:{ type: 'Point', coordinates: [43.769070,-89.200479]}
+181:{ type: 'Point', coordinates: [43.769070,-89.200479]} -->
 
-182:{ type: 'Point', coordinates: [43.768934,-89.200990]}
+<!-- 182:{ type: 'Point', coordinates: [43.768934,-89.200990]}
 183:{ type: 'Point', coordinates: [43.769048,-89.200338]}
 
 184:{ type: 'Point', coordinates: [43.768908,-89.200803]}
@@ -273,7 +273,7 @@
 142:{ type: 'Point', coordinates: [43.768893,-89.202434]}
 
 143:{ type: 'Point', coordinates: [43.768773,-89.202457]}
-144:{ type: 'Point', coordinates: [43.768665,-89.202462]}
+144:{ type: 'Point', coordinates: [43.768665,-89.202462]} -->
 
 #Cabins
 <!-- Otter:{ type: 'Point', coordinates: [43.769974,-89.205607]}
