@@ -7,9 +7,10 @@ const amenity = db.define('amenity', {
             'Bathroom Nearby',
             'Shower',
             'Power',
-            'WiFi'
-        ),
-        notNull: true
+            'WiFi',
+            'Sewage',
+            'Water'
+        )
     }
 });
 
