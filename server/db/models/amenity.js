@@ -3,11 +3,7 @@ const db = require('../db')
 
 const amenity = db.define('amenity', {
   category: {
-    type: Sequelize.ENUM(
-      'Power',
-      'Sewege',
-      'Water'
-    )
+    type: Sequelize.STRING
   }
 })
 

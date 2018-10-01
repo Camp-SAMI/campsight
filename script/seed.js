@@ -15,32 +15,24 @@ const {camperSites, tentSites, cabinSites} = require('../campSiteSeedData')
 const Chance = require('chance')
 const chance = new Chance(95698435)
 
-const amenityQuantity = 3
-const reservationQuantity = 500
-const campsiteReservationsQuantity = 500
+const reservationQuantity = 2000
+const campsiteReservationsQuantity = 2000
 const numberOfCampers = 500
 const numberOfCampsites = 214
 
 // pickset, shuffle
 
-//const startTimeRes = chance.date()
-
 // chance.mixin({
 //   reservation: () => ({
-//     startTime: chance.date(),
-//     endTime: startTimeRes + chance.natural({min: 1, max: 14}),
+//     startTime: chance.date({year: 2018}),
+//     endTime: startTimeRes,
 //     partyNumber: chance.integer({min: 1, max: 7}),
-//     campsiteId: chance.unique(
-//       chance.natural({min: 1, max: reservationQuantity})
-//     )
+//     campsiteId: chance.unique(chance.integer, campsiteReservationsQuantity, {
+//       min: 1,
+//       max: reservationQuantity
+//     })[0]
 //   })
 // })
-
-chance.mixin({
-  amenity: () => ({
-    category: chance.pickset(['Power', 'Sewege', 'Water'])
-  })
-})
 
 chance.mixin({
   camper: () => ({
@@ -55,25 +47,70 @@ chance.mixin({
 //   campsiteId: chance.unique(chance.natural({min: 1, max: numberOfCampsites}))
 // })
 
-chance.mixin({
-  campsiteReservations: () => ({
-    campsiteId: chance.unique(
-      chance.natural({min: 1, max: campsiteReservationsQuantity})
-    ),
-    reservationId: chance.unique(
-      chance.natural({
+// chance.mixin({
+//   campsiteReservations: () => ({
+//     campsiteId: chance.unique(
+//       chance.natural({min: 1, max: campsiteReservationsQuantity})
+//     ),
+//     reservationId: chance.unique(
+//       chance.natural({
+//         min: 1,
+//         max: campsiteReservationsQuantity
+//       })
+//     )
+//   })
+// })
+// creating arrays for table
+const camper = []
+for (let i = 0; i < numberOfCampers; i++) {
+  camper.push(chance.camper())
+}
+
+const reservations = []
+for (let i = 0; i < reservationQuantity; i++) {
+  const startTimeRes = chance.date({year: 2018})
+
+  const days = chance.integer({min: 1, max: 14})
+  startTimeRes.addDays = function() {
+    startTimeRes.setDate(startTimeRes.getDate() + days)
+    return startTimeRes
+  }
+
+  // 
+  // const campSiteReservations = []
+  // for (let i= 0; i < reservationQuantity;i++){
+
+  // }
+
+  const endTime = new Date(startTimeRes.setDate(startTimeRes.getDate() + days))
+
+  chance.mixin({
+    reservation: () => ({
+      startTime: startTimeRes,
+      endTime: endTime,
+      partyNumber: chance.integer({min: 1, max: 7}),
+      campsiteId:chance.integer ({
         min: 1,
-        max: campsiteReservationsQuantity
-      })
-    )
+        max: numberOfCampsites})
+      
+    })
   })
-})
+  reservations.push(chance.reservation())
+}
+
 async function seed() {
   await db.sync({force: true})
   console.log(`db ${db.config.database} synced!`)
   await Campsite.bulkCreate(camperSites)
   await Campsite.bulkCreate(tentSites)
   await Campsite.bulkCreate(cabinSites)
+  await Amenity.bulkCreate([
+    {category: 'Power'},
+    {category: 'Sewege'},
+    {category: 'water'}
+  ])
+  await Camper.bulkCreate(camper)
+  await Reservation.bulkCreate(reservations)
 
   console.log(`seeded successfully`)
 }
