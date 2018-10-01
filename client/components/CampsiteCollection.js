@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchCampsites } from '../store/campsites';
+// import { fetchCampsites } from '../store/campsites';
 import { fetchAmenities } from '../store/amenities';
 import CampsiteBlock from './CampsiteBlock';
 import { NavLink } from 'react-router-dom';
@@ -13,7 +13,6 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    fetchCampsites: () => dispatch(fetchCampsites()),
     fetchAmenities: () => dispatch(fetchAmenities())
 });
 
@@ -34,20 +33,18 @@ class CampsiteCollection extends Component {
         }
     }
 
-    async componentDidMount() {
-        if (this.props.fetchCampsites) {
-            await this.props.fetchCampsites();
-            this.props.fetchAmenities();
-            const campsites = this.props.campsites;
-            const amenities = this.props.amenities;
-            const perPage = this.state.perPage;
-            const numPages = Math.ceil(this.props.campsites.length / perPage );
-            this.setState({
-                campsites: campsites,
-                amenities: amenities,
-                numPages: numPages
-            });
-        }
+    componentDidMount() {
+        // await this.props.fetchCampsites();
+        // await this.props.fetchAmenities();
+        const campsites = this.props.campsites;
+        const amenities = this.props.amenities;
+        const perPage = this.state.perPage;
+        const numPages = Math.ceil(this.props.campsites.length / perPage );
+        this.setState({
+            campsites: campsites,
+            amenities: amenities,
+            numPages: numPages
+        });
     }
 
     render() {
