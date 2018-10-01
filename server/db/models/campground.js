@@ -5,7 +5,8 @@ const campground = db.define('campground', {
     name: {
         type: Sequelize.STRING,
         allowNull: false,
-        notEmpty: true
+        notEmpty: true,
+        defaultValue: 'CampSight'
     },
     geolocation: {
         type: Sequelize.GEOMETRY('POINT'),

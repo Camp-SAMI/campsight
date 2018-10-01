@@ -1,34 +1,11 @@
 import chance from 'chance'
 
+
+const amenityQuantity = 3
+const reservationQuantity = 500
+
 // pickset, shuffle
 
-// Reseravatoin
-// {
-//     startTime: {
-//         type: Sequelize.DATE,
-//         allowNull: false
-//     },
-//     endTime: {
-//         type: Sequelize.DATE,
-//         allowNull: false
-//     },
-//     partyNumber: {
-//         type: Sequelize.INTEGER,
-//         defaultValue: 1
-//     },
-//     daysBooked: {
-//         type: Sequelize.VIRTUAL,
-//         get() {
-//             let dates = [];
-//             let currentDate = this.startTime;
-//             while (currentDate <= this.endTime) {
-//                 dates.push(new Date(currentDate));
-//                 currentDate.setDate(currentDate.getDate() + 1);
-//             }
-//             return dates;
-//         }
-//     }
-// });
 
 const Chance = require('chance')
 const chance = new Chance(95698435)
@@ -36,7 +13,25 @@ const chance = new Chance(95698435)
 chance.mixin({
   reservation: () => ({
     startTime: chance.date(),
-    endTime: chance.last(),
+    endTime: chance.date(),
     partyNumber: chance.integer({min: 1, max: 7})
   })
+})
+
+chance.mixin({
+  amenity: ()=>({
+    category: chance.pickset(['Power', 'Sewege','Water'])
+  })
+})
+
+chance.mixin({
+  camper: ()=>({
+    firstName: chance.first(),
+    lastName: chance.last(),
+    email: chance.email()
+  })
+})
+
+chance.mixin({
+  
 })

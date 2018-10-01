@@ -19,7 +19,7 @@ const Reservation = require('./reservation');
  * instead of: const User = require('../db/models/user')
  */
 
-Campground.hasMany(Campsite, { foreignKey: 'campgroundId', allowNull: false });
+Campground.hasMany(Campsite, { foreignKey: 'campgroundId', defaultValue: 1 });
 Campsite.belongsTo(Campground);
 
 Campsite.hasMany(Reservation, { foreignKey: 'campsiteId', allowNull: false });
