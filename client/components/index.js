@@ -10,3 +10,4 @@ export {default as LandingPage} from './LandingPage'
 export {default as CampsiteCollection} from './CampsiteCollection';
 export {default as CampsiteBlock} from './CampsiteBlock';
 export {default as MapView} from './MapView';
+export {default as ReservationForm} from './ReservationForm'
