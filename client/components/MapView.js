@@ -3,6 +3,8 @@ import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 
 import Typogragphy from '@material-ui/core/Typography';
 import { typgoraphy } from '@material-ui/core/styles';
+if (process.env.NODE_ENV !== 'production') require('../secrets')
+
 
 class MapView extends Component {
     constructor(props) {
@@ -17,7 +19,7 @@ class MapView extends Component {
     render() {
         const { campsites, campsite } = this.props;
         return (
-            <Map google={this.props.google} initialCenter={{lat: 37.856, lng: -16.89034}} className={'map'} zoom={16}>
+            <Map google={this.props.google} initialCenter={{lat: 42.856, lng: -86.89034}} zoom={9}>
                 {campsites.map(camp => {
                     return <Marker key={camp.id} name={camp.name} position={camp.location} />
                 })}
@@ -26,6 +28,8 @@ class MapView extends Component {
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBvCoW6W-GS1nOrBnLm3bUybUG9wDfo-5U'
+const wrapperContainer = GoogleApiWrapper({
+    apiKey: process.env.GOOGLE_MAPS_API_KEY
 })(MapView);
+
+export default wrapperContainer;
