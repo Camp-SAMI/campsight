@@ -1,5 +1,3 @@
-
-
 // campsite model:
 // const campsite = db.define('campsite', {
 //   name: {
@@ -725,599 +723,602 @@ const camperSites = [
   },
   {
     name: '101',
-    location: { type: 'Point', coordinates: [43.769189,-89.203889]},
+    location: {type: 'Point', coordinates: [43.769189, -89.203889]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '102',
-    location:{ type: 'Point', coordinates: [43.769170,-89.204061]} ,
+    location: {type: 'Point', coordinates: [43.76917, -89.204061]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '103',
-    location:{ type: 'Point', coordinates: [43.769113,-89.204258]} ,
+    location: {type: 'Point', coordinates: [43.769113, -89.204258]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '104',
-    location:{ type: 'Point', coordinates: [43.769085,-89.204386]} ,
+    location: {type: 'Point', coordinates: [43.769085, -89.204386]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '106',
-    location:{ type: 'Point', coordinates: [43.768963,-89.204678]} ,
+    location: {type: 'Point', coordinates: [43.768963, -89.204678]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '107',
-    location:{ type: 'Point', coordinates: [43.769053,-89.204954]} ,
+    location: {type: 'Point', coordinates: [43.769053, -89.204954]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '109',
-    location:{ type: 'Point', coordinates: [43.769194,-89.205157]},
+    location: {type: 'Point', coordinates: [43.769194, -89.205157]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '110',
-    location:{ type: 'Point', coordinates: [43.769314,-89.205009]},
+    location: {type: 'Point', coordinates: [43.769314, -89.205009]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '111',
-    location:{ type: 'Point', coordinates: [43.769220,-89.204940]},
+    location: {type: 'Point', coordinates: [43.76922, -89.20494]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '112',
-    location:{ type: 'Point', coordinates: [43.769035,-89.204642]},
+    location: {type: 'Point', coordinates: [43.769035, -89.204642]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '115',
-    location:{ type: 'Point', coordinates: [43.769677,-89.203610]},
+    location: {type: 'Point', coordinates: [43.769677, -89.20361]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '116',
-    location:{ type: 'Point', coordinates: [43.769613,-89.203774]},
+    location: {type: 'Point', coordinates: [43.769613, -89.203774]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '117',
-    location:{ type: 'Point', coordinates: [43.769600,-89.203873]},
+    location: {type: 'Point', coordinates: [43.7696, -89.203873]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '118',
-    location:{ type: 'Point', coordinates: [43.769503,-89.204273]},
+    location: {type: 'Point', coordinates: [43.769503, -89.204273]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '119',
-    location:{ type: 'Point', coordinates: [43.769435,-89.204441]},
+    location: {type: 'Point', coordinates: [43.769435, -89.204441]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '120',
-    location:{ type: 'Point', coordinates: [43.769464,-89.203908]},
+    location: {type: 'Point', coordinates: [43.769464, -89.203908]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '121',
-    location:{ type: 'Point', coordinates: [43.769405,-89.204155]},
+    location: {type: 'Point', coordinates: [43.769405, -89.204155]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '122',
-    location:{ type: 'Point', coordinates: [43.769368,-89.204380]},
+    location: {type: 'Point', coordinates: [43.769368, -89.20438]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '123',
-    location:{ type: 'Point', coordinates: [43.768439,-89.202691]},
+    location: {type: 'Point', coordinates: [43.768439, -89.202691]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '124',
-    location:{ type: 'Point', coordinates: [43.768595,-89.203138]},
+    location: {type: 'Point', coordinates: [43.768595, -89.203138]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '125',
-    location:{ type: 'Point', coordinates: [43.768808,-89.203193]},
+    location: {type: 'Point', coordinates: [43.768808, -89.203193]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '126',
-    location:{ type: 'Point', coordinates: [43.768974,-89.203195]},
+    location: {type: 'Point', coordinates: [43.768974, -89.203195]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '127',
-    location:{ type: 'Point', coordinates: [43.769085,-89.203111]},
+    location: {type: 'Point', coordinates: [43.769085, -89.203111]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '128',
-    location:{ type: 'Point', coordinates: [43.769288,-89.203027]},
+    location: {type: 'Point', coordinates: [43.769288, -89.203027]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '129',
-    location:{ type: 'Point', coordinates: [43.769213,-89.202789]},
+    location: {type: 'Point', coordinates: [43.769213, -89.202789]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '130',
-    location:{ type: 'Point', coordinates: [43.769040,-89.202788]},
+    location: {type: 'Point', coordinates: [43.76904, -89.202788]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '131',
-    location:{ type: 'Point', coordinates: [43.768893,-89.202812]},
+    location: {type: 'Point', coordinates: [43.768893, -89.202812]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '132',
-    location:{ type: 'Point', coordinates: [43.768728,-89.202826]},
+    location: {type: 'Point', coordinates: [43.768728, -89.202826]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '133',
-    location:{ type: 'Point', coordinates: [43.768621,-89.202831]},
+    location: {type: 'Point', coordinates: [43.768621, -89.202831]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '134',
-    location:{ type: 'Point', coordinates: [43.768598,-89.202721]},
+    location: {type: 'Point', coordinates: [43.768598, -89.202721]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '135',
-    location:{ type: 'Point', coordinates: [43.768736,-89.202703]},
+    location: {type: 'Point', coordinates: [43.768736, -89.202703]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '136',
-    location:{ type: 'Point', coordinates: [43.768862,-89.202685]},
+    location: {type: 'Point', coordinates: [43.768862, -89.202685]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '137',
-    location:{ type: 'Point', coordinates: [43.769043,-89.202666]},
+    location: {type: 'Point', coordinates: [43.769043, -89.202666]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '138',
-    location:{ type: 'Point', coordinates: [43.769180,-89.202669]},
+    location: {type: 'Point', coordinates: [43.76918, -89.202669]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '145',
-    location:{ type: 'Point', coordinates: [43.768615,-89.202245]},
+    location: {type: 'Point', coordinates: [43.768615, -89.202245]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '146',
-    location:{ type: 'Point', coordinates: [43.768741,-89.202177]},
+    location: {type: 'Point', coordinates: [43.768741, -89.202177]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '147',
-    location:{ type: 'Point', coordinates: [43.768904,-89.202172]},
+    location: {type: 'Point', coordinates: [43.768904, -89.202172]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '148',
-    location:{ type: 'Point', coordinates: [43.769045,-89.202126]},
+    location: {type: 'Point', coordinates: [43.769045, -89.202126]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '149',
-    location:{ type: 'Point', coordinates: [43.769167,-89.202083]},
+    location: {type: 'Point', coordinates: [43.769167, -89.202083]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '150',
-    location:{ type: 'Point', coordinates: [43.770307,-89.201408]},
+    location: {type: 'Point', coordinates: [43.770307, -89.201408]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-     {
+  {
     name: '151',
-    location:{ type: 'Point', coordinates: [43.770147,-89.201383]},
+    location: {type: 'Point', coordinates: [43.770147, -89.201383]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-     {
+  {
     name: '152',
-    location:{ type: 'Point', coordinates: [43.770040,-89.201261]},
+    location: {type: 'Point', coordinates: [43.77004, -89.201261]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '153',
-    location:{ type: 'Point', coordinates: [43.770181,-89.201125]},
+    location: {type: 'Point', coordinates: [43.770181, -89.201125]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '154',
-    location:{ type: 'Point', coordinates: [43.770281,-89.200996]},
+    location: {type: 'Point', coordinates: [43.770281, -89.200996]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '156',
-    location:{ type: 'Point', coordinates: [43.770577,-89.201003]},
+    location: {type: 'Point', coordinates: [43.770577, -89.201003]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '157',
-    location:{ type: 'Point', coordinates: [43.770531,-89.200806]},
+    location: {type: 'Point', coordinates: [43.770531, -89.200806]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '158',
-    location:{ type: 'Point', coordinates: [43.770535,-89.200624]},
+    location: {type: 'Point', coordinates: [43.770535, -89.200624]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '159',
-    location:{ type: 'Point', coordinates: [43.770542,-89.200412]},
+    location: {type: 'Point', coordinates: [43.770542, -89.200412]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '160',
-    location:{ type: 'Point', coordinates: [43.770453,-89.200278]},
+    location: {type: 'Point', coordinates: [43.770453, -89.200278]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '161',
-    location:{ type: 'Point', coordinates: [43.770380,-89.200240]},
+    location: {type: 'Point', coordinates: [43.77038, -89.20024]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '163',
-    location:{ type: 'Point', coordinates: [43.770239,-89.200531]},
+    location: {type: 'Point', coordinates: [43.770239, -89.200531]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '164',
-    location:{ type: 'Point', coordinates: [43.770068,-89.200624]},
+    location: {type: 'Point', coordinates: [43.770068, -89.200624]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-     {
+  {
     name: '165',
-    location:{ type: 'Point', coordinates: [43.770012,-89.200772]},
+    location: {type: 'Point', coordinates: [43.770012, -89.200772]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-     {
+  {
     name: '166',
-    location:{ type: 'Point', coordinates: [43.769960,-89.200944]},
+    location: {type: 'Point', coordinates: [43.76996, -89.200944]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '167',
-    location:{ type: 'Point', coordinates: [43.770153,-89.200801]},
+    location: {type: 'Point', coordinates: [43.770153, -89.200801]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '168',
-    location:{ type: 'Point', coordinates: [43.770268,-89.200725]},
+    location: {type: 'Point', coordinates: [43.770268, -89.200725]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '169',
-    location:{ type: 'Point', coordinates: [43.770359,-89.200575]},
+    location: {type: 'Point', coordinates: [43.770359, -89.200575]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '170',
-    location:{ type: 'Point', coordinates: [43.769610,-89.201134]},
+    location: {type: 'Point', coordinates: [43.76961, -89.201134]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '171',
-    location:{ type: 'Point', coordinates: [43.769462,-89.200872]},
+    location: {type: 'Point', coordinates: [43.769462, -89.200872]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '172',
-    location:{ type: 'Point', coordinates: [43.769478,-89.201207]},
+    location: {type: 'Point', coordinates: [43.769478, -89.201207]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '173',
-    location:{ type: 'Point', coordinates: [43.769330,-89.200962]},
+    location: {type: 'Point', coordinates: [43.76933, -89.200962]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '174',
-    location:{ type: 'Point', coordinates: [43.769362,-89.201243]},
+    location: {type: 'Point', coordinates: [43.769362, -89.201243]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '175',
-    location:{ type: 'Point', coordinates: [43.769177,-89.201019]},
+    location: {type: 'Point', coordinates: [43.769177, -89.201019]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '176',
-    location:{ type: 'Point', coordinates: [43.769224,-89.201324]},
+    location: {type: 'Point', coordinates: [43.769224, -89.201324]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '177',
-    location:{ type: 'Point', coordinates: [43.769116,-89.200855]},
+    location: {type: 'Point', coordinates: [43.769116, -89.200855]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '178',
-    location:{ type: 'Point', coordinates: [43.769005,-89.201312]},
+    location: {type: 'Point', coordinates: [43.769005, -89.201312]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '179',
-    location:{ type: 'Point', coordinates: [43.769102,-89.200684]},
+    location: {type: 'Point', coordinates: [43.769102, -89.200684]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '180',
-    location:{ type: 'Point', coordinates: [43.768990,-89.201178]},
+    location: {type: 'Point', coordinates: [43.76899, -89.201178]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '181',
-    location:{ type: 'Point', coordinates: [43.769070,-89.200479]},
+    location: {type: 'Point', coordinates: [43.76907, -89.200479]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '182',
-    location:{ type: 'Point', coordinates: [43.768934,-89.200990]},
+    location: {type: 'Point', coordinates: [43.768934, -89.20099]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '183',
-    location:{ type: 'Point', coordinates: [43.769048,-89.200338]},
+    location: {type: 'Point', coordinates: [43.769048, -89.200338]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '184',
-    location:{ type: 'Point', coordinates: [43.768908,-89.200803]},
+    location: {type: 'Point', coordinates: [43.768908, -89.200803]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '186',
-    location:{ type: 'Point', coordinates: [43.768902,-89.200591]},
+    location: {type: 'Point', coordinates: [43.768902, -89.200591]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '188',
-    location:{ type: 'Point', coordinates: [43.768891,-89.200398]},
+    location: {type: 'Point', coordinates: [43.768891, -89.200398]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '189',
-    location:{ type: 'Point', coordinates: [43.769025,-89.201811]},
+    location: {type: 'Point', coordinates: [43.769025, -89.201811]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '190',
-    location:{ type: 'Point', coordinates: [43.768903,-89.201944]},
+    location: {type: 'Point', coordinates: [43.768903, -89.201944]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-   {
+  {
     name: '191',
-    location:{ type: 'Point', coordinates: [43.768758,-89.201881]},
+    location: {type: 'Point', coordinates: [43.768758, -89.201881]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '192',
-    location:{ type: 'Point', coordinates: [43.768799,-89.201742]},
+    location: {type: 'Point', coordinates: [43.768799, -89.201742]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
   {
     name: '139',
-    location:{ type: 'Point', coordinates: [43.769245,-89.202360]},
+    location: {type: 'Point', coordinates: [43.769245, -89.20236]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-     {
+  {
     name: '140',
-    location:{ type: 'Point', coordinates: [43.769123,-89.202378]},
+    location: {type: 'Point', coordinates: [43.769123, -89.202378]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-      {
+  {
     name: '141',
-    location:{ type: 'Point', coordinates: [43.769015,-89.202405]},
+    location: {type: 'Point', coordinates: [43.769015, -89.202405]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-      {
+  {
     name: '142',
-    location:{ type: 'Point', coordinates: [43.768893,-89.202434]},
+    location: {type: 'Point', coordinates: [43.768893, -89.202434]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-    {
+  {
     name: '143',
-    location:{ type: 'Point', coordinates: [43.768773,-89.202457]},
+    location: {type: 'Point', coordinates: [43.768773, -89.202457]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
   },
-     {
+  {
     name: '144',
-    location:{ type: 'Point', coordinates: [43.768665,-89.202462]},
+    location: {type: 'Point', coordinates: [43.768665, -89.202462]},
     coverImage: 'SingleCamperStock.jpg',
     images: [],
     typeing: 'camper'
-  },
+  }
 ]
 
+/*
+
+
+    CabinSites
 
 
 
-
-
+*/
 const cabinSites = [
   {
     name: 'Otter',
@@ -1419,7 +1420,25 @@ const cabinSites = [
   }
 ]
 
-const tentCampsites = [
+
+/*
+
+
+
+    Tent Sites
+
+
+
+*/
+
+
+
+
+
+
+
+
+const tentSites = [
   {
     name: '34',
     location: {type: 'Point', coordinates: [43.76863, -89.199685]},
@@ -1533,3 +1552,5 @@ const tentCampsites = [
     typeing: 'tent'
   }
 ]
+
+module.exports = {camperSites, cabinSites, tentSites}
