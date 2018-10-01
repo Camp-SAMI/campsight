@@ -2,11 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
-<<<<<<< HEAD
-import {Login, Signup, UserHome, LandingPage} from './components'
-=======
-import {Login, Signup, UserHome, CampsiteBlock, CampsiteCollection} from './components'
->>>>>>> ee1ebb74a79ea9569632bd42159bf761d893c1a0
+import {Login, Signup, UserHome, CampsiteBlock, CampsiteCollection, LandingPage} from './components'
 import {me} from './store'
 
 /**
@@ -25,12 +21,9 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-<<<<<<< HEAD
         <Route exact path="/" component={LandingPage} />
         <Route path="*" component={LandingPage} />
-=======
         {/* <Route path="campsites" /> */} {/* commented out route should probably lead to detailed campsite view component */}
->>>>>>> ee1ebb74a79ea9569632bd42159bf761d893c1a0
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}

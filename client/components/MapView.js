@@ -27,5 +27,5 @@ class MapView extends Component {
 }
 
 export default GoogleApiWrapper({
-    api: (process.env.GOOGLE_MAPS_API_KEY)
+    apiKey: 'AIzaSyBvCoW6W-GS1nOrBnLm3bUybUG9wDfo-5U'
 })(MapView);

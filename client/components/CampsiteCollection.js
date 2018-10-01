@@ -5,16 +5,16 @@ import CampsiteBlock from './CampsiteBlock';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-    return {
-        campsites: state.campsites,
-        amenities: state.amenities
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         campsites: state.campsites,
+//         amenities: state.amenities
+//     }
+// }
 
-const mapDispatchToProps = dispatch => ({
-    fetchAmenities: () => dispatch(fetchAmenities())
-});
+// const mapDispatchToProps = dispatch => ({
+//     fetchAmenities: () => dispatch(fetchAmenities())
+// });
 
 //we probably want to have pagination here? For that reason, making it a stateful component makes sense
 class CampsiteCollection extends Component {
@@ -24,8 +24,6 @@ class CampsiteCollection extends Component {
             startTime: '',
             endTime: '',
             campsiteType: '',
-            campsites: [],
-            amenities: [],
             perPage: 6,
             currentPage: [],
             numPages: 0,
@@ -34,15 +32,9 @@ class CampsiteCollection extends Component {
     }
 
     componentDidMount() {
-        // await this.props.fetchCampsites();
-        // await this.props.fetchAmenities();
-        const campsites = this.props.campsites;
-        const amenities = this.props.amenities;
         const perPage = this.state.perPage;
         const numPages = Math.ceil(this.props.campsites.length / perPage );
         this.setState({
-            campsites: campsites,
-            amenities: amenities,
             numPages: numPages
         });
     }
@@ -80,4 +72,4 @@ class CampsiteCollection extends Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CampsiteCollection);
+export default CampsiteCollection;
