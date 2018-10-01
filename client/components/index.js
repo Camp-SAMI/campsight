@@ -6,9 +6,7 @@
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
 export {Login, Signup} from './auth-form'
-<<<<<<< HEAD
+export {default as ReservationForm} from './ReservationForm'
 export {default as LandingPage} from './LandingPage'
-=======
-export {default as CampsiteCollection} from './CampsiteCollection';
-export {default as CampsiteBlock} from './CampsiteBlock';
->>>>>>> ee1ebb74a79ea9569632bd42159bf761d893c1a0
+export {default as CampsiteCollection} from './CampsiteCollection'
+export {default as CampsiteBlock} from './CampsiteBlock'
