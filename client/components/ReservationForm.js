@@ -1,6 +1,8 @@
 import {addDays} from 'date-fns'
 
 import React, {PureComponent, Fragment} from 'react'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -12,7 +14,9 @@ import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
 import {InlineDatePicker} from 'material-ui-pickers/DatePicker'
 
-export default class ReservationForm extends PureComponent {
+import {fetchReservations} from './store/reservations'
+
+class ReservationForm extends PureComponent {
   START_DATE = new Date()
   state = {
     selectedStartDate: this.START_DATE,
@@ -38,6 +42,10 @@ export default class ReservationForm extends PureComponent {
     console.log('I am outta here!')
   }
 
+  componentDidMount() {
+    this.props.fetchLatestReservation(this.props.match.params.campsiteId)
+  }
+
   render() {
     const {
       selectedStartDate,
@@ -60,7 +68,7 @@ export default class ReservationForm extends PureComponent {
                 keyboard
                 variant="outlined"
                 label="Start Date"
-                minDate={this.START_DATE}
+                disablePast
                 value={selectedStartDate}
                 onChange={this.handleDateChange('selectedStartDate')}
                 format="MM/dd/yyyy"
@@ -85,7 +93,7 @@ export default class ReservationForm extends PureComponent {
                 keyboard
                 variant="outlined"
                 label="End Date"
-                minDate={this.START_DATE}
+                disablePast
                 value={selectedEndDate}
                 onChange={this.handleDateChange('selectedEndDate')}
                 format="MM/dd/yyyy"
@@ -175,3 +183,9 @@ export default class ReservationForm extends PureComponent {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  fetchLatestReservation: campsiteId => dispatch(fetchReservations(campsiteId))
+})
+
+export default withRouter(connect(null, mapDispatchToProps)(ReservationForm))
