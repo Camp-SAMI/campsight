@@ -1,4 +1,4 @@
-const router = require('express').router();
+const router = require('express').Router();
 const { Reservation, Camper, Campsite } = require('../db/models');
 
 router.get('/', async (req, res, next) => {

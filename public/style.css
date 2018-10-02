@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  height: 100%;
 }
 
 a {
@@ -14,6 +15,13 @@ nav a {
   display: inline-block;
   margin: 1em;
 }
+
+/* nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+} */
 
 form div {
   margin: 1em;
@@ -38,16 +46,17 @@ form div {
   transform: translateZ(-1px) scale(2);
   z-index: -1;
   background: url('https://recreation-acm.activefederal.com/assetfactory.aspx?did=5221');
-}
+} */
 
 .ContentContainer {
   display: block;
   position: relative;
   background-color: aquamarine;
   z-index: 1;
-} */
+  height:100%;
+}
 
-h1 {
+/* h1 {
   letter-spacing: -15px;
   font-family: Open Sans;
   color: white;
@@ -55,7 +64,7 @@ h1 {
   font-size: 200px;
   font-weight: 800;
   line-height: 200px;
-}
+} */
 
 .MainContainer {
   perspective: 1px;

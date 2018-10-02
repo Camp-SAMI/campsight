@@ -31,8 +31,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/" component={LandingPage} />
-        {/* <Route path="campsites" /> */}{' '}
-        {/* commented out route should probably lead to detailed campsite view component */}
+        <Route path="*" component={LandingPage} />
+        {/* <Route path="campsites" /> */} {/* commented out route should probably lead to detailed campsite view component */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
