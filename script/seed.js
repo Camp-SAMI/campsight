@@ -8,7 +8,8 @@ const {
   Campgound,
   Campsite,
   Amenity,
-  Reservation
+  Reservation,
+  campsiteReservations
 } = require('../server/db/models/index')
 const {camperSites, tentSites, cabinSites} = require('../campSiteSeedData')
 
@@ -17,22 +18,9 @@ const chance = new Chance(95698435)
 
 const reservationQuantity = 2000
 const campsiteReservationsQuantity = 2000
-const numberOfCampers = 500
+const numberOfCampers = 2000
 const numberOfCampsites = 214
 
-// pickset, shuffle
-
-// chance.mixin({
-//   reservation: () => ({
-//     startTime: chance.date({year: 2018}),
-//     endTime: startTimeRes,
-//     partyNumber: chance.integer({min: 1, max: 7}),
-//     campsiteId: chance.unique(chance.integer, campsiteReservationsQuantity, {
-//       min: 1,
-//       max: reservationQuantity
-//     })[0]
-//   })
-// })
 
 chance.mixin({
   camper: () => ({
@@ -42,25 +30,16 @@ chance.mixin({
   })
 })
 
-// chance.mixin({
-//   amenityId: chance.natural({min: 1, max: 3}),
-//   campsiteId: chance.unique(chance.natural({min: 1, max: numberOfCampsites}))
-// })
+chance.mixin({
+  campsiteReservation: () => ({
+    campsiteId: chance.integer({min: 1, max: numberOfCampsites}),
+    reservationId: chance.unique(chance.integer, 1, {
+      min: 1,
+      max: campsiteReservationsQuantity
+    })[0]
+  })
+})
 
-// chance.mixin({
-//   campsiteReservations: () => ({
-//     campsiteId: chance.unique(
-//       chance.natural({min: 1, max: campsiteReservationsQuantity})
-//     ),
-//     reservationId: chance.unique(
-//       chance.natural({
-//         min: 1,
-//         max: campsiteReservationsQuantity
-//       })
-//     )
-//   })
-// })
-// creating arrays for table
 const camper = []
 for (let i = 0; i < numberOfCampers; i++) {
   camper.push(chance.camper())
@@ -76,12 +55,6 @@ for (let i = 0; i < reservationQuantity; i++) {
     return startTimeRes
   }
 
-  // 
-  // const campSiteReservations = []
-  // for (let i= 0; i < reservationQuantity;i++){
-
-  // }
-
   const endTime = new Date(startTimeRes.setDate(startTimeRes.getDate() + days))
 
   chance.mixin({
@@ -89,16 +62,30 @@ for (let i = 0; i < reservationQuantity; i++) {
       startTime: startTimeRes,
       endTime: endTime,
       partyNumber: chance.integer({min: 1, max: 7}),
-      campsiteId:chance.integer ({
+      campsiteId: chance.integer({
         min: 1,
-        max: numberOfCampsites})
-      
+        max: numberOfCampsites
+      }),
+      camperId: chance.integer({min: 1, max: numberOfCampers})
     })
   })
   reservations.push(chance.reservation())
 }
 
+const campsiteReservationsArray = []
+const campsiteResIdCreator = chance.unique(
+  chance.integer,
+  campsiteReservationsQuantity,
+  {min: 1, max: campsiteReservationsQuantity}
+)
+for (let i = 0; i < campsiteResIdCreator.length; i++) {
+  campsiteReservationsArray.push({
+    campsiteId: chance.integer({min: 1, max: numberOfCampsites}),
+    reservationId: campsiteResIdCreator[i]
+  })
+}
 async function seed() {
+
   await db.sync({force: true})
   console.log(`db ${db.config.database} synced!`)
   await Campsite.bulkCreate(camperSites)
@@ -111,6 +98,7 @@ async function seed() {
   ])
   await Camper.bulkCreate(camper)
   await Reservation.bulkCreate(reservations)
+  await campsiteReservations.bulkCreate(campsiteReservationsArray)
 
   console.log(`seeded successfully`)
 }

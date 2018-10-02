@@ -4,6 +4,7 @@ const Amenity = require('./amenity');
 const Campground = require('./campground');
 const Campsite = require('./campsite');
 const Reservation = require('./reservation');
+const campsiteReservations = require('./campSiteReservations')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -40,5 +41,6 @@ module.exports = {
   Campground,
   Campsite,
   Amenity,
-  Reservation
+  Reservation,
+  campsiteReservations
 }
