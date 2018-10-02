@@ -46,14 +46,15 @@ form div {
   transform: translateZ(-1px) scale(2);
   z-index: -1;
   background: url('https://recreation-acm.activefederal.com/assetfactory.aspx?did=5221');
-}
+} */
 
 .ContentContainer {
   display: block;
   position: relative;
   background-color: aquamarine;
   z-index: 1;
-} */
+  height:100%;
+}
 
 /* h1 {
   letter-spacing: -15px;
