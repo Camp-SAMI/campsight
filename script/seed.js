@@ -9,7 +9,8 @@ const {
   Campsite,
   Amenity,
   Reservation,
-  campsiteReservations
+  campsiteReservations,
+  campsiteAmenities
 } = require('../server/db/models/index')
 const {camperSites, tentSites, cabinSites} = require('../campSiteSeedData')
 
@@ -55,6 +56,7 @@ for (let i = 0; i < reservationQuantity; i++) {
     return startTimeRes
   }
 
+
   const endTime = new Date(startTimeRes.setDate(startTimeRes.getDate() + days))
 
   chance.mixin({
@@ -84,8 +86,19 @@ for (let i = 0; i < campsiteResIdCreator.length; i++) {
     reservationId: campsiteResIdCreator[i]
   })
 }
-async function seed() {
 
+const numberOfCampsitesArray = chance.unique(chance.integer, numberOfCampsites, {min:1,max: numberOfCampsites})
+const campsiteAmenitiesArray = []
+for (let i = 0; i < numberOfCampsitesArray.length; i++){
+  campsiteAmenitiesArray.push({
+     amenityId: chance.integer({min: 1, max: 3}),
+     campsiteId: numberOfCampsitesArray[i]
+  })
+}
+
+
+async function seed() {
+  console.log(campsiteAmenitiesArray, "campsiteAmenities array -------------------------------------")
   await db.sync({force: true})
   console.log(`db ${db.config.database} synced!`)
   await Campsite.bulkCreate(camperSites)
@@ -99,6 +112,7 @@ async function seed() {
   await Camper.bulkCreate(camper)
   await Reservation.bulkCreate(reservations)
   await campsiteReservations.bulkCreate(campsiteReservationsArray)
+  await campsiteAmenities.bulkCreate(campsiteAmenitiesArray)
 
   console.log(`seeded successfully`)
 }
