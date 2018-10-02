@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
+import { GOOGLE_MAPS_API_KEY } from '../secrets';
 
 import Typogragphy from '@material-ui/core/Typography';
 import { typgoraphy } from '@material-ui/core/styles';
-if (process.env.NODE_ENV !== 'production') require('../secrets')
+// if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 
 class MapView extends Component {
@@ -29,7 +30,7 @@ class MapView extends Component {
 }
 
 const wrapperContainer = GoogleApiWrapper({
-    apiKey: process.env.GOOGLE_MAPS_API_KEY
+    apiKey: GOOGLE_MAPS_API_KEY
 })(MapView);
 
 export default wrapperContainer;
