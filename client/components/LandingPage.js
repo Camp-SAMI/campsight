@@ -44,7 +44,8 @@ class LandingPage extends Component {
   }
 
   async componentDidMount(){
-    const campsites = await this.props.fetchCampsites();
+    await this.props.fetchCampsites();
+    const campsites = this.props.campsites;
     // const amenities = await this.props.fetchAmenities();
     const reservations = await this.props.fetchReservations();
     this.props.getFilteredCampsites(campsites, [], null, null, '');
