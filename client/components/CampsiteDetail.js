@@ -6,9 +6,18 @@ import {withRouter} from 'react-router-dom'
 import {fetchCampsite} from '../store/campsite'
 
 class CampsiteDetail extends Component {
+  componentDidMount() {
+    this.props.fetchCampsite(
+      Number(this.props.id || this.props.match.params.id)
+    )
+  }
+
   render() {
     return (
       <Fragment>
+        <Container>
+          <Header>{this.props.campsite.name}</Header>
+        </Container>
         <div>
           <p>This probably a terrible idea.</p>
         </div>

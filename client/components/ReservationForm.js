@@ -14,7 +14,7 @@ import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
 import {InlineDatePicker} from 'material-ui-pickers/DatePicker'
 
-import {fetchReservations} from './store/reservations'
+import {fetchLatestCampsiteReservation} from '../store/reservation'
 
 class ReservationForm extends PureComponent {
   START_DATE = new Date()
@@ -43,7 +43,9 @@ class ReservationForm extends PureComponent {
   }
 
   componentDidMount() {
-    this.props.fetchLatestReservation(this.props.match.params.campsiteId)
+    this.props.fetchLatestCampsiteReservation(
+      this.props.match.params.campsiteId
+    )
   }
 
   render() {
@@ -185,7 +187,8 @@ class ReservationForm extends PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchLatestReservation: campsiteId => dispatch(fetchReservations(campsiteId))
+  fetchLatestCampsiteReservation: campsiteId =>
+    dispatch(fetchLatestCampsiteReservation(campsiteId))
 })
 
 export default withRouter(connect(null, mapDispatchToProps)(ReservationForm))

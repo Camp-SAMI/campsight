@@ -30,15 +30,19 @@ const reservation = db.define('reservation', {
   }
 })
 
+// Gets the latest reservation for a given campsite
+// How do I account for all the pockets of unbooked days
+// between reservations up until the latest reservation?
 reservation.getLatestCampsiteReservation = async function(campsiteId) {
   try {
     const reservations = await this.findAll({
       where: {campsiteId}
     })
     if (reservations.length) {
-      return reservation.sort(compareDesc(a, b))[-1]
-    }
-    else {
+      return reservations.sort(function(a, b) {
+        return compareDesc(a.dataValues.startTime, b.dataValues.startTime)
+      })[0]
+    } else {
       return 'There is nothing here'
     }
   } catch (error) {

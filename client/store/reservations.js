@@ -17,21 +17,18 @@ export default function reducer(reservations = [], action) {
   switch (action.type) {
     case GET_RESERVATIONS:
       return action.reservations
+    case GET_RESERVATIONS_ERROR:
+      return reservations
     default:
       return reservations
   }
 }
 
 //THUNK CREATORS
-export const fetchReservations = campsiteId => {
+export const fetchReservations = () => {
   return async dispatch => {
     try {
-      let result
-      if (campsiteId) {
-        result = await axios.get(`/api/reservations/${campsiteId}/latest`)
-      } else {
-        result = await axios.get('/api/reservations')
-      }
+      const result = await axios.get('/api/reservations')
       dispatch(getReservations(result.data))
     } catch (err) {
       dispatch(getReservationsError())
