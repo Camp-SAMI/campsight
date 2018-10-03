@@ -9,12 +9,19 @@ const CampsiteBlock = (props) => {
             <article>
                 <div>
                     <div>
-                        <ul>
-                            <li>
-                                <span>{campsite.id}</span>
-                            </li>
-                        </ul>
-                        <img src={campsite.coverImage} />
+                        <div>
+                            <ul>
+                                <li>
+                                    <span>{campsite.name}</span>
+                                </li>
+                            </ul>
+                            <img src={campsite.coverImage} />
+                        </div>
+                        <div>
+                            <h4><span>{campsite.amenities.map(
+                            amenity => <p key={amenity.id}>{amenity.type}</p>)}
+                            </span></h4>
+                        </div>
                     </div>
                     <div>
                         <h4><span>{campsite.amenities.map(
