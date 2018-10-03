@@ -105,6 +105,7 @@ class LandingPage extends Component {
 
         <div className="ContentContainer">
           <div className="Content">
+            {/* Amenities takes in onAmenitiesChange. Similar for the datePicker and the Type component */}
             <Amenities />
             <MapView campsites={filteredCampsites} campsite={campsite} />
             <CampsiteCollection campsites={filteredCampsites} campsite={campsite} />
