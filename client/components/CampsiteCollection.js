@@ -37,14 +37,16 @@ class CampsiteCollection extends Component {
         this.setState({
             numPages: numPages
         });
+        // console.log(this.props.campsites);
     }
 
     render() {
-        if (this.props.campsites.length && this.state.currentPage && this.state.numPages) {
-            const campsites = this.props.campsites;
-            const currentPage = this.state.currentPage;
-            const isSearch = this.state.isSearch;
-            const amenities = this.state.amenities;
+        const campsites = this.props.campsites;
+        const currentPage = this.state.currentPage;
+        const isSearch = this.state.isSearch;
+        const amenities = this.state.amenities;
+        console.log('campsites', campsites);
+        if (this.props.campsites.length && this.state.currentPage) {
 
             return (
                 <div>
