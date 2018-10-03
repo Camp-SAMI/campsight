@@ -6,9 +6,8 @@ import {Card, Image} from 'semantic-ui-react'
 const CampsiteBlock = props => {
   const {campsite} = props
   return (
-    <li>
-      <NavLink to={`/campsites/${campsite.id}`}>
-        {/* <article>
+    <NavLink to={`/campsites/${campsite.id}`}>
+      {/* <article>
                     <div>
                         <div>
                             <ul>
@@ -25,14 +24,13 @@ const CampsiteBlock = props => {
                         </div>
                     </div>
                 </article> */}
-        <Card>
-          <Image src={campsite.coverImage} />
-          <Card.Content>
-            <Card.Header> {campsite.name}</Card.Header>
-          </Card.Content>
-        </Card>
-      </NavLink>
-    </li>
+      <Card>
+        <Image src={campsite.coverImage} />
+        <Card.Content>
+          <Card.Header> {campsite.name}</Card.Header>
+        </Card.Content>
+      </Card>
+    </NavLink>
   )
 }
 

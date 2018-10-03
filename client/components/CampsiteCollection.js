@@ -64,9 +64,9 @@ class CampsiteCollection extends Component {
         //         )}
         //     </ul>
         // </div>
-        <Grid celled="internally">
-          {this.props.campsites.map(campsite => (
-            <Grid.Column key={campsite.id} width={6}>
+        <Grid>
+          {this.props.campsites.slice(0, 11).map(campsite => (
+            <Grid.Column key={campsite.id} width={8}>
               <CampsiteBlock campsite={campsite} />
             </Grid.Column>
           ))}

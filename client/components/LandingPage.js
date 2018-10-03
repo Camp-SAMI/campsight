@@ -8,7 +8,7 @@ import {fetchAmenities} from '../store/amenities'
 import {fetchReservations} from '../store/reservations'
 import {fetchCampsite} from '../store/campsite'
 import {getFilteredCampsites} from '../store/filteredCampsites'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Responsive} from 'semantic-ui-react'
 
 const mapStateToProps = state => {
   return {
@@ -140,22 +140,39 @@ class LandingPage extends Component {
         <div className="ContentContainer">
           <div className="Content">
             {/* Amenities takes in onAmenitiesChange. Similar for the datePicker and the Type component */}
-            <Grid celled="internally">
-              <Grid.Column width={6}>
-                <CampsiteCollection
-                  campsites={filteredCampsites}
-                  campsite={campsite}
-                />
-              </Grid.Column>
-              <Grid.Column width={6}>
-                <MapView campsites={filteredCampsites} campsite={campsite} />
-              </Grid.Column>
-            </Grid>
+            {/* <Container style={{height: '100vh'}}> */}
+            <Responsive as={Grid} columns={1}>
+              <Grid>
+                <Grid.Row>
+                  <Grid.Column width={6}>
+                    <CampsiteCollection
+                      campsites={filteredCampsites}
+                      campsite={campsite}
+                    />
+                  </Grid.Column>
+                  <Grid.Column width={9}>
+                    <MapView
+                      campsites={filteredCampsites}
+                      campsite={campsite}
+                      style={styles.map}
+                    />
+                  </Grid.Column>
+                </Grid.Row>
+              </Grid>
+            </Responsive>
+            {/* </Container> */}
             {/* REMOVE <p> TAGS AND PUT YOUR COMPONENTS INSIDE OF CONTENT CONTAINER */}
           </div>
         </div>
       </div>
     )
+  }
+}
+
+const styles = {
+  map: {
+    margin: 40,
+    maxHeight: 200
   }
 }
 

@@ -82,7 +82,7 @@ form div {
 }
 
 .Content {
-  max-width: 750px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 75px 0;
 }
