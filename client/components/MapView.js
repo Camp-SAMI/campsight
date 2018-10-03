@@ -21,12 +21,22 @@ class MapView extends Component {
     return (
       <Map
         google={this.props.google}
-        initialCenter={{lat: 42.856, lng: -86.89034}}
-        zoom={9}
+        initialCenter={{lat: 43.769737, lng: -89.202131}}
+        zoom={17}
       >
         {campsites.map(camp => {
           return (
-            <Marker key={camp.id} name={camp.name} position={camp.location} />
+            <Marker
+              key={camp.id}
+              name={camp.name}
+              position={{
+                lat: camp.location.coordinates[0],
+                lng: camp.location.coordinates[1]
+              }}
+              icon={{
+                url: '/campericon.png'
+              }}
+            />
           )
         })}
       </Map>
