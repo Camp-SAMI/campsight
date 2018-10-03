@@ -23,6 +23,7 @@ class MapView extends Component {
         google={this.props.google}
         initialCenter={{lat: 43.769737, lng: -89.202131}}
         zoom={17}
+        style={styles.map}
       >
         {campsites.map(camp => {
           return (
@@ -41,6 +42,12 @@ class MapView extends Component {
         })}
       </Map>
     )
+  }
+}
+
+const styles = {
+  map: {
+    height: 700
   }
 }
 
