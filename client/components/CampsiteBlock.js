@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, {Component} from 'react'
+import {NavLink} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {Card, Image} from 'semantic-ui-react'
 
-const CampsiteBlock = (props) => {
-    const { campsite } = props;
-    return (
-        <li>
-            <NavLink to={`/campsites/${campsite.id}`}>
-                <article>
+const CampsiteBlock = props => {
+  const {campsite} = props
+  return (
+    <li>
+      <NavLink to={`/campsites/${campsite.id}`}>
+        {/* <article>
                     <div>
                         <div>
                             <ul>
@@ -23,10 +24,16 @@ const CampsiteBlock = (props) => {
                             </span></h4>
                         </div>
                     </div>
-                </article>
-            </NavLink>
-        </li>
-    )
+                </article> */}
+        <Card>
+          <Image src={campsite.coverImage} />
+          <Card.Content>
+            <Card.Header> {campsite.name}</Card.Header>
+          </Card.Content>
+        </Card>
+      </NavLink>
+    </li>
+  )
 }
 
-export default CampsiteBlock;
+export default CampsiteBlock
