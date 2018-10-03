@@ -1,51 +1,30 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Button, Menu, MenuItem} from '@material-ui/core'
+// import {withRouter} from 'react-router-dom'
+import {Dropdown} from 'semantic-ui-react'
 import fetchAmenities from '../store/amenities'
 
 class Amenities extends Component {
-  constructor() {
-    super()
-    this.state = {
-      anchorEl: null
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-  }
-  handleClick(event) {
-    this.setState({anchorEl: event.currentTarget})
-  }
-
-  handleClose() {
-    this.setState({anchorEl: null})
-  }
   componentDidMount() {
     this.props.fetchAmenities()
   }
 
   render() {
-    const {anchorEl} = this.state
-    const {amenities} = this.props
+    // const {amenities} = this.props
+    const amenities = [{id: 1, category: 'water'}, {id: 2, category: 'power'}]
+
     return (
-      <div>
-        <Button
-          aria-owns={anchorEl ? 'simple-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          Amenities
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
+      <Dropdown text="Amenities">
+        <Dropdown.Menu>
           {amenities.map(amenitie => (
-            <MenuItem key={amenitie.id}>{amenitie.category}</MenuItem>
+            <Dropdown.Item
+              key={amenitie.id}
+              id={amenitie.id}
+              text={amenitie.category}
+            />
           ))}
-        </Menu>
-      </div>
+        </Dropdown.Menu>
+      </Dropdown>
     )
   }
 }
