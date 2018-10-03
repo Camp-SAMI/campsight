@@ -8,6 +8,7 @@ import { fetchAmenities } from '../store/amenities';
 import { fetchReservations } from '../store/reservations';
 import { fetchCampsite } from '../store/campsite';
 import { getFilteredCampsites } from '../store/filteredCampsites';
+// import DatePicker from './DatePicker';
 
 const mapStateToProps = state => {
   return {
@@ -36,19 +37,24 @@ class LandingPage extends Component {
       startTime: null,
       endTime: null,
       reservations: [],
+      reservedDates: []
     }
     this.onAmenitiesChange = this.onAmenitiesChange.bind(this);
-    this.onStartTimeChange = this.onStartTimeChange.bind(this);
-    this.onEndTimeChange = this.onEndTimeChange.bind(this);
     this.onTypingChange = this.onTypingChange.bind(this);
+    this.onTimeframeChange = this.onTimeframeChange.bind(this);
   }
 
   async componentDidMount(){
+    console.log('this.props', this.props);
     await this.props.fetchCampsites();
     const campsites = this.props.campsites;
+    console.log('campsites', campsites);
     // const amenities = await this.props.fetchAmenities();
     const reservations = await this.props.fetchReservations();
     this.props.getFilteredCampsites(campsites, [], null, null, '');
+    const filteredReservations = this.props.filteredCampsites.map(c => c.reservations);
+    const filteredDates = filteredReservations.map(r => r.daysBooked);
+    console.log(filteredDates);
     this.setState({
       // amenities: amenities,
       reservations: reservations
@@ -68,25 +74,15 @@ class LandingPage extends Component {
     this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, this.state.startTime, this.state.endTime, this.state.typing);
   }
 
-  onStartTimeChange(e) {
-    const startTime = e.target.value;
-    const endTime = this.state.endTime;
+  onTimeframeChange(e) {
+    const startTime = e.target.value.startDate;
+    const endTime = e.target.value.endDate;
     this.setState({
-      startTime: startTime
-    });
-    if (endTime) {
-      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, this.state.startTime, endTime, this.state.typing);
-    }
-  }
-
-  onEndTimeChange(e) {
-    const endTime = e.target.value;
-    const startTime = this.state.startTime;
-    this.setState({
+      startTime: startTime,
       endTime: endTime
     });
-    if (startTime) {
-      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, this.state.endTime, this.state.typing);
+    if (startTime && endTime) {
+      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, endTime, this.state.typing);
     }
   }
 
@@ -96,6 +92,10 @@ class LandingPage extends Component {
       typing: typing
     });
     this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, this.state.startTime, this.state.endTime, typing);
+  }
+
+  isDayBlocked() {
+
   }
 
   render() {

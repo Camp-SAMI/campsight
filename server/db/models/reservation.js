@@ -18,10 +18,11 @@ const reservation = db.define('reservation', {
         type: Sequelize.VIRTUAL,
         get() {
             let dates = [];
-            let currentDate = this.startTime;
-            while (currentDate <= this.endTime) {
-                dates.push(new Date(currentDate));
-                currentDate.setDate(currentDate.getDate() + 1);
+            let currentDate = new Date(this.startTime);
+            let endDate = new Date(this.endTime);
+            while (currentDate <= endDate) {
+                dates.push(currentDate);
+                currentDate = currentDate.setDate(currentDate.getDate()+1);
             }
             return dates;
         }

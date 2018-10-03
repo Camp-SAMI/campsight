@@ -101,8 +101,8 @@ async function seed() {
   console.log(campsiteAmenitiesArray, "campsiteAmenities array -------------------------------------")
   await db.sync({force: true})
   console.log(`db ${db.config.database} synced!`)
-  // await Campsite.bulkCreate(camperSites)
-  // await Campsite.bulkCreate(tentSites)
+  await Campsite.bulkCreate(camperSites)
+  await Campsite.bulkCreate(tentSites)
   await Campsite.bulkCreate(cabinSites)
   await Amenity.bulkCreate([
     {category: 'Power'},
@@ -110,9 +110,9 @@ async function seed() {
     {category: 'water'}
   ])
   await Camper.bulkCreate(camper)
-  // await Reservation.bulkCreate(reservations)
-  // await campsiteReservations.bulkCreate(campsiteReservationsArray)
-  // await campsiteAmenities.bulkCreate(campsiteAmenitiesArray)
+  await Reservation.bulkCreate(reservations)
+  await campsiteReservations.bulkCreate(campsiteReservationsArray)
+  await campsiteAmenities.bulkCreate(campsiteAmenitiesArray)
 
   console.log(`seeded successfully`)
 }

@@ -27,6 +27,7 @@ export function getFilteredCampsites(campsites, selectedAmenities, startTime, en
                 (!typing || typing === camp.type)
             );
         });
+        console.log('filteredCampsites', filteredCamps);
         dispatch(getFilteredCamps(filteredCamps));
     }
 }
