@@ -41,7 +41,7 @@
     "axios": "^0.15.3",
     "compression": "^1.7.3",
     "connect-session-sequelize": "^4.1.0",
-    "date-fns": "^2.0.0-alpha.16",
+    "date-fns": "^2.0.0-alpha.20",
     "express": "^4.16.3",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
