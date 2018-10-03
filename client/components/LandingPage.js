@@ -25,7 +25,7 @@ const mapDispatchToProps = dispatch => ({
   fetchAmenities: () => dispatch(fetchAmenities()),
   fetchCampsite: id => dispatch(fetchCampsite(id)),
   fetchReservations: () => dispatch(fetchReservations()),
-  getFilteredCampsites: (campsites, selectedAmenities, timeframe, typing) => dispatch(getFilteredCampsites(campsites, selectedAmenities, timeframe, typing))
+  getFilteredCampsites: (campsites, selectedAmenities, startTime, endTime, typing) => dispatch(getFilteredCampsites(campsites, selectedAmenities, startTime, endTime, typing))
 })
 
 class LandingPage extends Component {
@@ -41,23 +41,24 @@ class LandingPage extends Component {
     }
     this.onAmenitiesChange = this.onAmenitiesChange.bind(this);
     this.onTypingChange = this.onTypingChange.bind(this);
-    this.onTimeframeChange = this.onTimeframeChange.bind(this);
+    this.onStartTimeChange = this.onStartTimeChange.bind(this);
+    this.onEndTimeChange = this.onEndTimeChange.bind(this);
   }
 
   async componentDidMount(){
     console.log('this.props', this.props);
     await this.props.fetchCampsites();
-    const campsites = this.props.campsites;
-    console.log('campsites', campsites);
-    // const amenities = await this.props.fetchAmenities();
-    const reservations = await this.props.fetchReservations();
-    this.props.getFilteredCampsites(campsites, [], null, null, '');
-    const filteredReservations = this.props.filteredCampsites.map(c => c.reservations);
-    const filteredDates = filteredReservations.map(r => r.daysBooked);
-    console.log(filteredDates);
+    // const campsites = this.props.campsites;
+    // this.props.fetchAmenities();
+    this.props.fetchReservations();
+    // const reservations = this.props.reservations;
+    this.props.getFilteredCampsites(this.props.campsites, [], null, null, '');
+    // const filteredReservations = this.props.filteredCampsites.map(c => c.reservations);
+    // const filteredDates = filteredReservations.map(r => r.daysBooked);
+    // console.log('filteredDates', filteredDates);
     this.setState({
       // amenities: amenities,
-      reservations: reservations
+      reservations: this.props.reservations
     });
   }
 
@@ -74,11 +75,21 @@ class LandingPage extends Component {
     this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, this.state.startTime, this.state.endTime, this.state.typing);
   }
 
-  onTimeframeChange(e) {
-    const startTime = e.target.value.startDate;
-    const endTime = e.target.value.endDate;
+  onStartTimeChange(e) {
+    const startTime = e.target.value.date;
+    const endTime = this.state.endTime;
     this.setState({
-      startTime: startTime,
+      startTime: startTime
+    });
+    if (startTime && endTime) {
+      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, endTime, this.state.typing);
+    }
+  }
+
+  onEndTimeChange(e) {
+    const startTime = this.state.startTime;
+    const endTime = e.target.value.date;
+    this.setState({
       endTime: endTime
     });
     if (startTime && endTime) {
@@ -94,12 +105,18 @@ class LandingPage extends Component {
     this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, this.state.startTime, this.state.endTime, typing);
   }
 
-  isDayBlocked() {
-
-  }
-
   render() {
     const {campsites, amenities, campsite, reservations, filteredCampsites } = this.props;
+    const filteredReservations = filteredCampsites.reduce(
+      function(accumulator, c) {
+         return accumulator.concat(c.reservations)
+      }, []
+    );
+    const filteredDates = filteredReservations.reduce(
+      function(accum, r) { 
+        return accum.concat(r.daysBooked);
+      }, []
+    );
     return (
       <div className="MainContainer">
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>

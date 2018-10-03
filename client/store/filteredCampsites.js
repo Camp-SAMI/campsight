@@ -23,11 +23,10 @@ export function getFilteredCampsites(campsites, selectedAmenities, startTime, en
         const filteredCamps = campsites.filter(camp => {
             return (
                 (!selectedAmenities.length || selectedAmenities.every(amenity => camp.amenities.includes(amenity))) &&
-                ((!startTime || !endTime) || camp.reservations.filter(reservation => !reservation.daysBooked().includes(startTime) && !reservation.daysBooked().includes(endTime))) &&
+                ((!startTime || !endTime) || camp.reservations.filter(reservation => !reservation.daysBooked.includes(startTime) && !reservation.daysBooked.includes(endTime))) &&
                 (!typing || typing === camp.type)
             );
         });
-        console.log('filteredCampsites', filteredCamps);
         dispatch(getFilteredCamps(filteredCamps));
     }
 }
