@@ -4,6 +4,7 @@ import {fetchAmenities} from '../store/amenities'
 import CampsiteBlock from './CampsiteBlock'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {Grid} from 'semantic-ui-react'
 
 // const mapStateToProps = state => {
 //     return {
@@ -45,23 +46,31 @@ class CampsiteCollection extends Component {
     const currentPage = this.state.currentPage
     const isSearch = this.state.isSearch
     const amenities = this.state.amenities
+    console.log('campsites', campsites)
     if (this.props.campsites.length && this.state.currentPage) {
       return (
-        <div>
-          <div>
-            <div>
-              <h2>Campsite Listings</h2>
-            </div>
-          </div>
-          <br />
-          {/* Until a block view of the campsite is written, the mapped campsites displayed are just the list of ids */}
-          {/* Additionally, each block view should take in a handleClick component that opens up the detailed view of that campsite */}
-          <ul>
-            {this.props.campsites.map(campsite => (
-              <CampsiteBlock key={campsite.id} campsite={campsite} />
-            ))}
-          </ul>
-        </div>
+        // <div>
+        //     <div>
+        //         <div>
+        //             <h2>Campsite Listings</h2>
+        //         </div>
+        //     </div>
+        //     <br />
+        //     {/* Until a block view of the campsite is written, the mapped campsites displayed are just the list of ids */}
+        //     {/* Additionally, each block view should take in a handleClick component that opens up the detailed view of that campsite */}
+        //     <ul>
+        //         {this.props.campsites.map(
+        //             campsite => <CampsiteBlock key={campsite.id} campsite={campsite} />
+        //         )}
+        //     </ul>
+        // </div>
+        <Grid>
+          {this.props.campsites.slice(0, 6).map(campsite => (
+            <Grid.Column key={campsite.id} width={8}>
+              <CampsiteBlock campsite={campsite} />
+            </Grid.Column>
+          ))}
+        </Grid>
       )
     } else {
       return <h3>There are no campsites currently available</h3>
