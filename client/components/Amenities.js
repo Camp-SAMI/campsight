@@ -1,51 +1,39 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Button, Menu, MenuItem} from '@material-ui/core'
+// import {withRouter} from 'react-router-dom'
+import {Dropdown} from 'semantic-ui-react'
 import fetchAmenities from '../store/amenities'
 
 class Amenities extends Component {
-  constructor() {
-    super()
-    this.state = {
-      anchorEl: null
-    }
-    this.handleClick = this.handleClick.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-  }
-  handleClick(event) {
-    this.setState({anchorEl: event.currentTarget})
-  }
-
-  handleClose() {
-    this.setState({anchorEl: null})
-  }
   componentDidMount() {
     this.props.fetchAmenities()
   }
 
   render() {
-    const {anchorEl} = this.state
-    const {amenities} = this.props
+    // const {amenities} = this.props
+    const amenities = [
+      {key: 'meteor', text: 'Meteor', value: 'meteor'},
+      {key: 'node', text: 'NodeJS', value: 'node'},
+      {key: 'plumbing', text: 'Plumbing', value: 'plumbing'},
+      {key: 'python', text: 'Python', value: 'python'},
+      {key: 'rails', text: 'Rails', value: 'rails'},
+      {key: 'react', text: 'React', value: 'react'},
+      {key: 'repair', text: 'Kitchen Repair', value: 'repair'},
+      {key: 'ruby', text: 'Ruby', value: 'ruby'},
+      {key: 'ui', text: 'UI Design', value: 'ui'},
+      {key: 'ux', text: 'User Experience', value: 'ux'}
+    ]
+
     return (
-      <div>
-        <Button
-          aria-owns={anchorEl ? 'simple-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          Amenities
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          {amenities.map(amenitie => (
-            <MenuItem key={amenitie.id}>{amenitie.category}</MenuItem>
-          ))}
-        </Menu>
-      </div>
+      <Dropdown
+        placeholder="Amenities"
+        fluid
+        multiple
+        selection
+        options={amenities}
+        simple
+        item
+      />
     )
   }
 }
