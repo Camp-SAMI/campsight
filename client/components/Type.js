@@ -19,15 +19,12 @@ class Type extends Component {
   }
 
   render() {
-    return (
-      <Dropdown text="type">
-        <Dropdown.Menu>
-          <Dropdown.Item text="Tent" />
-          <Dropdown.Item text="Trailer" />
-          <Dropdown.Item text="Cabin" />
-        </Dropdown.Menu>
-      </Dropdown>
-    )
+    const types = [
+      {value: 'Tent', text: 'Tent'},
+      {value: 'Trailer', text: 'Trailer'},
+      {value: 'Cabin', text: 'Cabin'}
+    ]
+    return <Dropdown placeholder="type" fluid selection options={types} />
   }
 }
 

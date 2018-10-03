@@ -55,12 +55,17 @@ class LandingPage extends Component {
         <div className="ContentContainer">
           <div className="Content">
             <Grid>
-              <Grid.Column>
-                <MapView campsites={campsites} campsite={campsite} />
-              </Grid.Column>
-              <Grid.Column>
-                <CampsiteCollection campsites={campsites} campsite={campsite} />
-              </Grid.Column>
+              <Grid.Row>
+                <Grid.Column>
+                  <MapView campsites={campsites} campsite={campsite} />
+                </Grid.Column>
+                <Grid.Column>
+                  <CampsiteCollection
+                    campsites={campsites}
+                    campsite={campsite}
+                  />
+                </Grid.Column>
+              </Grid.Row>
             </Grid>
             {/* REMOVE <p> TAGS AND PUT YOUR COMPONENTS INSIDE OF CONTENT CONTAINER */}
           </div>

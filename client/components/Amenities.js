@@ -11,20 +11,29 @@ class Amenities extends Component {
 
   render() {
     // const {amenities} = this.props
-    const amenities = [{id: 1, category: 'water'}, {id: 2, category: 'power'}]
+    const amenities = [
+      {key: 'meteor', text: 'Meteor', value: 'meteor'},
+      {key: 'node', text: 'NodeJS', value: 'node'},
+      {key: 'plumbing', text: 'Plumbing', value: 'plumbing'},
+      {key: 'python', text: 'Python', value: 'python'},
+      {key: 'rails', text: 'Rails', value: 'rails'},
+      {key: 'react', text: 'React', value: 'react'},
+      {key: 'repair', text: 'Kitchen Repair', value: 'repair'},
+      {key: 'ruby', text: 'Ruby', value: 'ruby'},
+      {key: 'ui', text: 'UI Design', value: 'ui'},
+      {key: 'ux', text: 'User Experience', value: 'ux'}
+    ]
 
     return (
-      <Dropdown text="Amenities">
-        <Dropdown.Menu>
-          {amenities.map(amenitie => (
-            <Dropdown.Item
-              key={amenitie.id}
-              id={amenitie.id}
-              text={amenitie.category}
-            />
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
+      <Dropdown
+        placeholder="Amenities"
+        fluid
+        multiple
+        selection
+        options={amenities}
+        simple
+        item
+      />
     )
   }
 }
