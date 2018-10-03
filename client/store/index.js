@@ -8,8 +8,9 @@ import campsites from './campsites';
 import reservation from './reservation';
 import reservations from './reservations';
 import amenities from './amenities';
+import filteredCampsites from './filteredCampsites';
 
-const reducer = combineReducers({amenities, campsite, campsites, reservation, reservations, user})
+const reducer = combineReducers({amenities, campsite, campsites, filteredCampsites, reservation, reservations, user})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )

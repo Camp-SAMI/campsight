@@ -2,10 +2,6 @@ const router = require('express').Router();
 const { Campsite, Amenity, Reservation, Campground } = require('../db/models');
 
 router.get('/', async (req, res, next) => {
-    // commented out variables are for when we cover query params.
-    // const startTime = req.query.startTime;
-    // const endTime = req.query.endTime;
-    // const amenities = req.query.amenities;
     try {
         const campsites = await Campsite.findAll({
             include: [{model: Amenity}, {model: Reservation}]
