@@ -1,17 +1,10 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require('sequelize')
+const db = require('../db')
 
 const amenity = db.define('amenity', {
-    category: {
-        type: Sequelize.ENUM(
-            'Bathroom Nearby',
-            'Shower',
-            'Power',
-            'WiFi',
-            'Sewage',
-            'Water'
-        )
-    }
-});
+  category: {
+    type: Sequelize.STRING
+  }
+})
 
-module.exports = amenity;
+module.exports = amenity
