@@ -13,7 +13,7 @@ const CampsiteBlock = props => {
                         <div>
                             <ul>
                                 <li>
-                                    <span>{campsite.id}</span>
+                                    <span>{campsite.name}</span>
                                 </li>
                             </ul>
                             <img src={campsite.coverImage} />
