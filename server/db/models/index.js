@@ -6,6 +6,7 @@ const Campsite = require('./campsite')
 const Reservation = require('./reservation')
 const campsiteReservations = require('./campsiteReservations')
 const campsiteAmenities = require('./campsiteAmenities')
+const Ticket = require('./ticket')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -34,6 +35,9 @@ Reservation.belongsTo(Campsite)
 Amenity.belongsToMany(Campsite, {through: campsiteAmenities})
 Campsite.hasMany(Amenity)
 
+Reservation.hasMany(Ticket)
+Ticket.belongsTo(Reservation)
+
 Camper.hasMany(Reservation, {foreignKey: 'camperId', allowNull: false})
 Reservation.belongsTo(Camper)
 
@@ -45,5 +49,6 @@ module.exports = {
   Amenity,
   Reservation,
   campsiteReservations,
-  campsiteAmenities
+  campsiteAmenities,
+  Ticket
 }
