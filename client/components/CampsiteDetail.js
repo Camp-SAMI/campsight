@@ -1,10 +1,19 @@
-import {Container, Grid, List, Divider, Image, Header} from 'semantic-ui-react'
+import {
+  Container,
+  Grid,
+  List,
+  Divider,
+  Image,
+  Header,
+  Segment
+} from 'semantic-ui-react'
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 
 import {fetchCampsite} from '../store/campsite'
 import ReservationForm from './ReservationForm'
+import {formatPrice} from '../utils/formatPrice'
 // import {fetchLatestCampsiteReservation} from '../store/reservation'
 
 class CampsiteDetail extends Component {
@@ -15,13 +24,26 @@ class CampsiteDetail extends Component {
   }
 
   render() {
-    const {name, coverImage, images, desc, amenities} = this.props.campsite
-    console.log('Campsite Props =>', this.props.campsite)
+    const {
+      name,
+      coverImage,
+      images,
+      desc,
+      amenities,
+      cost
+    } = this.props.campsite
     return (
       <Fragment>
         <Container>
           <Divider hidden />
-          <Header as="h1">{`Welcome to CAMPSIGHT-0${name}`}</Header>
+          <Segment clearing>
+            <Header as="h1" floated="left">
+              {`Welcome to CAMPSIGHT-${name}`}
+            </Header>
+            <Header as="h2" floated="right">{`${formatPrice(
+              cost
+            )}/DAY`}</Header>
+          </Segment>
           <Divider hidden />
           <Grid stackable columns={2}>
             <Grid.Column>

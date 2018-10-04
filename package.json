@@ -49,6 +49,7 @@
     "material-ui-pickers": "^1.0.0-rc.17",
     "moment": "^2.22.2",
     "morgan": "^1.8.1",
+    "nodemailer": "^4.6.8",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "pg": "^6.1.2",
@@ -62,13 +63,15 @@
     "react-redux": "^5.0.2",
     "react-responsive-carousel": "^3.1.42",
     "react-router-dom": "^4.3.1",
+    "react-stripe-checkout": "^2.6.3",
     "redux": "^3.6.0",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.3.0",
-    "semantic-ui-react": "^0.82.5",
     "semantic-ui-calendar-react": "^0.9.1",
+    "semantic-ui-react": "^0.82.5",
     "sequelize": "^4.38.0",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "stripe": "^6.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.55",
