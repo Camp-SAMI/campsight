@@ -8,7 +8,7 @@ import {fetchAmenities} from '../store/amenities'
 import {fetchReservations} from '../store/reservations'
 import {fetchCampsite} from '../store/campsite'
 import {getFilteredCampsites} from '../store/filteredCampsites'
-import {Grid, Sticky, Rail} from 'semantic-ui-react'
+import {Grid, Sticky, Rail, Segment} from 'semantic-ui-react'
 import moment from 'moment'
 // import {Grid, Sticky} from 'semantic-ui-react'
 import Submenu from './Submenu'
@@ -56,7 +56,8 @@ class LandingPage extends Component {
       startTime: null,
       endTime: null,
       reservations: [],
-      reservedDates: []
+      reservedDates: [],
+      contextRef: {}
     }
     this.onAmenitiesChange = this.onAmenitiesChange.bind(this)
     this.onTypingChange = this.onTypingChange.bind(this)
@@ -148,7 +149,7 @@ class LandingPage extends Component {
 
   handleContextRef(contextRef) {
     console.log('THIS', contextRef)
-    this.setState({contextRef: contextRef})
+    this.setState(prevState => ({...prevState, contextRef: contextRef}))
   }
 
   render() {
@@ -160,6 +161,8 @@ class LandingPage extends Component {
       filteredCampsites
     } = this.props
 
+    const {contextRef} = this.state
+    console.log(this.state.contextRef, 'contextRef ----------------------')
     return (
       <div className="MainContainer">
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
@@ -175,31 +178,39 @@ class LandingPage extends Component {
               onEndTimeChange={this.onEndTimeChange}
               onTypingChange={this.onTypingChange}
             />
-            <Grid stackable columns={2}>
-              <Grid.Row>
-                <Grid.Column width={6}>
-                  <CampsiteCollection
-                    campsites={filteredCampsites}
-                    campsite={campsite}
-                  />
-                </Grid.Column>
-                {/* </Rail> */}
-                {/* <Rail position="left"> */}
-                {/* <Rail position="right"> */}
+            <Grid className="ref" stackable columns={2}>
+              <Grid.Column>
                 <div ref={this.handleContextRef}>
-                  <Grid.Column width={9}>
-                    <Sticky
-                      context={this.state.contextRef && this.state.contextRef}
-                    >
-                      <MapView
-                        campsites={filteredCampsites}
-                        campsite={campsite}
-                      />
-                    </Sticky>
-                  </Grid.Column>
-                  {/* </Rail> */}
+                  <Segment>
+                    {/* <Grid.Column width={6}> */}
+                    <CampsiteCollection
+                      campsites={filteredCampsites}
+                      campsite={campsite}
+                    />
+                    {/* </Grid.Column> */}
+                    {/* </Rail> */}
+                    {/* <Rail position="left"> */}
+                    <Rail position="right">
+                      <Sticky
+                        className="sticky"
+                        context={contextRef}
+                        onStick={() => {
+                          console.log('im Stuck')
+                        }}
+                      >
+                        {/* <Grid.Column width={9}> */}
+                        <div>
+                          <MapView
+                            campsites={filteredCampsites}
+                            campsite={campsite}
+                          />
+                        </div>
+                        {/* </Grid.Column> */}
+                      </Sticky>
+                    </Rail>
+                  </Segment>
                 </div>
-              </Grid.Row>
+              </Grid.Column>
             </Grid>
           </div>
         </div>
