@@ -15,8 +15,8 @@ const ticket = db.define('ticket', {
     type: Sequelize.TEXT,
   },
   priority: {
-    type: Sequelize.ENUM(null,1,2,3,4,5),
-    defaultValue: null
+    type: Sequelize.ENUM('null','1','2','3','4','5'),
+    defaultValue: 'null'
   },
   status: {
     type: Sequelize.ENUM('open','close','in-progress'),
