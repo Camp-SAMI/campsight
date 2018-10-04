@@ -9,6 +9,9 @@ import {fetchReservations} from '../store/reservations'
 import {fetchCampsite} from '../store/campsite'
 import {getFilteredCampsites} from '../store/filteredCampsites'
 import {Grid, Responsive} from 'semantic-ui-react'
+import DatePicker from './StartDatePicker';
+import EndDatePicker from './EndDatePicker';
+import moment from 'moment';
 
 const mapStateToProps = state => {
   return {
@@ -49,7 +52,7 @@ class LandingPage extends Component {
     console.log('this.props', this.props);
     await this.props.fetchCampsites();
     // const campsites = this.props.campsites;
-    // this.props.fetchAmenities();
+    this.props.fetchAmenities();
     this.props.fetchReservations();
     // const reservations = this.props.reservations;
     this.props.getFilteredCampsites(this.props.campsites, [], null, null, '');
@@ -81,7 +84,8 @@ class LandingPage extends Component {
   }
 
   onStartTimeChange(e) {
-    const startTime = e.target.value.date;
+    console.log('e', e.currentTarget);
+    const startTime = e.target.value;
     const endTime = this.state.endTime;
     this.setState({
       startTime: startTime
@@ -92,8 +96,9 @@ class LandingPage extends Component {
   }
 
   onEndTimeChange(e) {
+    console.log('e', e.target);
     const startTime = this.state.startTime;
-    const endTime = e.target.value.date;
+    const endTime = e.target.value;
     this.setState({
       endTime: endTime
     });
@@ -118,16 +123,18 @@ class LandingPage extends Component {
 
   render() {
     const {campsites, amenities, campsite, reservations, filteredCampsites } = this.props;
-    const filteredReservations = filteredCampsites.reduce(
-      function(accumulator, c) {
-         return accumulator.concat(c.reservations)
-      }, []
-    );
-    const filteredDates = filteredReservations.reduce(
-      function(accum, r) { 
-        return accum.concat(r.daysBooked);
-      }, []
-    );
+    // const filteredReservations = filteredCampsites.reduce(
+    //   function(accumulator, c) {
+    //      return accumulator.concat(c.reservations)
+    //   }, []
+    // );
+    // let filteredDates = filteredReservations.reduce(
+    //   function(accum, r) { 
+    //     return accum.concat(r.daysBooked);
+    //   }, []
+    // );
+    // filteredDates = filteredDates.map(date => moment(date).format('MM/DD/YYYY')).sort(function(a,b) { return a - b; });
+    // console.log('sortedDates', filteredDates);
     return (
       <div className="MainContainer">
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
@@ -135,6 +142,8 @@ class LandingPage extends Component {
         <div className="ContentContainer">
           <div className="Content">
             {/* Amenities takes in onAmenitiesChange. Similar for the datePicker and the Type component */}
+            {/* <DatePicker startTime={this.state.startTime || moment(Date.now()).format('MM/DD/YY')} timeChange={this.onStartTimeChange} />
+            <EndDatePicker endTime={this.state.endTime || moment(Date.now()).format('MM/DD/YY') } timeChange={this.onEndTimeChange} /> */}
             {/* <Container style={{height: '100vh'}}> */}
             <Responsive as={Grid} columns={1}>
               <Grid>
