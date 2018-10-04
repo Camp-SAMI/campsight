@@ -1,3 +1,6 @@
+import areIntervalsOverlapping from 'date-fns/areIntervalsOverlapping';
+import format from 'date-fns/format';
+
 //ACTION TYPES
 const GET_FILTERED_CAMPSITES = 'GET_FILTERED_CAMPSITES';
 
@@ -23,12 +26,22 @@ export function getFilteredCampsites(campsites, selectedAmenities, startTime, en
         const filteredCamps = campsites.filter(camp => {
             return (
                 (!selectedAmenities.length || selectedAmenities.every(amenity => camp.amenities.includes(amenity))) &&
-                ((!startTime || !endTime) || camp.reservations.filter(reservation => !reservation.daysBooked().includes(startTime) && !reservation.daysBooked().includes(endTime))) &&
-                (!typing || typing === camp.type)
+                (!startTime || !endTime || camp.reservations.every(reservation => checkReservationRange(startTime, endTime, reservation))) &&
+                (!typing || typing === camp.typing)
             );
         });
         dispatch(getFilteredCamps(filteredCamps));
     }
+}
+
+function checkReservationRange(startTime, endTime, reservation) {
+    startTime = new Date(startTime);
+    endTime = new Date(endTime);
+    let startB = new Date(format(reservation.startTime, 'MM-dd-yyyy'));
+    let endB = new Date(format(reservation.endTime, 'MM-dd-yyyy'));
+    if (!(startTime <= endTime && startB <= endB))
+        return false;
+    return !areIntervalsOverlapping({start: startTime, end: endTime}, {start: startB, end: endB});
 }
 
 export default reducer;

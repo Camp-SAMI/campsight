@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Button, Menu, MenuItem} from '@material-ui/core'
+import {Dropdown} from 'semantic-ui-react'
 
 class Type extends Component {
   constructor() {
@@ -19,28 +19,13 @@ class Type extends Component {
   }
 
   render() {
-    const {anchorEl} = this.state
-    return (
-      <div>
-        <Button
-          aria-owns={anchorEl ? 'simple-menu' : null}
-          aria-haspopup="true"
-          onClick={this.handleClick}
-        >
-          Type
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-        >
-          <MenuItem onClick={this.handleClick}>Tent</MenuItem>
-          <MenuItem onClick={this.handleClick}>Trailer</MenuItem>
-          <MenuItem onClick={this.handleClick}>Cabin</MenuItem>
-        </Menu>
-      </div>
-    )
+    const { onTypingChange } = this.props;
+    const types = [
+      {value: 'tent', text: 'Tent'},
+      {value: 'trailer', text: 'Trailer'},
+      {value: 'cabin', text: 'Cabin'}
+    ]
+    return <Dropdown placeholder="type" fluid selection options={types} onChange={onTypingChange} />
   }
 }
 

@@ -22,7 +22,8 @@ export default function reducer(amenities = [], action) {
 //THUNK CREATOR
 export const fetchAmenities = () => {
     return async (dispatch) => {
-        const { data } = await axios.get('/amenities').data;
-        dispatch(getAmenities(data));
+        const res = await axios.get('/api/amenities');
+        // console.log('data', res.data);
+        dispatch(getAmenities(res.data));
     }
 }

@@ -10,7 +10,8 @@ import {
   CampsiteCollection,
   LandingPage,
   ReservationForm,
-  CampsiteDetail
+  CampsiteDetail,
+  AdminDashboard
 } from './components'
 import {me} from './store'
 
@@ -32,6 +33,7 @@ class Routes extends Component {
         <Route path="/reservation" component={ReservationForm} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/admin" component={AdminDashboard} />
         <Route exact path="/" component={LandingPage} />
         <Route path="*" component={LandingPage} />
         {/* <Route path="campsites" /> */}{' '}

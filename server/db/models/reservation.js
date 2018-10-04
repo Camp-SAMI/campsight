@@ -2,6 +2,7 @@ const compareDesc = require('date-fns/compareDesc')
 
 const Sequelize = require('sequelize')
 const db = require('../db')
+const eachDayOfInterval = require('date-fns/eachDayOfInterval')
 
 const reservation = db.define('reservation', {
   startTime: {
@@ -20,11 +21,20 @@ const reservation = db.define('reservation', {
     type: Sequelize.VIRTUAL,
     get() {
       let dates = []
-      let currentDate = this.startTime
-      while (currentDate <= this.endTime) {
-        dates.push(new Date(currentDate))
-        currentDate.setDate(currentDate.getDate() + 1)
-      }
+      let currentDate = new Date(this.startTime)
+      currentDate.setHours(0)
+      currentDate.setMinutes(0)
+      currentDate.setSeconds(0)
+      currentDate.setMilliseconds(0)
+      let endDate = new Date(this.endTime)
+      endDate.setHours(0)
+      endDate.setMinutes(0)
+      endDate.setSeconds(0)
+      endDate.setMilliseconds(0)
+      dates = eachDayOfInterval({
+        start: currentDate,
+        end: endDate
+      })
       return dates
     }
   }
