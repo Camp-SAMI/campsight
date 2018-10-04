@@ -23,7 +23,7 @@ const camperSites = [
   {
     name: '1',
     location: {type: 'Point', coordinates: [43.770223, -89.203063]},
-    coverImage: '/SingleCamperStock.jpg',
+    coverImage: '/images/SingleCamperStock.jpg',
     images: [],
     typing: 'trailer'
   },
@@ -1221,7 +1221,7 @@ const camperSites = [
   {
     name: '184',
     location: {type: 'Point', coordinates: [43.768908, -89.200803]},
-    coverImage: 'SingleCamperStock.jpg',
+    coverImage: '/images/SingleCamperStock.jpg',
     images: [],
     typing: 'trailer'
   },

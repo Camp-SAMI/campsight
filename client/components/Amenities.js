@@ -10,19 +10,20 @@ class Amenities extends Component {
   }
 
   render() {
-    // const {amenities} = this.props
-    const amenities = [
-      {key: 'meteor', text: 'Meteor', value: 'meteor'},
-      {key: 'node', text: 'NodeJS', value: 'node'},
-      {key: 'plumbing', text: 'Plumbing', value: 'plumbing'},
-      {key: 'python', text: 'Python', value: 'python'},
-      {key: 'rails', text: 'Rails', value: 'rails'},
-      {key: 'react', text: 'React', value: 'react'},
-      {key: 'repair', text: 'Kitchen Repair', value: 'repair'},
-      {key: 'ruby', text: 'Ruby', value: 'ruby'},
-      {key: 'ui', text: 'UI Design', value: 'ui'},
-      {key: 'ux', text: 'User Experience', value: 'ux'}
-    ]
+    const {amenities, onAmenitiesChange } = this.props
+    const amenityItems = amenities.map(function(amenity) { return {key: amenity.category, text: amenity.category, value: amenity.category} } );
+    // const amenities = [
+    //   {key: 'meteor', text: 'Meteor', value: 'meteor'},
+    //   {key: 'node', text: 'NodeJS', value: 'node'},
+    //   {key: 'plumbing', text: 'Plumbing', value: 'plumbing'},
+    //   {key: 'python', text: 'Python', value: 'python'},
+    //   {key: 'rails', text: 'Rails', value: 'rails'},
+    //   {key: 'react', text: 'React', value: 'react'},
+    //   {key: 'repair', text: 'Kitchen Repair', value: 'repair'},
+    //   {key: 'ruby', text: 'Ruby', value: 'ruby'},
+    //   {key: 'ui', text: 'UI Design', value: 'ui'},
+    //   {key: 'ux', text: 'User Experience', value: 'ux'}
+    // ]
 
     return (
       <Dropdown
@@ -30,9 +31,10 @@ class Amenities extends Component {
         fluid
         multiple
         selection
-        options={amenities}
+        options={amenityItems}
         simple
         item
+        onChange={onAmenitiesChange}
       />
     )
   }
