@@ -34,7 +34,7 @@ router.get(`/:campsiteId/latest`, async (req, res, next) => {
       campsiteId
     )
     if (reservation !== {}) {
-      console.log(`latest reservation =>`, reservation)
+      // console.log(`latest reservation =>`, reservation)
       res.status(200).json(reservation)
     } else {
       res.status(404)
