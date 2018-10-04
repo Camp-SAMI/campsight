@@ -1,29 +1,37 @@
-import axios from 'axios';
+import axios from 'axios'
 
 //ACTION TYPES
-const GET_RESERVATIONS = 'GET_RESERVATIONS';
+const GET_RESERVATIONS = 'GET_RESERVATIONS'
+const GET_RESERVATIONS_ERROR = 'GET_RESERVATIONS_ERROR'
 
 //ACTION CREATORS
 const getReservations = reservations => ({
-    type: GET_RESERVATIONS,
-    reservations
-});
+  type: GET_RESERVATIONS,
+  reservations
+})
+
+export const getReservationsError = () => ({type: GET_RESERVATIONS_ERROR})
 
 //REDUCER
 export default function reducer(reservations = [], action) {
-    switch (action.type) {
-        case GET_RESERVATIONS:
-            return action.reservations;   
-        default:
-            return reservations;
-    }
+  switch (action.type) {
+    case GET_RESERVATIONS:
+      return action.reservations
+    case GET_RESERVATIONS_ERROR:
+      return reservations
+    default:
+      return reservations
+  }
 }
 
 //THUNK CREATORS
 export const fetchReservations = () => {
-    return async dispatch => {
-        const res = await axios.get('/api/reservations');
-        const data = res.data;
-        dispatch(getReservations(data));
+  return async dispatch => {
+    try {
+      const result = await axios.get('/api/reservations')
+      dispatch(getReservations(result.data))
+    } catch (err) {
+      dispatch(getReservationsError())
     }
+  }
 }
