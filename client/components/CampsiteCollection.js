@@ -4,7 +4,8 @@ import {fetchAmenities} from '../store/amenities'
 import CampsiteBlock from './CampsiteBlock'
 import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {Grid} from 'semantic-ui-react'
+import {Grid, Modal} from 'semantic-ui-react'
+import CampsiteDetail from './CampsiteDetail';
 
 // const mapStateToProps = state => {
 //     return {
@@ -38,7 +39,6 @@ class CampsiteCollection extends Component {
     this.setState({
       numPages: numPages
     })
-    // console.log(this.props.campsites);
   }
 
   render() {
@@ -51,7 +51,11 @@ class CampsiteCollection extends Component {
         <Grid>
           {this.props.campsites.map(campsite => (
             <Grid.Column key={campsite.id} width={8}>
-              <CampsiteBlock campsite={campsite} />
+              <Modal trigger={<div><CampsiteBlock campsite={campsite} /></div>}>
+                <Modal.Content>
+                  <CampsiteDetail id={campsite.id} />
+                </Modal.Content>
+              </Modal>
             </Grid.Column>
           ))}
         </Grid>

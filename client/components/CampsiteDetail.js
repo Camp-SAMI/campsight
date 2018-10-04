@@ -8,15 +8,16 @@ import ReservationForm from './ReservationForm'
 // import {fetchLatestCampsiteReservation} from '../store/reservation'
 
 class CampsiteDetail extends Component {
-  componentDidMount() {
-    this.props.fetchCampsite(
+  async componentDidMount() {
+    await this.props.fetchCampsite(
       Number(this.props.id || this.props.match.params.id)
+      // this.props.id
     )
   }
 
   render() {
     const {name, coverImage, images, desc, amenities} = this.props.campsite
-    console.log('Campsite Props =>', this.props.campsite)
+    // console.log('Campsite Props =>', this.props.campsite)
     return (
       <Fragment>
         <Container>
@@ -145,6 +146,5 @@ const mapDispatchToProps = dispatch => ({
   fetchCampsite: campsiteId => dispatch(fetchCampsite(campsiteId))
 })
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CampsiteDetail)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(CampsiteDetail)
+

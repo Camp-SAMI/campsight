@@ -14,7 +14,6 @@ export default class DatePicker extends Component {
     }
 
     handleChange = (event, {name = undefined, value}) => {
-        console.log(name, value);
         if (this.state.hasOwnProperty(name)){
             this.setState({ [name]: value });
         }
