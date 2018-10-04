@@ -8,7 +8,8 @@ import {fetchAmenities} from '../store/amenities'
 import {fetchReservations} from '../store/reservations'
 import {fetchCampsite} from '../store/campsite'
 import {getFilteredCampsites} from '../store/filteredCampsites'
-import {Grid, Responsive} from 'semantic-ui-react'
+import {Grid, Sticky} from 'semantic-ui-react'
+import Submenu from './Submenu'
 
 const mapStateToProps = state => {
   return {
@@ -133,6 +134,7 @@ class LandingPage extends Component {
       reservations,
       filteredCampsites
     } = this.props
+
     return (
       <div className="MainContainer">
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
@@ -140,28 +142,23 @@ class LandingPage extends Component {
         <div className="ContentContainer">
           <div className="Content">
             {/* Amenities takes in onAmenitiesChange. Similar for the datePicker and the Type component */}
-            {/* <Container style={{height: '100vh'}}> */}
-            <Responsive as={Grid} columns={1}>
-              <Grid>
-                <Grid.Row>
-                  <Grid.Column width={6}>
-                    <CampsiteCollection
-                      campsites={filteredCampsites}
-                      campsite={campsite}
-                    />
-                  </Grid.Column>
-                  <Grid.Column width={9}>
-                    <MapView
-                      campsites={filteredCampsites}
-                      campsite={campsite}
-                      style={styles.map}
-                    />
-                  </Grid.Column>
-                </Grid.Row>
-              </Grid>
-            </Responsive>
-            {/* </Container> */}
-            {/* REMOVE <p> TAGS AND PUT YOUR COMPONENTS INSIDE OF CONTENT CONTAINER */}
+
+            <Submenu />
+            <Grid stackable columns={2}>
+              <Grid.Row stackable columns={2}>
+                <Grid.Column width={6}>
+                  <CampsiteCollection
+                    campsites={filteredCampsites}
+                    campsite={campsite}
+                  />
+                </Grid.Column>
+                {/* <Sticky> */}
+                <Grid.Column width={9}>
+                  <MapView campsites={filteredCampsites} campsite={campsite} />
+                </Grid.Column>
+                {/* </Sticky> */}
+              </Grid.Row>
+            </Grid>
           </div>
         </div>
       </div>
@@ -169,13 +166,4 @@ class LandingPage extends Component {
   }
 }
 
-const styles = {
-  map: {
-    margin: 40,
-    maxHeight: 200
-  }
-}
-
 export default connect(mapStateToProps, mapDispatchToProps)(LandingPage)
-
-// 325700-long_exposure-starry_night-Milky_Way-galaxy-nature-camping-forest-landscape-New_Mexico-lights-trees-748x477-2.jpg
