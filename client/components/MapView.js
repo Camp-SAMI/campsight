@@ -21,11 +21,7 @@ class MapView extends Component {
     return (
       <Map
         google={this.props.google}
-        initialCenter={{lat: 43.769737, lng: -89.202131}}
-        options={{
-          styles: {elementType: 'geometry', stylers: [{color: '#ebe3cd'}]}
-           
-        }}
+        initialCenter={{lat: 43.769405, lng: -89.202743}}
         zoom={17}
         style={styles.map}
       >
