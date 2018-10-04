@@ -66,7 +66,6 @@ class LandingPage extends Component {
   }
 
   async componentDidMount() {
-    console.log('this.props', this.props)
     await this.props.fetchCampsites()
     // const campsites = this.props.campsites;
     this.props.fetchAmenities()
@@ -98,7 +97,7 @@ class LandingPage extends Component {
   }
 
   onStartTimeChange(e, {value}) {
-    console.log('e', value)
+    // console.log('e', value);
     const startTime = value
     const endTime = this.state.endTime
     if (startTime && endTime) {
@@ -116,7 +115,7 @@ class LandingPage extends Component {
   }
 
   onEndTimeChange(e, {value}) {
-    console.log('e', value)
+    // console.log('e', value);
     const startTime = this.state.startTime
     const endTime = value
     if (startTime && endTime) {
@@ -189,7 +188,9 @@ class LandingPage extends Component {
                 {/* <Rail position="right"> */}
                 <div ref={this.handleContextRef}>
                   <Grid.Column width={9}>
-                    <Sticky context={this.state.contextRef}>
+                    <Sticky
+                      context={this.state.contextRef && this.state.contextRef}
+                    >
                       <MapView
                         campsites={filteredCampsites}
                         campsite={campsite}

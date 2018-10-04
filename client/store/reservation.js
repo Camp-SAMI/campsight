@@ -2,6 +2,7 @@ import axios from 'axios'
 
 //ACTION TYPES
 const GET_SINGLE_RESERVATION = 'GET_SINGLE_RESERVATION'
+const GET_SINGLE_RESERVATION_ERROR = 'GET_SINGLE_RESERVATION_ERROR'
 
 //ACTION CREATORS
 const getReservation = reservation => ({
@@ -9,11 +10,17 @@ const getReservation = reservation => ({
   reservation
 })
 
+export const getReservationError = () => ({
+  type: GET_SINGLE_RESERVATION_ERROR
+})
+
 //REDUCER
 export default function reducer(reservation = {}, action) {
   switch (action.type) {
     case GET_SINGLE_RESERVATION:
       return action.reservation
+    case GET_SINGLE_RESERVATION_ERROR:
+      return reservation
     default:
       return reservation
   }
@@ -22,7 +29,22 @@ export default function reducer(reservation = {}, action) {
 //THUNK CREATORS
 export const fetchSingleReservation = id => {
   return async dispatch => {
-    const res = await axios.get(`/api/reservations/${id}`)
-    dispatch(getReservation(res.data))
+    try {
+      const res = await axios.get(`/api/reservations/${id}`)
+      dispatch(getReservation(res.data))
+    } catch (err) {
+      dispatch(getReservationError())
+    }
+  }
+}
+
+export const fetchLatestCampsiteReservation = campsiteId =>{
+  return async dispatch => {
+    try {
+      const res = await axios.get(`/api/reservations/${campsiteId}/latest`)
+      dispatch(getReservation(res.data))
+    } catch (err) {
+      dispatch(getReservationError())
+    }
   }
 }
