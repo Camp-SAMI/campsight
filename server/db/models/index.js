@@ -4,7 +4,7 @@ const Amenity = require('./amenity')
 const Campground = require('./campground')
 const Campsite = require('./campsite')
 const Reservation = require('./reservation')
-const campsiteReservations = require('./campSiteReservations')
+const campsiteReservations = require('./campsiteReservations')
 const campsiteAmenities = require('./campsiteAmenities')
 
 /**

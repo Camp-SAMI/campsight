@@ -27,6 +27,7 @@ class MapView extends Component {
            
         }}
         zoom={17}
+        style={styles.map}
       >
         {campsites.map(camp => {
           return (
@@ -45,6 +46,12 @@ class MapView extends Component {
         })}
       </Map>
     )
+  }
+}
+
+const styles = {
+  map: {
+    height: 700
   }
 }
 
