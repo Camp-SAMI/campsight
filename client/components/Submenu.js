@@ -2,24 +2,38 @@ import React, {Component} from 'react'
 import {Menu} from 'semantic-ui-react'
 import Amenities from './Amenities'
 import Type from './Type'
-import DatePicker from './DatePicker';
+import DatePicker from './DatePicker'
 
 class Submenu extends Component {
   render() {
-    const { onAmenitiesChange, onStartTimeChange, onEndTimeChange, onTypingChange } = this.props;
+    const {
+      onAmenitiesChange,
+      onStartTimeChange,
+      onEndTimeChange,
+      onTypingChange
+    } = this.props
     return (
       <Menu>
         <Menu.Item>
           <Amenities onAmenitiesChange={onAmenitiesChange} />
         </Menu.Item>
         <Menu.Item>
-          <DatePicker onStartTimeChange={onStartTimeChange} onEndTimeChange={onEndTimeChange} />
-        </Menu.Item>
-        <Menu.Item>
           <Type onTypingChange={onTypingChange} />
+        </Menu.Item>
+        <Menu.Item style={styles.time}>
+          <DatePicker
+            onStartTimeChange={onStartTimeChange}
+            onEndTimeChange={onEndTimeChange}
+          />
         </Menu.Item>
       </Menu>
     )
+  }
+}
+
+const styles = {
+  time: {
+    marginLeft: 20
   }
 }
 

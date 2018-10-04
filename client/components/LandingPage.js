@@ -8,11 +8,11 @@ import {fetchAmenities} from '../store/amenities'
 import {fetchReservations} from '../store/reservations'
 import {fetchCampsite} from '../store/campsite'
 import {getFilteredCampsites} from '../store/filteredCampsites'
-import {Grid, Sticky, Responsive} from 'semantic-ui-react'
-import moment from 'moment';
+import {Grid, Sticky, Rail} from 'semantic-ui-react'
+import moment from 'moment'
 // import {Grid, Sticky} from 'semantic-ui-react'
 import Submenu from './Submenu'
-import DatePicker from './DatePicker';
+import DatePicker from './DatePicker'
 
 const mapStateToProps = state => {
   return {
@@ -29,7 +29,22 @@ const mapDispatchToProps = dispatch => ({
   fetchAmenities: () => dispatch(fetchAmenities()),
   fetchCampsite: id => dispatch(fetchCampsite(id)),
   fetchReservations: () => dispatch(fetchReservations()),
-  getFilteredCampsites: (campsites, selectedAmenities, startTime, endTime, typing) => dispatch(getFilteredCampsites(campsites, selectedAmenities, startTime, endTime, typing))
+  getFilteredCampsites: (
+    campsites,
+    selectedAmenities,
+    startTime,
+    endTime,
+    typing
+  ) =>
+    dispatch(
+      getFilteredCampsites(
+        campsites,
+        selectedAmenities,
+        startTime,
+        endTime,
+        typing
+      )
+    )
 })
 
 class LandingPage extends Component {
@@ -43,32 +58,33 @@ class LandingPage extends Component {
       reservations: [],
       reservedDates: []
     }
-    this.onAmenitiesChange = this.onAmenitiesChange.bind(this);
-    this.onTypingChange = this.onTypingChange.bind(this);
-    this.onStartTimeChange = this.onStartTimeChange.bind(this);
-    this.onEndTimeChange = this.onEndTimeChange.bind(this);
+    this.onAmenitiesChange = this.onAmenitiesChange.bind(this)
+    this.onTypingChange = this.onTypingChange.bind(this)
+    this.onStartTimeChange = this.onStartTimeChange.bind(this)
+    this.onEndTimeChange = this.onEndTimeChange.bind(this)
+    this.handleContextRef = this.handleContextRef.bind(this)
   }
 
-  async componentDidMount(){
-    console.log('this.props', this.props);
-    await this.props.fetchCampsites();
+  async componentDidMount() {
+    console.log('this.props', this.props)
+    await this.props.fetchCampsites()
     // const campsites = this.props.campsites;
-    this.props.fetchAmenities();
-    this.props.fetchReservations();
+    this.props.fetchAmenities()
+    this.props.fetchReservations()
     // const reservations = this.props.reservations;
-    this.props.getFilteredCampsites(this.props.campsites, [], null, null, '');
+    this.props.getFilteredCampsites(this.props.campsites, [], null, null, '')
     // const filteredReservations = this.props.filteredCampsites.map(c => c.reservations);
     // const filteredDates = filteredReservations.map(r => r.daysBooked);
     // console.log('filteredDates', filteredDates);
     this.setState({
       // amenities: amenities,
       reservations: this.props.reservations
-    });
+    })
   }
 
-  onAmenitiesChange(e, { value }) {
+  onAmenitiesChange(e, {value}) {
     // const selectedAmenities = this.state.selectedAmenities
-    const amenities = value;
+    const amenities = value
     this.props.getFilteredCampsites(
       this.props.campsites,
       amenities,
@@ -81,42 +97,59 @@ class LandingPage extends Component {
     })
   }
 
-  onStartTimeChange(e, { value }) {
-    console.log('e', value);
-    const startTime = value;
-    const endTime = this.state.endTime;
+  onStartTimeChange(e, {value}) {
+    console.log('e', value)
+    const startTime = value
+    const endTime = this.state.endTime
     if (startTime && endTime) {
-      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, endTime, this.state.typing);
+      this.props.getFilteredCampsites(
+        this.props.campsites,
+        this.state.selectedAmenities,
+        startTime,
+        endTime,
+        this.state.typing
+      )
     }
     this.setState({
       startTime: startTime
-    });
+    })
   }
-  
-  onEndTimeChange(e, {value} ) {
-    console.log('e', value);
-    const startTime = this.state.startTime;
-    const endTime = value;
+
+  onEndTimeChange(e, {value}) {
+    console.log('e', value)
+    const startTime = this.state.startTime
+    const endTime = value
     if (startTime && endTime) {
-      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, endTime, this.state.typing);
+      this.props.getFilteredCampsites(
+        this.props.campsites,
+        this.state.selectedAmenities,
+        startTime,
+        endTime,
+        this.state.typing
+      )
     }
     this.setState({
       endTime: endTime
-    });
+    })
   }
 
-  onTypingChange(e, { value }) {
-    const typing = value;
+  onTypingChange(e, {value}) {
+    const typing = value
     this.props.getFilteredCampsites(
       this.props.campsites,
       this.state.selectedAmenities,
       this.state.startTime,
       this.state.endTime,
       typing
-    );
+    )
     this.setState({
       typing: typing
-    });
+    })
+  }
+
+  handleContextRef(contextRef) {
+    console.log('THIS', contextRef)
+    this.setState({contextRef: contextRef})
   }
 
   render() {
@@ -137,7 +170,12 @@ class LandingPage extends Component {
             {/* Amenities takes in onAmenitiesChange. Similar for the datePicker and the Type component */}
             {/* <DatePicker getFilteredCampsites={this.props.getFilteredCampsites} filteredCampsites={filteredCampsites} selectedAmenities={this.state.selectedAmenities} typing={this.state.typing} /> */}
 
-            <Submenu onAmenitiesChange={this.onAmenitiesChange} onStartTimeChange={this.onStartTimeChange} onEndTimeChange={this.onEndTimeChange} onTypingChange={this.onTypingChange}/>
+            <Submenu
+              onAmenitiesChange={this.onAmenitiesChange}
+              onStartTimeChange={this.onStartTimeChange}
+              onEndTimeChange={this.onEndTimeChange}
+              onTypingChange={this.onTypingChange}
+            />
             <Grid stackable columns={2}>
               <Grid.Row>
                 <Grid.Column width={6}>
@@ -146,11 +184,20 @@ class LandingPage extends Component {
                     campsite={campsite}
                   />
                 </Grid.Column>
-                {/* <Sticky> */}
-                <Grid.Column width={9}>
-                  <MapView campsites={filteredCampsites} campsite={campsite} />
-                </Grid.Column>
-                {/* </Sticky> */}
+                {/* </Rail> */}
+                {/* <Rail position="left"> */}
+                {/* <Rail position="right"> */}
+                <div ref={this.handleContextRef}>
+                  <Grid.Column width={9}>
+                    <Sticky context={this.state.contextRef}>
+                      <MapView
+                        campsites={filteredCampsites}
+                        campsite={campsite}
+                      />
+                    </Sticky>
+                  </Grid.Column>
+                  {/* </Rail> */}
+                </div>
               </Grid.Row>
             </Grid>
           </div>
