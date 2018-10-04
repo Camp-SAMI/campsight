@@ -13,7 +13,6 @@ import moment from 'moment'
 // import {Grid, Sticky} from 'semantic-ui-react'
 import Submenu from './Submenu'
 import DatePicker from './DatePicker'
-import AdminSidebar from './AdminSidebar'
 
 const mapStateToProps = state => {
   return {
@@ -157,10 +156,7 @@ class LandingPage extends Component {
 
     return (
       <div className="MainContainer">
-        <div className="ParallaxContainer">
-          {/* <h1>Aloha!</h1> */}
-          <AdminSidebar />
-        </div>
+        <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
 
         <div className="ContentContainer">
           <div className="Content">
