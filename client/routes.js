@@ -29,7 +29,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/campsites/:id" component={CampsiteDetail} />
+        {/* <Route path="/campsites/:id" component={CampsiteDetail} /> */}
         <Route path="/reservation" component={ReservationForm} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

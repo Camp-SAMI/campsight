@@ -6,6 +6,7 @@ const Campsite = require('./campsite')
 const Reservation = require('./reservation')
 const campsiteReservations = require('./campsiteReservations')
 const campsiteAmenities = require('./campsiteAmenities')
+const Ticket = require('./ticket')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -24,6 +25,10 @@ const campsiteAmenities = require('./campsiteAmenities')
 Campground.hasMany(Campsite, {foreignKey: 'campgroundId', defaultValue: 1})
 Campsite.belongsTo(Campground)
 
+Reservation.hasMany(Ticket)
+Ticket.belongsTo(Reservation)
+
+
 Campsite.hasMany(Reservation, {foreignKey: 'campsiteId', allowNull: false})
 Campsite.belongsToMany(Reservation, {
   through: 'campsite_reservations',
@@ -31,11 +36,12 @@ Campsite.belongsToMany(Reservation, {
 })
 Reservation.belongsTo(Campsite)
 
+Camper.hasMany(Reservation, {foreignKey: 'camperId', allowNull: false})
+Reservation.belongsTo(Camper)
+
 Amenity.belongsToMany(Campsite, {through: campsiteAmenities})
 Campsite.hasMany(Amenity)
 
-Camper.hasMany(Reservation, {foreignKey: 'camperId', allowNull: false})
-Reservation.belongsTo(Camper)
 
 module.exports = {
   User,
@@ -45,5 +51,6 @@ module.exports = {
   Amenity,
   Reservation,
   campsiteReservations,
-  campsiteAmenities
+  campsiteAmenities,
+  Ticket
 }

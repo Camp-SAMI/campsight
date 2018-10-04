@@ -17,9 +17,10 @@ import {formatPrice} from '../utils/formatPrice'
 // import {fetchLatestCampsiteReservation} from '../store/reservation'
 
 class CampsiteDetail extends Component {
-  componentDidMount() {
-    this.props.fetchCampsite(
+  async componentDidMount() {
+    await this.props.fetchCampsite(
       Number(this.props.id || this.props.match.params.id)
+      // this.props.id
     )
   }
 
@@ -167,6 +168,4 @@ const mapDispatchToProps = dispatch => ({
   fetchCampsite: campsiteId => dispatch(fetchCampsite(campsiteId))
 })
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CampsiteDetail)
-)
+export default connect(mapStateToProps, mapDispatchToProps)(CampsiteDetail)
