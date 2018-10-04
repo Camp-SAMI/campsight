@@ -37,13 +37,12 @@ class MapView extends Component {
   render() {
     const {campsites, campsite} = this.props
     return (
-      <div>
-        <Map
-          google={this.props.google}
-          initialCenter={{lat: 43.769737, lng: -89.202131}}
-          zoom={17}
-          style={styles.map}
-        >
+      <Map
+        google={this.props.google}
+        initialCenter={{lat: 43.769405, lng: -89.202743}}
+        zoom={17}
+        style={styles.map}
+      >
           {campsites.map(camp => {
             return (
               <Marker

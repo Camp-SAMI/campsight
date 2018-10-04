@@ -48,6 +48,7 @@ for (let i = 0; i < numberOfCampers; i++) {
 
 const reservations = []
 for (let i = 0; i < reservationQuantity; i++) {
+  
   const startTimeRes = chance.date({year: 2018})
 
   const days = chance.integer({min: 1, max: 14})
@@ -99,9 +100,7 @@ for (let i = 0; i < numberOfCampsitesArray.length; i++){
 
 
 async function seed() {
-  console.log(campsiteAmenitiesArray, "campsiteAmenities array -------------------------------------")
   await db.sync({force: true})
-  console.log(`db ${db.config.database} synced!`)
   await Campsite.bulkCreate(camperSites)
   await Campsite.bulkCreate(tentSites)
   await Campsite.bulkCreate(cabinSites)
