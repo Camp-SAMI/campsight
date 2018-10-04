@@ -12,6 +12,7 @@ import {Grid, Sticky, Responsive} from 'semantic-ui-react'
 import moment from 'moment';
 // import {Grid, Sticky} from 'semantic-ui-react'
 import Submenu from './Submenu'
+import DatePicker from './DatePicker';
 
 const mapStateToProps = state => {
   return {
@@ -65,60 +66,57 @@ class LandingPage extends Component {
     });
   }
 
-  onAmenitiesChange(e) {
-    const selectedAmenities = this.state.selectedAmenities
-    if (e.target.checked) {
-      selectedAmenities.push(e.target.value)
-    } else {
-      let index = selectedAmenities.indexOf(e.target.value)
-      selectedAmenities.splice(index, 1)
-    }
-    this.setState({selectedAmenities: selectedAmenities})
+  onAmenitiesChange(e, { value }) {
+    // const selectedAmenities = this.state.selectedAmenities
+    const amenities = value;
     this.props.getFilteredCampsites(
       this.props.campsites,
-      this.state.selectedAmenities,
+      amenities,
       this.state.startTime,
       this.state.endTime,
       this.state.typing
     )
+    this.setState({
+      selectedAmenities: amenities
+    })
   }
 
-  onStartTimeChange(e) {
-    console.log('e', e.currentTarget);
-    const startTime = e.target.value;
+  onStartTimeChange(e, { value }) {
+    console.log('e', value);
+    const startTime = value;
     const endTime = this.state.endTime;
+    if (startTime && endTime) {
+      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, endTime, this.state.typing);
+    }
     this.setState({
       startTime: startTime
     });
+  }
+  
+  onEndTimeChange(e, {value} ) {
+    console.log('e', value);
+    const startTime = this.state.startTime;
+    const endTime = value;
     if (startTime && endTime) {
       this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, endTime, this.state.typing);
     }
-  }
-
-  onEndTimeChange(e) {
-    console.log('e', e.target);
-    const startTime = this.state.startTime;
-    const endTime = e.target.value;
     this.setState({
       endTime: endTime
     });
-    if (startTime && endTime) {
-      this.props.getFilteredCampsites(this.props.campsites, this.state.selectedAmenities, startTime, endTime, this.state.typing);
-    }
   }
 
-  onTypingChange(e) {
-    const typing = e.target.value
-    this.setState({
-      typing: typing
-    })
+  onTypingChange(e, { value }) {
+    const typing = value;
     this.props.getFilteredCampsites(
       this.props.campsites,
       this.state.selectedAmenities,
       this.state.startTime,
       this.state.endTime,
       typing
-    )
+    );
+    this.setState({
+      typing: typing
+    });
   }
 
   render() {
@@ -137,10 +135,11 @@ class LandingPage extends Component {
         <div className="ContentContainer">
           <div className="Content">
             {/* Amenities takes in onAmenitiesChange. Similar for the datePicker and the Type component */}
+            {/* <DatePicker getFilteredCampsites={this.props.getFilteredCampsites} filteredCampsites={filteredCampsites} selectedAmenities={this.state.selectedAmenities} typing={this.state.typing} /> */}
 
-            <Submenu />
+            <Submenu onAmenitiesChange={this.onAmenitiesChange} onStartTimeChange={this.onStartTimeChange} onEndTimeChange={this.onEndTimeChange} onTypingChange={this.onTypingChange}/>
             <Grid stackable columns={2}>
-              <Grid.Row stackable columns={2}>
+              <Grid.Row>
                 <Grid.Column width={6}>
                   <CampsiteCollection
                     campsites={filteredCampsites}

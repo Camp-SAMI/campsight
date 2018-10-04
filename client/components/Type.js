@@ -19,12 +19,13 @@ class Type extends Component {
   }
 
   render() {
+    const { onTypingChange } = this.props;
     const types = [
-      {value: 'Tent', text: 'Tent'},
-      {value: 'Trailer', text: 'Trailer'},
-      {value: 'Cabin', text: 'Cabin'}
+      {value: 'tent', text: 'Tent'},
+      {value: 'trailer', text: 'Trailer'},
+      {value: 'cabin', text: 'Cabin'}
     ]
-    return <Dropdown placeholder="type" fluid selection options={types} />
+    return <Dropdown placeholder="type" fluid selection options={types} onChange={onTypingChange} />
   }
 }
 

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../db');
+const eachDayOfInterval = require('date-fns/eachDayOfInterval');
 
 const reservation = db.define('reservation', {
     startTime: {
@@ -19,11 +20,19 @@ const reservation = db.define('reservation', {
         get() {
             let dates = [];
             let currentDate = new Date(this.startTime);
+            currentDate.setHours(0);
+            currentDate.setMinutes(0);
+            currentDate.setSeconds(0);
+            currentDate.setMilliseconds(0);
             let endDate = new Date(this.endTime);
-            while (currentDate <= endDate) {
-                dates.push(currentDate);
-                currentDate = currentDate.setDate(currentDate.getDate()+1);
-            }
+            endDate.setHours(0);
+            endDate.setMinutes(0);
+            endDate.setSeconds(0);
+            endDate.setMilliseconds(0);
+            dates = eachDayOfInterval({
+                start: currentDate,
+                end: endDate
+            });
             return dates;
         }
     }

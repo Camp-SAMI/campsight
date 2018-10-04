@@ -56,8 +56,9 @@ for (let i = 0; i < reservationQuantity; i++) {
     return startTimeRes
   }
 
-
-  const endTime = new Date(startTimeRes.setDate(startTimeRes.getDate() + days))
+  console.log('days', days);
+  const endTime = new Date(startTimeRes);
+  endTime.setDate(startTimeRes.getDate() + days);
 
   chance.mixin({
     reservation: () => ({

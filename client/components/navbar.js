@@ -27,8 +27,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* <Amenities />
           <Type /> */}
           <Link to="/admin">Admin</Link> {/* move to log in have we do the log in*/}
-          <Amenities />
-          <Type />
+          {/* <Amenities />
+          <Type /> */}
         </div>
       )}
     </nav>
