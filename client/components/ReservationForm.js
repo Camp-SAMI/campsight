@@ -1,18 +1,20 @@
-import {addDays} from 'date-fns'
+import {addDays, toDate} from 'date-fns'
 
 import React, {PureComponent, Fragment} from 'react'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
 import TextField from '@material-ui/core/TextField'
-// import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Button from '@material-ui/core/Button'
 
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
 import {InlineDatePicker} from 'material-ui-pickers/DatePicker'
 
-export default class ReservationForm extends PureComponent {
+import {fetchLatestCampsiteReservation} from '../store/reservation'
+
+class ReservationForm extends PureComponent {
   START_DATE = new Date()
   state = {
     selectedStartDate: this.START_DATE,
@@ -25,7 +27,6 @@ export default class ReservationForm extends PureComponent {
 
   handleDateChange = name => date => {
     this.setState({[name]: date})
-    console.log('State as it changes =>', this.state)
   }
 
   handleChange = name => event => {
@@ -34,8 +35,30 @@ export default class ReservationForm extends PureComponent {
     })
   }
 
-  handleSubmit = () => {
-    console.log('I am outta here!')
+  handleSubmit = evt => {
+    evt.preventDefault()
+    const reservationObj = {
+      campsiteId: this.props.id,
+      startTime: this.state.selectedStartDate,
+      endTime: this.state.selectedEndDate,
+      partyNumber: this.state.partyNumber,
+      camper: {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email
+      }
+    }
+    console.log('Reservations =>', reservationObj)
+    // this.props.confirmReservation(reservationObj)
+    // this.props.history.push(`/home`)
+  }
+
+  componentDidMount() {
+    this.props.fetchLatestCampsiteReservation(this.props.id)
+    this.setState({
+      selectedStartDate: addDays(this.props.latestReservation.endTime, 1),
+      selectedEndDate: addDays(this.props.latestReservation.endTime, 8)
+    })
   }
 
   render() {
@@ -47,12 +70,9 @@ export default class ReservationForm extends PureComponent {
       partyNumber,
       email
     } = this.state
-
+    const latestDate = addDays(this.props.latestReservation.endTime, 1)
     return (
       <Fragment>
-        <Typography variant="title" gutterBottom>
-          Reserve this Campsite
-        </Typography>
         <Grid container spacing={24}>
           <Grid className="picker" item xs={12} sm={6}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -60,7 +80,8 @@ export default class ReservationForm extends PureComponent {
                 keyboard
                 variant="outlined"
                 label="Start Date"
-                minDate={this.START_DATE}
+                disablePast
+                minDate={latestDate}
                 value={selectedStartDate}
                 onChange={this.handleDateChange('selectedStartDate')}
                 format="MM/dd/yyyy"
@@ -85,7 +106,8 @@ export default class ReservationForm extends PureComponent {
                 keyboard
                 variant="outlined"
                 label="End Date"
-                minDate={this.START_DATE}
+                disablePast
+                minDate={latestDate}
                 value={selectedEndDate}
                 onChange={this.handleDateChange('selectedEndDate')}
                 format="MM/dd/yyyy"
@@ -175,3 +197,16 @@ export default class ReservationForm extends PureComponent {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  latestReservation: state.reservation
+})
+
+const mapDispatchToProps = dispatch => ({
+  fetchLatestCampsiteReservation: campsiteId =>
+    dispatch(fetchLatestCampsiteReservation(campsiteId))
+})
+
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ReservationForm)
+)

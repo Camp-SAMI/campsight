@@ -18,6 +18,12 @@ const campsite = db.define('campsite', {
   },
   typing: {
     type: Sequelize.ENUM('tent', 'trailer', 'cabin')
+  },
+  desc: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue:
+      'Nestled under Jackalberry and Mopanetree canopies, Tapioca campsite, laid out beautifully on the banks of the Kwando River, offers you the tranquillity of nature’s bounty. '
   }
 })
 
