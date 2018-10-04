@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {GoogleApiWrapper, Map, Marker} from 'google-maps-react'
 import {GOOGLE_MAPS_API_KEY} from '../secrets'
-import { Modal } from 'semantic-ui-react'
-import CampsiteDetail from './CampsiteDetail';
+import {Modal} from 'semantic-ui-react'
+import CampsiteDetail from './CampsiteDetail'
 
 import Typogragphy from '@material-ui/core/Typography'
 import {typgoraphy} from '@material-ui/core/styles'
@@ -15,8 +15,8 @@ class MapView extends Component {
       isModalOpen: false,
       selectedCampsiteId: 1
     }
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    this.openModal = this.openModal.bind(this)
+    this.closeModal = this.closeModal.bind(this)
   }
 
   openModal(campsite, e) {
@@ -29,7 +29,7 @@ class MapView extends Component {
   closeModal() {
     this.setState({
       selectedCampsiteId: 1,
-      isModalOpen: false,
+      isModalOpen: false
     })
   }
 
@@ -38,12 +38,12 @@ class MapView extends Component {
     const {campsites, campsite} = this.props
     return (
       <div>
-      <Map
-        google={this.props.google}
-        initialCenter={{lat: 43.769405, lng: -89.202743}}
-        zoom={17}
-        style={styles.map}
-      >
+        <Map
+          google={this.props.google}
+          initialCenter={{lat: 43.769405, lng: -89.202743}}
+          zoom={17}
+          style={styles.map}
+        >
           {campsites.map(camp => {
             return (
               <Marker
