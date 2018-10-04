@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const ticket = db.define('campsite_amenities', {
+const ticket = db.define('ticket', {
   title:{
     type: Sequelize.STRING,
     allowNull: false

@@ -25,6 +25,10 @@ const Ticket = require('./ticket')
 Campground.hasMany(Campsite, {foreignKey: 'campgroundId', defaultValue: 1})
 Campsite.belongsTo(Campground)
 
+Reservation.hasMany(Ticket)
+Ticket.belongsTo(Reservation)
+
+
 Campsite.hasMany(Reservation, {foreignKey: 'campsiteId', allowNull: false})
 Campsite.belongsToMany(Reservation, {
   through: 'campsite_reservations',
@@ -32,14 +36,12 @@ Campsite.belongsToMany(Reservation, {
 })
 Reservation.belongsTo(Campsite)
 
+Camper.hasMany(Reservation, {foreignKey: 'camperId', allowNull: false})
+Reservation.belongsTo(Camper)
+
 Amenity.belongsToMany(Campsite, {through: campsiteAmenities})
 Campsite.hasMany(Amenity)
 
-Reservation.hasMany(Ticket)
-Ticket.belongsTo(Reservation)
-
-Camper.hasMany(Reservation, {foreignKey: 'camperId', allowNull: false})
-Reservation.belongsTo(Camper)
 
 module.exports = {
   User,

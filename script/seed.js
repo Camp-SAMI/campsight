@@ -100,9 +100,7 @@ for (let i = 0; i < numberOfCampsitesArray.length; i++){
 
 
 async function seed() {
-  console.log(campsiteAmenitiesArray, "campsiteAmenities array -------------------------------------")
   await db.sync({force: true})
-  console.log(`db ${db.config.database} synced!`)
   await Campsite.bulkCreate(camperSites)
   await Campsite.bulkCreate(tentSites)
   await Campsite.bulkCreate(cabinSites)
