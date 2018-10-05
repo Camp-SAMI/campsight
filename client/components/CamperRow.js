@@ -17,7 +17,7 @@ const CamperRow = props => {
       <Table.Cell>{camper.updatedAt}</Table.Cell>
       <Table.Cell>
         <Button.Group>
-          <Button color="blue">Edit</Button>
+          <Button color="purple">Edit</Button>
           <Button.Or />
           <Button color="red">Delete</Button>
         </Button.Group>
