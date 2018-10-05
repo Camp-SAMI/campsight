@@ -3,36 +3,34 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import Button from '@material-ui/core/Button'
 import {withRouter} from 'react-router-dom'
+import {differenceInCalendarDays} from 'date-fns'
 
 class Checkout extends React.Component {
   onToken = async (token, address) => {
     // Calculate the total cost of camping
-    
+    const totalCost =
+      this.props.cost *
+      differenceInCalendarDays(this.props.endTime, this.props.startTime)
     // Call Axios ...
     try {
       const res = await axios.post(`/api/reservations`, {
-        campsiteId: this.props.id,
-        startTime: this.state.selectedStartDate,
-        endTime: this.state.selectedEndDate,
-        partyNumber: this.state.partyNumber,
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
+        campsiteId: this.props.campsiteId,
+        startTime: this.props.startTime,
+        endTime: this.props.endTime,
+        partyNumber: this.props.partyNumber,
+        firstName: this.props.firstName,
+        lastName: this.props.lastName,
+        email: this.props.email,
         address: address,
-        shippingCost: this.props.shipping,
-        totalCost: this.props.total,
+        totalCost,
         token: JSON.stringify(token)
       })
       // Use an alert module ...
-      console.log('Returned after creating an Order backend', res.data)
+      console.log('Returned after making a Reservation backend', res.data)
       alert('Please check your email for Order confirmation')
-      // call confirm order
-      this.props.confirmOrder(this.props.user.id, this.props.cart, {
-        ...this.state,
-        shippingCost: this.props.shipping,
-        totalCost: this.props.total
-      })
-      this.props.history.push(`/users/${res.data.userId}/orders/${res.data.id}`)
+
+      // Redirect to home page.
+      this.props.history.push(`/`)
     } catch (err) {
       console.error(err)
     }
@@ -46,21 +44,21 @@ class Checkout extends React.Component {
         image="https://react.semantic-ui.com/images/avatar/large/matthew.png" // the pop-in header image (default none)
         ComponentClass="div"
         panelLabel="Checkout" // prepended to the amount in the bottom pay button
-        amount={this.props.total} // cents
+        amount={this.totalCost} // cents
         currency="USD"
         stripeKey="pk_test_E0MMENnIPp3UuKcEwdSvVuZ4"
         locale="en"
-        email="dimsquad@dimsquadll.com"
+        email={this.props.email || 'campsight@samillc.com'}
         // Note: Enabling either address option will give the user the ability to
         // fill out both. Addresses are sent as a second parameter in the token callback.
-        shippingAddress={true}
+        // shippingAddress={true}
         billingAddress={true}
         // Note: enabling both zipCode checks and billing or shipping address will
         // cause zipCheck to be pulled from billing address (set to shipping if none provided).
         zipCode={true}
         // alipay // accept Alipay (default false)
         // bitcoin // accept Bitcoins (default false)
-        //allowRememberMe // "Remember Me" option (default true)
+        allowRememberMe={false} // "Remember Me" option (default true)
         token={this.onToken} // submit callback
         opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
         closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)
