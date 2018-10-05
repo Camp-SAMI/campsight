@@ -36,6 +36,10 @@ const reservation = db.define('reservation', {
       })
       return dates
     }
+  },
+  totalCost: {
+    type: Sequelize.INTEGER,
+    defaultValue: 99999999
   }
 })
 

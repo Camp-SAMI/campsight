@@ -1,4 +1,4 @@
-import {addDays, toDate} from 'date-fns'
+import {addDays, lastDayOfYear} from 'date-fns'
 
 import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
@@ -6,16 +6,17 @@ import {withRouter} from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
 import {InlineDatePicker} from 'material-ui-pickers/DatePicker'
 
+import Checkout from './Checkout'
 import {fetchLatestCampsiteReservation} from '../store/reservation'
 
 class ReservationForm extends PureComponent {
-  START_DATE = new Date()
+  START_DATE = lastDayOfYear(new Date())
   state = {
     selectedStartDate: this.START_DATE,
     selectedEndDate: addDays(this.START_DATE, 7),
@@ -35,30 +36,8 @@ class ReservationForm extends PureComponent {
     })
   }
 
-  handleSubmit = evt => {
-    evt.preventDefault()
-    const reservationObj = {
-      campsiteId: this.props.id,
-      startTime: this.state.selectedStartDate,
-      endTime: this.state.selectedEndDate,
-      partyNumber: this.state.partyNumber,
-      camper: {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email
-      }
-    }
-    console.log('Reservations =>', reservationObj)
-    // this.props.confirmReservation(reservationObj)
-    // this.props.history.push(`/home`)
-  }
-
   componentDidMount() {
     this.props.fetchLatestCampsiteReservation(this.props.id)
-    this.setState({
-      selectedStartDate: addDays(this.props.latestReservation.endTime, 1),
-      selectedEndDate: addDays(this.props.latestReservation.endTime, 8)
-    })
   }
 
   render() {
@@ -71,6 +50,7 @@ class ReservationForm extends PureComponent {
       email
     } = this.state
     const latestDate = addDays(this.props.latestReservation.endTime, 1)
+
     return (
       <Fragment>
         <Grid container spacing={24}>
@@ -107,7 +87,7 @@ class ReservationForm extends PureComponent {
                 variant="outlined"
                 label="End Date"
                 disablePast
-                minDate={latestDate}
+                minDate={addDays(latestDate, 1)}
                 value={selectedEndDate}
                 onChange={this.handleDateChange('selectedEndDate')}
                 format="MM/dd/yyyy"
@@ -184,13 +164,16 @@ class ReservationForm extends PureComponent {
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleSubmit}
-            >
-              Reserve
-            </Button>
+            <Checkout
+              campsiteId={this.props.id}
+              startTime={this.state.selectedStartDate}
+              endTime={this.state.selectedEndDate}
+              partyNumber={this.state.partyNumber}
+              firstName={this.state.firstName}
+              lastName={this.state.lastName}
+              email={this.state.email}
+              cost={this.props.cost}
+            />
           </Grid>
         </Grid>
       </Fragment>
