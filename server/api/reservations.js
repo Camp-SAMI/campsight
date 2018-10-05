@@ -48,9 +48,6 @@ router.get(`/:campsiteId/latest`, async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  //written under the assumption that the user info is on the same form as on the actual reservation info
-  console.log('This is the body of request =>', req.body)
-
   const {
     campsiteId,
     startTime,
