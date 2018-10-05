@@ -2,9 +2,11 @@ const formatRelative = require('date-fns/formatRelative')
 const nodemailer = require('nodemailer')
 const router = require('express').Router()
 const {Reservation, Camper, Campsite} = require('../db/models')
+const isAdmin = require('../auth/isAdmin')
+const isStaffOrAdmin = require('../auth/isStafforAdmin')
 const formatPrice = require('../utils/formatPrice')
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     const reservations = await Reservation.findAll({
       include: [{model: Camper}, {model: Campsite}]
