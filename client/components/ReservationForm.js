@@ -172,6 +172,7 @@ class ReservationForm extends PureComponent {
               firstName={this.state.firstName}
               lastName={this.state.lastName}
               email={this.state.email}
+              cost={this.props.cost}
             />
           </Grid>
         </Grid>

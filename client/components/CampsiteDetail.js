@@ -149,6 +149,7 @@ class CampsiteDetail extends Component {
                     <Header as="h2">Reserve Campsite</Header>
                     <ReservationForm
                       id={Number(this.props.id || this.props.match.params.id)}
+                      cost={cost}
                       // fetchLatestCampsiteReservation={
                       //   fetchLatestCampsiteReservation
                       // }
