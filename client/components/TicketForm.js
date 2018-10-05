@@ -10,51 +10,147 @@ import {
 } from '@material-ui/core'
 
 class TicketForm extends Component {
+  state = {
+    title: '',
+    name: '',
+    email: '',
+    campsite: '',
+    description: ''
+  }
+
+  handleChange = ({target: {name, value}}) => {
+    this.setState({
+      [name]: value
+    })
+  }
+
   render() {
+    const {title, name, email, description, campsite} = this.state
+
     return (
-      <Paper style={styles.paper}>
-        <Grid
+      <Grid container direction='column' justify='center' alignItems='center'>
+      <Grid
           container
           direction="column"
-          justify="flex-start"
+          justify="center"
           alignItems="center"
           style={styles.gridContainer}
         >
-          <Card>
-            <Grid item>
-                <Typography align='center'  variant='display1'>Submit Ticket Form</Typography>
+          <Card raised style={styles.card}>
+      <Paper elevation={24} style={styles.paper}>
+            <Grid direction="column" container alignItems="center" item>
+              <Typography align="center" variant="display1">
+                Submit Ticket Form
+              </Typography>
               <FormGroup>
-                <TextField variant='outlined' label="Title" style={styles.textFields} />
-                <TextField variant='outlined' label="Name" style={styles.textFields} />
-                <TextField variant='outlined' label="Email" style={styles.textFields} />
-                <TextField variant='outlined' label="Campsite" style={styles.textFields} />
-                <TextField variant='outlined' label="Description" style={styles.textFields} />
-                <Button variant='raised' style={styles.button} color='primary'> Submit Form </Button>
+                <TextField
+                  name="title"
+                  onChange={this.handleChange}
+                  value={title}
+                  variant="outlined"
+                  label="Title"
+                  style={styles.textFields}
+                />
+                <TextField
+                  name="name"
+                  variant="outlined"
+                  value={name}
+                  onChange={this.handleChange}
+                  label="Name"
+                  style={styles.textFields}
+                />
+                <TextField
+                  name="email"
+                  variant="outlined"
+                  value={email}
+                  onChange={this.handleChange}
+                  label="Email"
+                  style={styles.textFields}
+                />
+                <TextField
+                  name="campsite"
+                  variant="outlined"
+                  value={campsite}
+                  onChange={this.handleChange}
+                  label="Campsite"
+                  style={styles.textFields}
+                />
+                <TextField
+                  name="description"
+                  value={description}
+                  variant="outlined"
+                  onChange={this.handleChange}
+                  multiline
+                  rows="4"
+                  label="Description"
+                  style={styles.textFields}
+                />
+                <Grid container alignItems="center" direction="column">
+                  <Grid
+                    direction="row"
+                    justify="space-evenly"
+                    alignItems="center"
+                    spacing={16}
+                    container
+                  >
+                    <Grid item>
+                      <Button
+                        style={styles.smButton}
+                        variant="raised"
+                        color="primary"
+                      >
+                        Clear Form
+                      </Button>
+                    </Grid>
+                    <Grid item>
+                      <Button
+                        style={styles.smButton}
+                        variant="raised"
+                        color="primary"
+                      >
+                        Camera
+                      </Button>
+                    </Grid>
+                  </Grid>
+                  <Button
+                    variant="raised"
+                    style={styles.button}
+                    color="primary"
+                  >
+                    Submit Form
+                  </Button>
+                </Grid>
               </FormGroup>
             </Grid>
+      </Paper>
           </Card>
         </Grid>
-      </Paper>
+        </Grid>
     )
   }
 }
 
 const styles = {
-  paper: {
-    height: '100vh',
-    width: '100vw'
-  },
+ 
+   card:{
+     width: '95%',
+     heigth: '95%'
+   },
   textFields: {
-    width: '50vw',
+    width: '95%',
     margin: 10
   },
   gridContainer: {
+    width: '100vw',
     margin: 10
   },
   button: {
     width: '50vw',
     margin: 10
+  },
+  smButton: {
+    width: '120px',
+    margin: 10
   }
- 
 }
 export default TicketForm
