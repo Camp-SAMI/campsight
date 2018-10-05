@@ -116,7 +116,7 @@ router.post('/', async (req, res, next) => {
 
       // Message object
       let message = {
-        from: 'SAMI LLC <dimsquad@dimsquadll.com>',
+        from: 'SAMI LLC <campsight@samillc.com>',
         to: `${firstName + '' + lastName} <${email}>`,
         subject: `Confirmation of your Reservation -#${reservationNumber}`,
 
@@ -126,9 +126,14 @@ router.post('/', async (req, res, next) => {
           and would like to thank you for doing business worth
           ${formatPrice(totalCost)} &nbsp; today.</p>
           <p>
-            Your reservation #${reservationNumber} for campiste ${campsite.name}
-            begins on ${formatRelative(startTime, new Date())} and ends
-            ${formatRelative(endTime, startTime)} after.
+            Your reservation <strong>#${reservationNumber}</strong> for campiste <strong>${
+          campsite.name
+        }</strong>
+            begins on <strong>${formatRelative(
+              startTime,
+              new Date()
+            )}</strong> and ends on the next
+            <strong>${formatRelative(endTime, startTime)}</strong>.
           </p>
           <p>
             We are looking forward to hosting you ...
