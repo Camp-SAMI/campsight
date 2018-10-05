@@ -49,32 +49,30 @@ export default function reducer(tickets=[], action) {
 }
 
 //THUNK CREATORS
-/**
- * export const fetchTickets = () => {
- *  return async dispatch => {
- *      const res = await.axios.get('/api/tickets');
- *      dispatch(getTickets(res.data));
- *  }
- * }
- * 
- * export const createTicket = ticket => {
- *  return async dispatch => {
- *      const {data} = await axios.post('/api/tickets', ticket);
- *      dispatch(addTicket(data));
- *  }
- * }
- * 
- * export const updateTicketToServer = updateInfo => {
- *  return async dispatch => {
- *      const {data} = await axios.put(`api/tickets/${updateInfo.id}`, updateInfo);
- *      dispatch(updateTicket(data));
- *  }
- * }
- * 
- * export const deleteTicket = ticketId => {
- *  return async dispatch => {
- *      await axios.delete(`/api/tickets/${ticketId}`);
- *      dispatch(removeTicket(ticketId));
- *  }
- * }
- */
+
+export const fetchTickets = () => {
+   return async dispatch => {
+       const res = await axios.get('/api/tickets');
+       dispatch(getTickets(res.data));
+   }
+}
+  
+export const createTicket = ticket => {
+   return async dispatch => {
+       const {data} = await axios.post('/api/tickets', ticket);
+       dispatch(addTicket(data));
+  }
+} 
+export const updateTicketToServer = updateInfo => {
+   return async dispatch => {
+       const {data} = await axios.put(`api/tickets/${updateInfo.id}`, updateInfo);
+       dispatch(updateTicket(data));
+   }
+}
+  
+  export const deleteTicket = ticketId => {
+   return async dispatch => {
+       await axios.delete(`/api/tickets/${ticketId}`);
+       dispatch(removeTicket(ticketId));
+   }
+}

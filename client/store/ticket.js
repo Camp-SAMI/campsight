@@ -27,15 +27,14 @@ export default function reducer(ticket = {}, action) {
 }
 
 //THUNK CREATORS
-/**
- * export const fetchTicket = id => {
- *  return async dipsatch => {
- *      try {
- *          const res = await axios.get(`/api/tickets/${id});
- *          dispatch(getTicket(res.data));
- *      } catch (err) {
- *          dispatch(getTicketError());
- *      }
- *  }
- * }
- */
+
+export const fetchTicket = id => {
+    return async dispatch => {
+        try {
+            const res = await axios.get(`/api/tickets/${id}`);
+            dispatch(getTicket(res.data));
+        } catch (err) {
+            dispatch(getTicketError());
+        }
+    }
+}
