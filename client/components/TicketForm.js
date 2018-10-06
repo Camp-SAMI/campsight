@@ -8,6 +8,8 @@ import {
   Typography,
   Button
 } from '@material-ui/core'
+import {connect} from 'react-redux'
+import {toggle_camera} from '../store/ticketFormContainer'
 
 class TicketForm extends Component {
   state = {
@@ -24,12 +26,16 @@ class TicketForm extends Component {
     })
   }
 
+  toggle = () => {
+    this.props.toggle()
+  }
+
   render() {
     const {title, name, email, description, campsite} = this.state
 
     return (
-      <Grid container direction='column' justify='center' alignItems='center'>
-      <Grid
+      <Grid container direction="column" justify="center" alignItems="center">
+        <Grid
           container
           direction="column"
           justify="center"
@@ -37,7 +43,6 @@ class TicketForm extends Component {
           style={styles.gridContainer}
         >
           <Card raised style={styles.card}>
-     
             <Grid direction="column" container alignItems="center" item>
               <Typography align="center" variant="display1">
                 Submit Ticket Form
@@ -107,6 +112,7 @@ class TicketForm extends Component {
                         style={styles.smButton}
                         variant="raised"
                         color="primary"
+                        onClick={this.toggle}
                       >
                         Camera
                       </Button>
@@ -122,20 +128,24 @@ class TicketForm extends Component {
                 </Grid>
               </FormGroup>
             </Grid>
-     
           </Card>
         </Grid>
-        </Grid>
+      </Grid>
     )
   }
 }
 
+const mapProps = dispatch => ({
+  toggle: () => dispatch(toggle_camera())
+})
+
+export default connect(null, mapProps)(TicketForm)
+
 const styles = {
- 
-   card:{
-     width: '95%',
-     heigth: '95%'
-   },
+  card: {
+    width: '95%',
+    heigth: '95%'
+  },
   textFields: {
     width: '95%',
     margin: 10
@@ -153,4 +163,3 @@ const styles = {
     margin: 10
   }
 }
-export default TicketForm

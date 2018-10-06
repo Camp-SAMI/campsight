@@ -1,24 +1,25 @@
 import React, {Component, Fragment} from 'react'
 import {TicketForm, Camera} from './index'
+import {connect} from 'react-redux'
 
 class TicketFormContainer extends Component {
-  state = {
-    toggle: false
-  }
+  
 
-  // need to setup store to toggle between views 
+  
+  // need to setup store to toggle between views
 
   render() {
-
-
+    console.log(this.props.toggle)
     return (
-      <Fragment>
-
-        <TicketForm />
-        <Camera />
-      </Fragment>
+      <Fragment>{this.props.toggle ? <Camera /> : <TicketForm />}</Fragment>
     )
   }
 }
 
-export default TicketFormContainer
+const mapState = state => {
+  
+  return {
+  toggle: state.ticketFormContainer
+}}
+
+export default connect(mapState)(TicketFormContainer)

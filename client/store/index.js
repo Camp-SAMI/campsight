@@ -12,6 +12,7 @@ import filteredCampsites from './filteredCampsites'
 import campers from './campers'
 import ticket from './ticket'
 import tickets from './tickets'
+import ticketFormContainer from './ticketFormContainer'
 
 const reducer = combineReducers({
   amenities,
@@ -23,7 +24,8 @@ const reducer = combineReducers({
   user,
   campers,
   ticket,
-  tickets
+  tickets,
+  ticketFormContainer
 })
 
 const middleware = composeWithDevTools(

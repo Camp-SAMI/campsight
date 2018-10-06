@@ -21,6 +21,12 @@ const ticket = db.define('ticket', {
   status: {
     type: Sequelize.ENUM('open','close','in-progress'),
     defaultValue: 'open'
+  },
+  image: {
+    type: Sequelize.STRING
+  },
+   location: {
+    type: Sequelize.GEOMETRY('POINT')
   }
 })
 
