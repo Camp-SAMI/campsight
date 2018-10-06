@@ -18,7 +18,7 @@ class AdminSidebar extends Component {
             <Icon name="sticky note outline" />
             Tickets
           </Menu.Item>
-          <Menu.Item as="a">
+          <Menu.Item as="a" to="/reservations">
             <Icon name="calendar check" />
             Reservations
           </Menu.Item>
@@ -29,13 +29,6 @@ class AdminSidebar extends Component {
         </Sidebar>
       </Sidebar.Pushable>
     )
-  }
-}
-
-const styles = {
-  sidebar: {
-    marginTop: 40,
-    height: '100vh'
   }
 }
 

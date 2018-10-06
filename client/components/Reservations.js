@@ -1,11 +1,48 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {Table} from 'semantic-ui-react'
-import fetchReservations from '../store/reservations'
+import {Table, Divider, Container, Header} from 'semantic-ui-react'
+import {fetchReservations} from '../store/reservations'
+import ReservationRow from './ReservationRow'
+import {withRouter} from 'react-router-dom'
 
 class Reservations extends Component {
+  componentDidMount() {
+    this.props.fetchReservations()
+  }
   render() {
-    return <Table />
+    const reservations = this.props.reservations
+    console.log('RESERVATIONS', reservations)
+    return (
+      <Fragment>
+        <Container>
+          <Divider hidden />
+          <Header as="h1" floated="left">
+            All Reservations
+          </Header>
+          <Divider hidden />
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>ID</Table.HeaderCell>
+                <Table.HeaderCell>Start Time</Table.HeaderCell>
+                <Table.HeaderCell>End Time</Table.HeaderCell>
+                <Table.HeaderCell>Party Number</Table.HeaderCell>
+                <Table.HeaderCell>Actions</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {reservations &&
+                reservations.map(reservation => (
+                  <ReservationRow
+                    key={reservation.id}
+                    reservation={reservation}
+                  />
+                ))}
+            </Table.Body>
+          </Table>
+        </Container>
+      </Fragment>
+    )
   }
 }
 
@@ -14,7 +51,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchReservations: () => dispatch(fetchReservations)
+  fetchReservations: () => dispatch(fetchReservations())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Reservations)
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Reservations)
+)
