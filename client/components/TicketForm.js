@@ -37,7 +37,7 @@ class TicketForm extends Component {
           style={styles.gridContainer}
         >
           <Card raised style={styles.card}>
-      <Paper elevation={24} style={styles.paper}>
+     
             <Grid direction="column" container alignItems="center" item>
               <Typography align="center" variant="display1">
                 Submit Ticket Form
@@ -122,7 +122,7 @@ class TicketForm extends Component {
                 </Grid>
               </FormGroup>
             </Grid>
-      </Paper>
+     
           </Card>
         </Grid>
         </Grid>

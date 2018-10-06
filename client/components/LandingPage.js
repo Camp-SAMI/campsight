@@ -8,7 +8,7 @@ import {fetchAmenities} from '../store/amenities'
 import {fetchReservations} from '../store/reservations'
 import {fetchCampsite} from '../store/campsite'
 import {getFilteredCampsites} from '../store/filteredCampsites'
-import {Grid, Sticky, Rail, Segment} from 'semantic-ui-react'
+import {Grid, Sticky, Responsive} from 'semantic-ui-react'
 import moment from 'moment'
 // import {Grid, Sticky} from 'semantic-ui-react'
 import Submenu from './Submenu'
@@ -63,7 +63,6 @@ class LandingPage extends Component {
     this.onTypingChange = this.onTypingChange.bind(this)
     this.onStartTimeChange = this.onStartTimeChange.bind(this)
     this.onEndTimeChange = this.onEndTimeChange.bind(this)
-    this.handleContextRef = this.handleContextRef.bind(this)
   }
 
   async componentDidMount() {
@@ -147,11 +146,6 @@ class LandingPage extends Component {
     })
   }
 
-  handleContextRef(contextRef) {
-    console.log('THIS', contextRef)
-    this.setState(prevState => ({...prevState, contextRef: contextRef}))
-  }
-
   render() {
     const {
       campsites,
@@ -178,39 +172,20 @@ class LandingPage extends Component {
               onEndTimeChange={this.onEndTimeChange}
               onTypingChange={this.onTypingChange}
             />
-            <Grid className="ref" stackable columns={2}>
-              <Grid.Column>
-                <div ref={this.handleContextRef}>
-                  <Segment>
-                    {/* <Grid.Column width={6}> */}
-                    <CampsiteCollection
-                      campsites={filteredCampsites}
-                      campsite={campsite}
-                    />
-                    {/* </Grid.Column> */}
-                    {/* </Rail> */}
-                    {/* <Rail position="left"> */}
-                    <Rail position="right">
-                      <Sticky
-                        className="sticky"
-                        context={contextRef}
-                        onStick={() => {
-                          console.log('im Stuck')
-                        }}
-                      >
-                        {/* <Grid.Column width={9}> */}
-                        <div>
-                          <MapView
-                            campsites={filteredCampsites}
-                            campsite={campsite}
-                          />
-                        </div>
-                        {/* </Grid.Column> */}
-                      </Sticky>
-                    </Rail>
-                  </Segment>
-                </div>
-              </Grid.Column>
+            <Grid stackable columns={2}>
+              <Grid.Row>
+                <Grid.Column width={6}>
+                  <CampsiteCollection
+                    campsites={filteredCampsites}
+                    campsite={campsite}
+                  />
+                </Grid.Column>
+                {/* <Sticky> */}
+                <Grid.Column width={9}>
+                  <MapView campsites={filteredCampsites} campsite={campsite} />
+                </Grid.Column>
+                {/* </Sticky> */}
+              </Grid.Row>
             </Grid>
           </div>
         </div>

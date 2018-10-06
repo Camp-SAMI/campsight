@@ -1,5 +1,8 @@
+const formatRelative = require('date-fns/formatRelative')
+const nodemailer = require('nodemailer')
 const router = require('express').Router()
 const {Reservation, Camper, Campsite} = require('../db/models')
+const formatPrice = require('../utils/formatPrice')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -46,24 +49,107 @@ router.get(`/:campsiteId/latest`, async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   //written under the assumption that the user info is on the same form as on the actual reservation info
+  console.log('This is the body of request =>', req.body)
+
+  const {
+    campsiteId,
+    startTime,
+    endTime,
+    partyNumber,
+    firstName,
+    lastName,
+    email,
+    totalCost,
+    address,
+    token
+  } = req.body
+
   try {
-    const camper = await Camper.findOrCreate({
-      where: [
-        {firstName: req.body.firstName},
-        {lastName: req.body.lastName},
-        {email: req.body.email}
-      ],
-      returning: true
+    // Find or Create Camper
+    const [camper, created] = await Camper.findOrCreate({
+      where: {
+        firstName,
+        lastName,
+        email
+      },
+      returning: true,
+      plain: true
     })
-    const campsite = await Campsite.findById(req.body.campsiteId)
+    // TODO: Update Camper with billing address information
+
+    // Find Campsite via ID
+    const campsite = await Campsite.findById(campsiteId)
+
+    // Book a reservation
     const newReservation = await Reservation.create({
-      startTime: req.body.startTime,
-      endTime: req.body.endTime,
-      partyNumber: req.body.partNumber,
+      startTime,
+      endTime,
+      partyNumber,
       camperId: camper.id,
-      campsiteId: campsite.id
+      campsiteId: campsite.id,
+      totalCost
     })
-    res.json(newReservation)
+
+    // Autogenerate Reservation ID
+    const reservationNumber = `${address.billing_address_zip}${
+      address.billing_address_state
+    }${newReservation.id}${campsiteId}${partyNumber}`
+    // Send email to dummy address
+    // Generate SMTP service account from ethereal.email
+
+    nodemailer.createTestAccount((err, account) => {
+      if (err) {
+        console.error('Failed to create a testing account. ' + err.message)
+        return process.exit(1)
+      }
+
+      console.log('Credentials obtained, sending message...')
+
+      const transporter = nodemailer.createTransport({
+        host: 'smtp.ethereal.email',
+        port: 587,
+        auth: {
+          user: 'dedkmcuyhxbpplax@ethereal.email',
+          pass: 'WHpBvYqrJ6WvtdRDzu'
+        }
+      })
+
+      // Message object
+      let message = {
+        from: 'SAMI LLC <dimsquad@dimsquadll.com>',
+        to: `${firstName + '' + lastName} <${email}>`,
+        subject: `Confirmation of your Reservation -#${reservationNumber}`,
+
+        html: `<div>
+          <p><b>Hello</b> to ${firstName + '' + lastName}!</p>
+          <p> We at Campsight as subsidiary of SAMI LLC appreciate your business
+          and would like to thank you for doing business worth
+          ${formatPrice(totalCost)} &nbsp; today.</p>
+          <p>
+            Your reservation #${reservationNumber} for campiste ${campsite.name}
+            begins on ${formatRelative(startTime, new Date())} and ends
+            ${formatRelative(endTime, startTime)} after.
+          </p>
+          <p>
+            We are looking forward to hosting you ...
+          </p>
+          <p>Your Sincerely, Campsight MGT.</p>
+        <div>`
+      }
+
+      transporter.sendMail(message, (err, info) => {
+        if (err) {
+          console.log('Error occurred. ' + err.message)
+          return process.exit(1)
+        }
+
+        console.log('Message sent: %s', info.messageId)
+        // Preview only available when sending through an Ethereal account
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info))
+      })
+    })
+
+    res.status(201).json(newReservation)
   } catch (err) {
     next(err)
   }
