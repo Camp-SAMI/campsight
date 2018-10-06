@@ -7,7 +7,7 @@ module.exports = router;
 router.get('/', async (req, res, next) => {
     try {
         const tickets = await Ticket.findAll({
-            include: [{model: Camper}, {model: Reservation}, {model: Campsite}]
+            include: [{model: Reservation}]
         });
         res.json(tickets);
     } catch (err) {
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res, next) => {
             where: {
                 id: req.params.id
             },
-            include: [{model: Camper}, {model: Reservation}, {model: Campsite}]
+            include: [{model: Reservation}]
         });
         res.json(singleTicket);
     } catch (err) {
