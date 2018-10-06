@@ -6,12 +6,11 @@ import {
   Login,
   Signup,
   UserHome,
-  CampsiteBlock,
   CampsiteCollection,
   LandingPage,
-  ReservationForm,
-  CampsiteDetail,
-  AdminDashboard
+  CampersList,
+  AdminDashboard,
+  TicketFormContainer
 } from './components'
 import {me} from './store'
 
@@ -29,14 +28,12 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        {/* <Route path="/campsites/:id" component={CampsiteDetail} /> */}
-        <Route path="/reservation" component={ReservationForm} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/admin" component={AdminDashboard} />
+        <Route path="/dashboard" component={AdminDashboard} />
+        <Route path="/campers" component={CampersList} />
+        <Route path="/ticketform" component={TicketFormContainer}/>
         <Route exact path="/" component={LandingPage} />
-        <Route path="*" component={LandingPage} />
-        {/* <Route path="campsites" /> */}{' '}
         {/* commented out route should probably lead to detailed campsite view component */}
         {isLoggedIn && (
           <Switch>

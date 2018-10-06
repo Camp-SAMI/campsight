@@ -3,7 +3,6 @@ const compareDesc = require('date-fns/compareDesc')
 const Sequelize = require('sequelize')
 const db = require('../db')
 const eachDayOfInterval = require('date-fns/eachDayOfInterval')
-
 const reservation = db.define('reservation', {
   startTime: {
     type: Sequelize.DATE,

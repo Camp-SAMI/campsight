@@ -2,9 +2,11 @@ const formatRelative = require('date-fns/formatRelative')
 const nodemailer = require('nodemailer')
 const router = require('express').Router()
 const {Reservation, Camper, Campsite} = require('../db/models')
+const isAdmin = require('../auth/isAdmin')
+const isStaffOrAdmin = require('../auth/isStafforAdmin')
 const formatPrice = require('../utils/formatPrice')
 
-router.get('/', async (req, res, next) => {
+router.get('/', isAdmin, async (req, res, next) => {
   try {
     const reservations = await Reservation.findAll({
       include: [{model: Camper}, {model: Campsite}]
@@ -48,9 +50,6 @@ router.get(`/:campsiteId/latest`, async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  //written under the assumption that the user info is on the same form as on the actual reservation info
-  console.log('This is the body of request =>', req.body)
-
   const {
     campsiteId,
     startTime,
@@ -116,7 +115,7 @@ router.post('/', async (req, res, next) => {
 
       // Message object
       let message = {
-        from: 'SAMI LLC <dimsquad@dimsquadll.com>',
+        from: 'SAMI LLC <campsight@samillc.com>',
         to: `${firstName + '' + lastName} <${email}>`,
         subject: `Confirmation of your Reservation -#${reservationNumber}`,
 
@@ -126,9 +125,14 @@ router.post('/', async (req, res, next) => {
           and would like to thank you for doing business worth
           ${formatPrice(totalCost)} &nbsp; today.</p>
           <p>
-            Your reservation #${reservationNumber} for campiste ${campsite.name}
-            begins on ${formatRelative(startTime, new Date())} and ends
-            ${formatRelative(endTime, startTime)} after.
+            Your reservation <strong>#${reservationNumber}</strong> for campiste <strong>${
+          campsite.name
+        }</strong>
+            begins on <strong>${formatRelative(
+              startTime,
+              new Date()
+            )}</strong> and ends on the next
+            <strong>${formatRelative(endTime, startTime)}</strong>.
           </p>
           <p>
             We are looking forward to hosting you ...
