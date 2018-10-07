@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Sidebar, Menu, Icon} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 class AdminSidebar extends Component {
   constructor() {
@@ -24,7 +25,7 @@ class AdminSidebar extends Component {
           visible
           width="thin"
         >
-          <Menu.Item as="a">
+          <Menu.Item href="/tickets">
             <Icon name="sticky note outline" />
             Tickets
           </Menu.Item>
