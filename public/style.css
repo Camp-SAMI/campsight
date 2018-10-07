@@ -21,6 +21,7 @@ nav {
   top: 0;
   width: 100%;
   overflow: hidden;
+  background-color: #36454f;
 }
 
 form div {
@@ -47,14 +48,6 @@ form div {
   z-index: -1;
   background: url('https://recreation-acm.activefederal.com/assetfactory.aspx?did=5221');
 } */
-
-.ContentContainer {
-  display: block;
-  position: relative;
-  /* background-color: aquamarine; */
-  z-index: 1;
-  height: 100%;
-}
 
 /* h1 {
   letter-spacing: -15px;
@@ -106,5 +99,3 @@ p {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-
-/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,800'); */

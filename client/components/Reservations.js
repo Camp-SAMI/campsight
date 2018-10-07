@@ -24,6 +24,9 @@ class Reservations extends Component {
             <Table.Header>
               <Table.Row>
                 <Table.HeaderCell>ID</Table.HeaderCell>
+                <Table.HeaderCell>Firts Name</Table.HeaderCell>
+                <Table.HeaderCell>Last Name</Table.HeaderCell>
+                <Table.HeaderCell>Email</Table.HeaderCell>
                 <Table.HeaderCell>Start Time</Table.HeaderCell>
                 <Table.HeaderCell>End Time</Table.HeaderCell>
                 <Table.HeaderCell>Party Number</Table.HeaderCell>
@@ -33,10 +36,7 @@ class Reservations extends Component {
             <Table.Body>
               {reservations &&
                 reservations.map(reservation => (
-                  <ReservationRow
-                    key={reservation.id}
-                    reservation={reservation}
-                  />
+                  <ReservationRow key={reservation.id} reserv={reservation} />
                 ))}
             </Table.Body>
           </Table>
