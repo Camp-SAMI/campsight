@@ -6,7 +6,7 @@ const isAdmin = require('../auth/isAdmin')
 const isStaffOrAdmin = require('../auth/isStafforAdmin')
 const formatPrice = require('../utils/formatPrice')
 
-router.get('/', isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const reservations = await Reservation.findAll({
       include: [{model: Camper}, {model: Campsite}]

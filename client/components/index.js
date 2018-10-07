@@ -14,8 +14,9 @@ export {default as ReservationForm} from './ReservationForm'
 export {default as CampsiteDetail} from './CampsiteDetail'
 export {default as AdminDashboard} from './AdminDashboard'
 export {default as CampersList} from './CampersList'
-export {default as AdminCampsites} from './AdminCampsites';
-export {default as TicketList} from './TicketList';
-export {default as ClosedTicketTable} from './ClosedTicketTable';
-export {default as OpenTicketTable} from './OpenTicketTable';
-export {default as UnassignedTicketTable} from './UnassignedTicketTable';
+export {default as Reservations} from './Reservations'
+export {default as AdminCampsites} from './AdminCampsites'
+export {default as TicketList} from './TicketList'
+export {default as ClosedTicketTable} from './ClosedTicketTable'
+export {default as OpenTicketTable} from './OpenTicketTable'
+export {default as UnassignedTicketTable} from './UnassignedTicketTable'
