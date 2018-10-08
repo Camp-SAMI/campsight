@@ -1,6 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import { Button, Table, Container, Header, Divider } from 'semantic-ui-react';
+import { Button, Table, Container, Header, Divider, Modal } from 'semantic-ui-react';
+import EditTicket from './EditTicket';
 
 export default function ClosedTicketTable(props){
     const { closedTickets, handleClick } = props;
@@ -40,13 +41,18 @@ export default function ClosedTicketTable(props){
                             <Table.Cell>{ticket.createdAt}</Table.Cell>
                             <Table.Cell>{ticket.updatedAt}</Table.Cell>
                             <Table.Cell>
-                                <Button.Group>
+                                <Modal trigger={<Button basic color="blue" onClick={e => handleClick(ticket, e)}>Edit Ticket</Button>}>
+                                    <Modal.Content>
+                                        <EditTicket />
+                                    </Modal.Content>
+                                </Modal>
+                                {/* <Button.Group>
                                     <Button color="green" onClick={e => handleClick(ticket, e)}>Open</Button>
                                     <Button.Or />
                                     <Button color="blue" onClick={e => handleClick(ticket, e)}>In Progress</Button>
                                     <Button.Or />
                                     <Button color="red" onClick={e => handleClick(ticket, e)}>Close</Button>
-                                </Button.Group>
+                                </Button.Group> */}
                             </Table.Cell>
                         </Table.Row>
                     ))}

@@ -56,7 +56,7 @@ class AddCampsite extends Component {
         console.log(this.state);
     }
 
-    handleSubmit() {
+    handleSubmit(event) {
         event.preventDefault();
         const campsite = {
             name: this.state.name,
