@@ -11,7 +11,7 @@ const CampsiteBlock = props => {
         <Image src={campsite.coverImage} />
         <Card.Content>
           <Card.Header> {campsite.name}</Card.Header>
-          <Card.Description>{campsite.desc}</Card.Description>
+          {/* <Card.Description>{campsite.desc}</Card.Description> */}
         </Card.Content>
       </Card>
     </div>
