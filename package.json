@@ -65,11 +65,13 @@
     "react-router-dom": "^4.3.1",
     "react-stripe-checkout": "^2.6.3",
     "redux": "^3.6.0",
+    "redux-form": "^7.4.2",
     "redux-logger": "^2.8.1",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "semantic-ui-calendar-react": "^0.9.1",
     "semantic-ui-react": "^0.82.5",
+    "semantic-ui-redux-form-fields": "^1.0.1",
     "sequelize": "^4.38.0",
     "socket.io": "^2.1.1",
     "stripe": "^6.12.1"

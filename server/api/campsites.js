@@ -14,6 +14,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:campsiteId', async (req, res, next) => {
+    console.log('params', req.params);
     try {
         const target = await Campsite.findById(req.params.campsiteId, {
             include: [{model: Amenity}, {model: Reservation}]
