@@ -9,7 +9,9 @@ import {
   LandingPage,
   CampersList,
   CamperProfile,
-  AdminDashboard
+  AdminDashboard,
+  Reservations,
+  TicketList
 } from './components'
 import {me} from './store'
 
@@ -30,6 +32,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/dashboard" component={AdminDashboard} />
+        <Route path="/reservations" component={Reservations} />
+        <Route path="/tickets" component={TicketList} />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/campers/:camperId" component={CamperProfile} />
         <Route exact path="/campers" component={CampersList} />
@@ -43,7 +47,7 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         {/* <Route component={Login} /> */}
-        <Route path="*" component={LandingPage} />
+        {/* <Route path="*" component={LandingPage} /> */}
       </Switch>
     )
   }
