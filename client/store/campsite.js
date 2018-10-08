@@ -28,7 +28,7 @@ const reducer = (campsite = {}, action) => {
 
 //THUNK CREATORS
 export const fetchCampsite = id => {
-  // console.log('id', id);
+  console.log('id', id);
   return async dispatch => {
     try {
       const res = await axios.get(`/api/campsites/${id}`)
