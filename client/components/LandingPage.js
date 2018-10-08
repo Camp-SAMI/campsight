@@ -159,16 +159,16 @@ class LandingPage extends Component {
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
 
         <div className="ContentContainer">
+          <Submenu
+            onAmenitiesChange={this.onAmenitiesChange}
+            onStartTimeChange={this.onStartTimeChange}
+            onEndTimeChange={this.onEndTimeChange}
+            onTypingChange={this.onTypingChange}
+          />
           <div className="Content">
             {/* Amenities takes in onAmenitiesChange. Similar for the datePicker and the Type component */}
             {/* <DatePicker getFilteredCampsites={this.props.getFilteredCampsites} filteredCampsites={filteredCampsites} selectedAmenities={this.state.selectedAmenities} typing={this.state.typing} /> */}
 
-            <Submenu
-              onAmenitiesChange={this.onAmenitiesChange}
-              onStartTimeChange={this.onStartTimeChange}
-              onEndTimeChange={this.onEndTimeChange}
-              onTypingChange={this.onTypingChange}
-            />
             <Grid stackable columns={2}>
               <Grid.Row>
                 <Grid.Column width={6}>

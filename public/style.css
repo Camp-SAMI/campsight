@@ -16,13 +16,13 @@ nav a {
   margin: 1em;
 }
 
-nav {
-  /* position: fixed; */
-  top: 0;
+/* nav { */
+/* position: fixed; */
+/* top: 0;
   width: 100%;
   overflow: hidden;
   background-color: #36454f;
-}
+} */
 
 form div {
   margin: 1em;
@@ -70,7 +70,8 @@ form div {
 .ContentContainer {
   position: relative;
   display: block;
-  background-color: white;
+  background-color: rgb(232, 236, 239);
+  /* background-image: linear-gradient(rgb(54, 61, 71), rgb(135, 151, 163)); */
   z-index: 1;
 }
 
@@ -99,3 +100,8 @@ p {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
+
+/* dark-gary-blue */
+/* rgb(54, 61, 71) */
+/* light-gray-blue */
+/* rgb(70, 82, 99) */
