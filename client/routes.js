@@ -6,9 +6,9 @@ import {
   Login,
   Signup,
   UserHome,
-  CampsiteCollection,
   LandingPage,
   CampersList,
+  CamperProfile,
   AdminDashboard
 } from './components'
 import {me} from './store'
@@ -30,12 +30,14 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/dashboard" component={AdminDashboard} />
-        <Route path="/campers" component={CampersList} />
         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/campers/:camperId" component={CamperProfile} />
+        <Route exact path="/campers" component={CampersList} />
         {/* commented out route should probably lead to detailed campsite view component */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
+
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
