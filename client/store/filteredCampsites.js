@@ -34,7 +34,7 @@ export function getFilteredCampsites(campsites, selectedAmenities, startTime, en
     }
 }
 
-function checkReservationRange(startTime, endTime, reservation) {
+export function checkReservationRange(startTime, endTime, reservation) {
     startTime = new Date(startTime);
     endTime = new Date(endTime);
     let startB = new Date(format(reservation.startTime, 'MM-dd-yyyy'));
