@@ -1,21 +1,27 @@
 import React, { Component, Fragment } from 'react';
 import {connect} from 'react-redux';
-import { fetchCampsites } from '../store/campsites';
+import { fetchCampsites, updateCampsiteToServer, addNewCampsiteToServer } from '../store/campsites';
+import { fetchAmenities } from '../store/amenities';
 import { NavLink } from 'react-router-dom';
-import { Pagination, Container, Table, Divider, Header } from 'semantic-ui-react';
+import { Pagination, Container, Table, Divider, Header, Button } from 'semantic-ui-react';
 import {formatPrice} from '../utils/formatPrice';
-// import { deleteTicket } from '../store/tickets';
+import locationConverter from '../utils/locationConverter';
+import { CampsiteRow } from './CampsiteRow';
 
 const mapStateToProps = state => {
     return {
         campsites: state.campsites,
         campsite: state.campsite,
-        user: state.user
+        user: state.user,
+        amenities: state.amenities
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    fetchCampsites: () => dispatch(fetchCampsites())
+    fetchCampsites: () => dispatch(fetchCampsites()),
+    fetchAmenities: () => dispatch(fetchAmenities()),
+    updateCampsite: campsite => dispatch(updateCampsiteToServer(campsite)),
+    addCampsite: campsite => dispatch(addNewCampsiteToServer(campsite))
 })
 
 export class AdminCampsites extends Component {
@@ -39,6 +45,7 @@ export class AdminCampsites extends Component {
             const perPage = this.state.perPage;
             const firstPage = this.props.campsites.slice(0, perPage);
             const numPages = Math.ceil(this.props.campsites.length / perPage);
+            await this.props.fetchAmenities();
             this.setState({
                 campsites: campsites,
                 currentPage: firstPage,
@@ -54,11 +61,28 @@ export class AdminCampsites extends Component {
         this.setState({currentPage: currentPage, activePage: activePage});
     }
 
+    editSubmit(campsiteInfo, event) {
+        event.preventDefault();
+        let campsite = {
+            id: campsiteInfo.id,
+            name: campsiteInfo.name,
+            location: locationConverter(campsiteInfo.latitude, campsiteInfo.latitude),
+            coverImage: campsiteInfo.coverImage,
+            images: campsiteInfo.images.split(', '),
+            amenities: campsiteInfo.amenities,
+            typing: campsiteInfo.typing,
+            desc: campsiteInfo.desc,
+            cost: campsiteInfo.cost
+        };
+        this.props.updateCampsite(campsite);
+    }
+
     render() {
         if (
             this.props.campsites.length && this.state.currentPage.length && this.state.numPages
         ) {
             const campsites = this.props.campsites;
+            const amenities = this.props.amenities;
             const currentPage = this.state.currentPage;
             const data = [...this.props.campsites];
 
@@ -79,19 +103,13 @@ export class AdminCampsites extends Component {
                                     <Table.HeaderCell>Longitude</Table.HeaderCell>
                                     <Table.HeaderCell>Type</Table.HeaderCell>
                                     <Table.HeaderCell>Cost</Table.HeaderCell>
+                                    <Table.HeaderCell>Actions</Table.HeaderCell>
                                 </Table.Row>
                             </Table.Header>
                             <Table.Body>
                                 {
                                     currentPage && currentPage.map(campsite =>
-                                        <Table.Row key={campsite.id}>
-                                            <Table.Cell>{campsite.id}</Table.Cell>
-                                            <Table.Cell>{campsite.name}</Table.Cell>
-                                            <Table.Cell>{campsite.location.coordinates[0]}</Table.Cell>
-                                            <Table.Cell>{campsite.location.coordinates[1]}</Table.Cell>
-                                            <Table.Cell>{campsite.typing}</Table.Cell>
-                                            <Table.Cell>{`${formatPrice(campsite.cost)}`}</Table.Cell>
-                                        </Table.Row>
+                                        <CampsiteRow key={campsite.id} campsite={campsite} amenities={amenities} editSubmit={this.editSubmit} />
                                     )
                                 }
                             </Table.Body>
@@ -105,6 +123,7 @@ export class AdminCampsites extends Component {
                         onPageChange={this.handleSelectPagination}
                         totalPages={this.state.numPages}
                     />
+                    <Button basic color="blue"><NavLink to='/campsites/add'>Add New Campsite</NavLink></Button>
                 </Fragment>
             )
         } else

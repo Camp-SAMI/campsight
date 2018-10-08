@@ -3,6 +3,7 @@ import axios from 'axios';
 //ACTION TYPES
 const GET_CAMPSITES = 'GET_CAMPSITES';
 const UPDATE_CAMPSITE = 'UPDATE_CAMPSITE';
+const CREATE_CAMPSITE = 'CREATE_CAMPSITE';
 
 //ACTION CREATORS
 const getCampsites = campsites => ({
@@ -15,6 +16,11 @@ const updateCampsite = campsite => ({
     campsite
 })
 
+const createCampsite = campsite => ({
+    type: CREATE_CAMPSITE,
+    campsite
+});
+
 //REDUCER
 const reducer = (campsites = [], action) => {
     switch (action.type) {
@@ -25,6 +31,8 @@ const reducer = (campsites = [], action) => {
                 return (action.campsite.id === campsite.id ? action.campsite : campsite)
             });
             return updatedCampsites;
+        case CREATE_CAMPSITE:
+            return [...campsites, action.campsite];
         default:
             return campsites;
     }
@@ -52,6 +60,13 @@ export const updateCampsiteToServer = updateInfo => {
     return async dispatch => {
         const {data} = await axios.put(`api/campsites/${updateInfo.id}`, updateInfo);
         dispatch(updateCampsite(data));
+    }
+}
+
+export const addNewCampsiteToServer = campsiteInfo => {
+    return async dispatch => {
+        const {data} = await axios.post(`api/campsites/${campsiteInfo.id}`, campsiteInfo);
+        dispatch(createCampsite(data));
     }
 }
 
