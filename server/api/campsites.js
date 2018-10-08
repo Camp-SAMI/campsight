@@ -14,6 +14,7 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/:campsiteId', async (req, res, next) => {
+    // console.log('params', req.params);
     try {
         const target = await Campsite.findById(req.params.campsiteId, {
             include: [{model: Amenity}, {model: Reservation}]
@@ -28,15 +29,22 @@ router.get('/:campsiteId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const newCampsite = await Campsite.create({
+            name: req.body.name,
             location : {
                 type: 'Point',
-                coordinates: [req.body.location.longitude, req.body.location.latitude]
+                coordinates: [req.body.latitude, req.body.longitude]
             },
             campgroundId: req.body.campgroundId,
             coverImage: req.body.coverImage ? req.body.coverImage : '',
             images: req.body.images.length ? req.body.images : [],
-            typing: req.body.typing
+            typing: req.body.typing,
+            cost: req.body.cost
         });
+        let amenItems = req.body.amenities.map(amen => amen.toLowerCase());
+        const amenities = await Amenity.findAll();
+        const amenityInfos = amenities.filter(a => amenItems.includes(a.category));
+        await newCampsite.setAmenities(amenityInfos);
+        await newCampsite.save();
         res.json(newCampsite);
     }
     catch (err) {
@@ -45,6 +53,7 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/:campsiteId', async (req, res, next) => {
+    console.log('body', req.body);
     try {
         const campsiteUpdate = await Campsite.update(req.body, {
             where: { id: req.params.campsiteId },

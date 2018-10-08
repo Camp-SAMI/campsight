@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {Ticket, Camper, Reservation, Campsite} = require('../db/models')
 const requireAdmin = require('../auth/isAdmin')
+const requireStaffOrAdmin = require('../auth/isStafforAdmin')
 module.exports = router
 
 //all tickets route
@@ -65,8 +66,8 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-//put ticket route, admin only for now
-router.put('/:id', requireAdmin, async (req, res, next) => {
+//put ticket route, staff/admin only for now
+router.put('/:id', requireStaffOrAdmin, async (req, res, next) => {
   try {
     const updatedTicket = await Ticket.update(
       {

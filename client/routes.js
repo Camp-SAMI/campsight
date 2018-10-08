@@ -11,7 +11,9 @@ import {
   CamperProfile,
   AdminDashboard,
   Reservations,
-  TicketList
+  TicketList,
+  AdminCampsites,
+  AddCampsite
 } from './components'
 import {me} from './store'
 
@@ -34,6 +36,8 @@ class Routes extends Component {
         <Route path="/dashboard" component={AdminDashboard} />
         <Route path="/reservations" component={Reservations} />
         <Route path="/tickets" component={TicketList} />
+        <Route exact path="/campsites" component={AdminCampsites} />
+        <Route path="/campsites/add" component={AddCampsite} />
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/campers/:camperId" component={CamperProfile} />
         <Route exact path="/campers" component={CampersList} />

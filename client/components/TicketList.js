@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { getUnassignedTickets, getOpenTickets, getClosedTickets } from '../store';
 import { fetchTickets, updateTicketToServer } from '../store/tickets';
+import { fetchTicket } from '../store/ticket';
 import { Divider, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import UnassignedTicketTable from './UnassignedTicketTable';
@@ -19,7 +20,8 @@ function mapStateToProps(state){
 
 const mapDispatchToProps = dispatch => ({
     fetchTickets: () => dispatch(fetchTickets()),
-    updateTicket: (ticket) => dispatch(updateTicketToServer(ticket))
+    updateTicket: (ticket) => dispatch(updateTicketToServer(ticket)),
+    fetchTicket: (id) => dispatch(fetchTicket(id))
 });
 
 class TicketList extends Component {
@@ -33,7 +35,7 @@ class TicketList extends Component {
 
     handleClick(ticket, e) {
         e.preventDefault();
-        this.props.updateTicket(ticket);
+        this.props.fetchTicket(ticket.id)
     }
 
     render() {
