@@ -9,6 +9,7 @@ import {
   Button,
   Snackbar
 } from '@material-ui/core'
+import {Modal} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import {toggleCamera, persistTicketForm} from '../store/ticketFormContainer'
 import {createTicket} from '../store/ticket'
@@ -21,7 +22,7 @@ class TicketForm extends Component {
     email: '',
     campsite: '',
     description: '',
-    submitted: false
+   
   }
 
   componentDidMount() {
@@ -53,8 +54,8 @@ class TicketForm extends Component {
       name: '',
       email: '',
       campsite: '',
-      description: '',
-      submitted: !prevState.submitted
+      description: ''
+  
     }))
   }
 
@@ -78,9 +79,7 @@ class TicketForm extends Component {
 
     return (
       <Fragment>
-        {this.state.submitted ? (
-          <HelpSubSuccess />
-        ) : (
+      
           <Grid
             container
             direction="column"
@@ -172,6 +171,8 @@ class TicketForm extends Component {
                             </Button>
                           </Grid>
                         </Grid>
+                        <Modal
+                          trigger={
                         <Button
                           variant="raised"
                           style={styles.button}
@@ -180,6 +181,13 @@ class TicketForm extends Component {
                         >
                           Submit Form
                         </Button>
+                           
+                          }
+                        >
+                          <Modal.Content>
+                            <HelpSubSuccess />
+                          </Modal.Content>
+                        </Modal>
                       </Grid>
                     </FormGroup>
                   </form>
@@ -187,7 +195,7 @@ class TicketForm extends Component {
               </Card>
             </Grid>
           </Grid>
-        )}
+        
       </Fragment>
     )
   }
