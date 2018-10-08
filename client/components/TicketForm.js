@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {
   Card,
   Grid,
@@ -12,6 +12,7 @@ import {
 import {connect} from 'react-redux'
 import {toggleCamera, persistTicketForm} from '../store/ticketFormContainer'
 import {createTicket} from '../store/ticket'
+import {HelpSubSuccess} from './'
 
 class TicketForm extends Component {
   state = {
@@ -19,7 +20,8 @@ class TicketForm extends Component {
     name: '',
     email: '',
     campsite: '',
-    description: ''
+    description: '',
+    submitted: false
   }
 
   componentDidMount() {
@@ -45,13 +47,15 @@ class TicketForm extends Component {
       cameraData: this.props.cameraData
     }
     this.props.createTicket(form)
-    this.setState({
+
+    this.setState(prevState => ({
       title: '',
       name: '',
       email: '',
       campsite: '',
-      description: ''
-    })
+      description: '',
+      submitted: !prevState.submitted
+    }))
   }
 
   clearForm = () => {
@@ -73,107 +77,118 @@ class TicketForm extends Component {
     const {title, name, email, description, campsite} = this.state
 
     return (
-      <Grid container direction="column" justify="center" alignItems="center">
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          style={styles.gridContainer}
-        >
-          <Card raised style={styles.card}>
-            <Grid direction="column" container alignItems="center" item>
-              <Typography align="center" variant="display1">
-                Submit Ticket Form
-              </Typography>
-              <form onSubmit={this.onSubmit}>
-                <FormGroup>
-                  <TextField
-                    name="title"
-                    onChange={this.handleChange}
-                    value={title}
-                    variant="outlined"
-                    label="Title"
-                    style={styles.textFields}
-                  />
-                  <TextField
-                    name="name"
-                    variant="outlined"
-                    value={name}
-                    onChange={this.handleChange}
-                    label="Name"
-                    style={styles.textFields}
-                  />
-                  <TextField
-                    name="email"
-                    variant="outlined"
-                    value={email}
-                    onChange={this.handleChange}
-                    label="Email"
-                    style={styles.textFields}
-                  />
-                  <TextField
-                    name="campsite"
-                    variant="outlined"
-                    value={campsite}
-                    onChange={this.handleChange}
-                    label="Campsite"
-                    style={styles.textFields}
-                  />
-                  <TextField
-                    name="description"
-                    value={description}
-                    variant="outlined"
-                    onChange={this.handleChange}
-                    multiline
-                    rows="4"
-                    label="Description"
-                    style={styles.textFields}
-                  />
-                  <Grid container alignItems="center" direction="column">
-                    <Grid
-                      direction="row"
-                      justify="space-evenly"
-                      alignItems="center"
-                      spacing={16}
-                      container
-                    >
-                      <Grid item>
-                        <Button
-                          style={styles.smButton}
-                          variant="raised"
-                          color="primary"
-                          onClick={this.clearForm}
+      <Fragment>
+        {this.state.submitted ? (
+          <HelpSubSuccess />
+        ) : (
+          <Grid
+            container
+            direction="column"
+            justify="center"
+            alignItems="center"
+          >
+            <Grid
+              container
+              direction="column"
+              justify="center"
+              alignItems="center"
+              style={styles.gridContainer}
+            >
+              <Card raised style={styles.card}>
+                <Grid direction="column" container alignItems="center" item>
+                  <Typography align="center" variant="display1">
+                    Submit Ticket Form
+                  </Typography>
+                  <form onSubmit={this.onSubmit}>
+                    <FormGroup>
+                      <TextField
+                        name="title"
+                        onChange={this.handleChange}
+                        value={title}
+                        variant="outlined"
+                        label="Title"
+                        style={styles.textFields}
+                      />
+                      <TextField
+                        name="name"
+                        variant="outlined"
+                        value={name}
+                        onChange={this.handleChange}
+                        label="Name"
+                        style={styles.textFields}
+                      />
+                      <TextField
+                        name="email"
+                        variant="outlined"
+                        value={email}
+                        onChange={this.handleChange}
+                        label="Email"
+                        style={styles.textFields}
+                      />
+                      <TextField
+                        name="campsite"
+                        variant="outlined"
+                        value={campsite}
+                        onChange={this.handleChange}
+                        label="Campsite"
+                        style={styles.textFields}
+                      />
+                      <TextField
+                        name="description"
+                        value={description}
+                        variant="outlined"
+                        onChange={this.handleChange}
+                        multiline
+                        rows="4"
+                        label="Description"
+                        style={styles.textFields}
+                      />
+                      <Grid container alignItems="center" direction="column">
+                        <Grid
+                          direction="row"
+                          justify="space-evenly"
+                          alignItems="center"
+                          spacing={16}
+                          container
                         >
-                          Clear Form
+                          <Grid item>
+                            <Button
+                              style={styles.smButton}
+                              variant="raised"
+                              color="primary"
+                              onClick={this.clearForm}
+                            >
+                              Clear Form
+                            </Button>
+                          </Grid>
+                          <Grid item>
+                            <Button
+                              style={styles.smButton}
+                              variant="raised"
+                              color="primary"
+                              onClick={this.toggle}
+                            >
+                              Camera
+                            </Button>
+                          </Grid>
+                        </Grid>
+                        <Button
+                          variant="raised"
+                          style={styles.button}
+                          color="primary"
+                          type="submit"
+                        >
+                          Submit Form
                         </Button>
                       </Grid>
-                      <Grid item>
-                        <Button
-                          style={styles.smButton}
-                          variant="raised"
-                          color="primary"
-                          onClick={this.toggle}
-                        >
-                          Camera
-                        </Button>
-                      </Grid>
-                    </Grid>
-                    <Button
-                      variant="raised"
-                      style={styles.button}
-                      color="primary"
-                      type="submit"
-                    >
-                      Submit Form
-                    </Button>
-                  </Grid>
-                </FormGroup>
-              </form>
+                    </FormGroup>
+                  </form>
+                </Grid>
+              </Card>
             </Grid>
-          </Card>
-        </Grid>
-      </Grid>
+          </Grid>
+        )}
+      </Fragment>
     )
   }
 }
