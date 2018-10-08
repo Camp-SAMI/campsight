@@ -13,28 +13,26 @@ export const setCameraData = cameraData => ({
   cameraData
 })
 
-export const persistTicketForm = formData =>({
+export const persistTicketForm = formData => ({
   type: PERSIST_TICKET_FORM,
   formData
 })
 
 //REDUCER
 
-export function ticketForm(ticketFormData = {}, action){
-  switch(action.type){
+export function ticketForm(ticketFormData = {}, action) {
+  switch (action.type) {
     case PERSIST_TICKET_FORM:
-      console.log(action.formData, "++++++++++++++++++++++++++++++++++ formData from reducer")
       return action.formData
-    default: 
+    default:
       return ticketFormData
   }
 }
 
-
 export function cameraData(camera = {}, action) {
   switch (action.type) {
     case SET_CAMERA_DATA:
-      console.log(action.cameraData, "camera data")
+      console.log(action.cameraData, 'camera data')
       return action.cameraData
     default:
       return camera

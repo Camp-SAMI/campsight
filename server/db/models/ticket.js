@@ -23,7 +23,7 @@ const ticket = db.define('ticket', {
     defaultValue: 'open'
   },
   image: {
-    type: Sequelize.STRING
+    type: Sequelize.TEXT
   },
    location: {
     type: Sequelize.GEOMETRY('POINT')

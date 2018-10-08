@@ -14,10 +14,12 @@ class Camera extends Component {
   }
 
   locationFunc = position => {
-    this.setState({point:{
-      type: 'Point',
-      coordinates: [position.coords.latitude, position.coords.longitude]
-    }})
+    this.setState({
+      point: {
+        type: 'Point',
+        coordinates: [position.coords.latitude, position.coords.longitude]
+      }
+    })
   }
 
   capture = () => {
@@ -32,7 +34,6 @@ class Camera extends Component {
     const cameraCapturedData = this.state.point
 
     const cameraImagePos = {selectedPic, cameraCapturedData}
-    console.log(cameraImagePos)
     this.props.setCameraData(cameraImagePos)
     this.props.toggle()
   }

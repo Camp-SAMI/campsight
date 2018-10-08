@@ -29,10 +29,9 @@ export default function reducer(ticket = {}, action) {
 //THUNK CREATORS
 
 export const createTicket = form => {
-    console.log(form, "----------------- form from createTicket")
   return async dispatch => {
     try {
-      const data = await axios.get('/apit/tickets')
+      const data = await axios.post('/api/tickets', form)
     } catch (err) {
       console.log(err)
     }

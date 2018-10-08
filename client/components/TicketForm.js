@@ -22,12 +22,10 @@ class TicketForm extends Component {
     description: ''
   }
 
-  componentDidMount(){
+  componentDidMount() {
     const formData = this.props.ticketForm
-  
-    this.setState(
-      formData
-    )
+
+    this.setState(formData)
   }
 
   handleChange = ({target: {name, value}}) => {
@@ -38,7 +36,6 @@ class TicketForm extends Component {
 
   onSubmit = event => {
     event.preventDefault()
-    console.log(event.target.title.value)
     const form = {
       title: event.target.title.value,
       name: event.target.name.value,
@@ -68,8 +65,7 @@ class TicketForm extends Component {
   }
 
   toggle = () => {
-   
-   this.props.persistTicketForm(this.state)
+    this.props.persistTicketForm(this.state)
     this.props.toggle()
   }
 
@@ -183,7 +179,6 @@ class TicketForm extends Component {
 }
 
 const mapState = ({cameraData, ticketForm}) => {
-  console.log(ticketForm, "mapstate ___________________-")
   return {
     cameraData,
     ticketForm
