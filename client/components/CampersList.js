@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import {Table, Divider, Container, Header} from 'semantic-ui-react'
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
@@ -29,18 +30,13 @@ class CampersList extends Component {
                 <Table.HeaderCell>Last Name</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
                 <Table.HeaderCell>Last Update</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              {
-                campers && campers.map(camper =>(
-                  <CamperRow
-                  key={camper.id}
-                  camper={camper}
-                  />
-                ))
-              }
+              {campers &&
+                campers.map(camper => (
+                  <CamperRow key={camper.id} camper={camper} />
+                ))}
             </Table.Body>
           </Table>
         </Container>

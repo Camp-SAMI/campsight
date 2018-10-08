@@ -17,8 +17,8 @@ import {formatPrice} from '../utils/formatPrice'
 // import {fetchLatestCampsiteReservation} from '../store/reservation'
 
 class CampsiteDetail extends Component {
-  async componentDidMount() {
-    await this.props.fetchCampsite(
+  componentDidMount() {
+    this.props.fetchCampsite(
       Number(this.props.id || this.props.match.params.id)
       // this.props.id
     )

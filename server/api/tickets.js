@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {Ticket, Camper, Reservation, Campsite} = require('../db/models')
-const requireAdmin = require('../auth/isAdmin')
-const requireStaffOrAdmin = require('../auth/isStafforAdmin')
+// const requireAdmin = require('../auth/isAdmin')
+// const requireStaffOrAdmin = require('../auth/isStafforAdmin')
 module.exports = router
 
 //all tickets route
@@ -18,7 +18,6 @@ router.get('/', async (req, res, next) => {
 
 //single ticket route
 router.get('/:id', async (req, res, next) => {
-    console.log(req.params.id, "single ticket route-----------------------------------------------")
   try {
     const singleTicket = await Ticket.findOne({
       where: {
@@ -27,6 +26,25 @@ router.get('/:id', async (req, res, next) => {
       include: [{model: Reservation}]
     })
     res.json(singleTicket)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get(`/search/:camperEmail`, async (req, res, next) => {
+  const camperEmail = String(req.params.camperEmail)
+  try {
+    const campersTickets = await Ticket.findAll({
+      where: {
+        email: camperEmail
+      }
+    })
+    // if (campersTickets.length) {
+    // res.status(200).json(campersTickets)
+    // } else {
+    //   res.status(404)
+    // }
+    res.status(200).json(campersTickets)
   } catch (err) {
     next(err)
   }
@@ -74,7 +92,7 @@ router.put('/:id', async (req, res, next) => {
 })
 
 //delete ticket route, admin only
-router.delete('/:id', requireAdmin, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const ticketInfo = await Ticket.destroy({
       where: {id: req.params.id}

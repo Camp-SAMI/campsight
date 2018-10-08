@@ -11,6 +11,7 @@ import reservations from './reservations'
 import amenities from './amenities'
 import filteredCampsites from './filteredCampsites'
 import campers from './campers'
+import camper from './camper'
 import ticket from './ticket'
 import tickets from './tickets'
 import {toggleCameraReducer,cameraData,ticketForm} from './ticketFormContainer'
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   reservations,
   user,
   campers,
+  camper,
   ticket,
   tickets,
   toggleCameraReducer,
