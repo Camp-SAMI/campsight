@@ -6,13 +6,11 @@ import {withRouter} from 'react-router-dom'
 import {differenceInCalendarDays} from 'date-fns'
 
 class Checkout extends React.Component {
+  // Calculate the total cost of camping
+  totalCost = this.props.cost *
+    differenceInCalendarDays(this.props.endTime, this.props.startTime)
+
   onToken = async (token, address) => {
-    // Calculate the total cost of camping
-    const totalCost =
-      this.props.cost *
-      differenceInCalendarDays(this.props.endTime, this.props.startTime)
-    console.log('The total cost is =>', this.totalCost)
-    // Call Axios ...
     try {
       const res = await axios.post(`/api/reservations`, {
         campsiteId: this.props.campsiteId,
@@ -23,14 +21,18 @@ class Checkout extends React.Component {
         lastName: this.props.lastName,
         email: this.props.email,
         address: address,
-        totalCost,
+        totalCost: this.totalCost,
         token: JSON.stringify(token)
       })
       // Use an alert module ...
       console.log('Returned after making a Reservation backend', res.data)
       alert('Please check your email for Order confirmation')
 
-      // Redirect to home page.
+      /**
+       * Close current modal,
+       * Trigger next modal with Reservation summary
+       * Close Reservation Summmary modal
+       */
       this.props.history.push(`/`)
     } catch (err) {
       console.error(err)
