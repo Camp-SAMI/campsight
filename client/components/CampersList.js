@@ -30,7 +30,6 @@ class CampersList extends Component {
                 <Table.HeaderCell>Last Name</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
                 <Table.HeaderCell>Last Update</Table.HeaderCell>
-                <Table.HeaderCell>Actions</Table.HeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -47,7 +46,7 @@ class CampersList extends Component {
 }
 
 const mapStateToProps = state => ({
-  campers: state.campers,
+  campers: state.campers
 })
 
 const mapDispatchToProps = dispatch => ({

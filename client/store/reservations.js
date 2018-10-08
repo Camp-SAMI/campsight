@@ -16,10 +16,15 @@ export const getReservationsError = reservations => ({
 })
 
 //THUNK CREATORS
-export const fetchReservations = () => {
+export const fetchReservations = camperId => {
   return async dispatch => {
     try {
-      const result = await axios.get('/api/reservations')
+      let result
+      if (camperId) {
+        result = await axios.get(`/api/reservations/search/${camperId}`)
+      } else {
+        result = await axios.get(`/api/reservations`)
+      }
       dispatch(getReservations(result.data))
     } catch (err) {
       dispatch(getReservationsError())

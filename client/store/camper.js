@@ -11,7 +11,6 @@ export const camperError = () => ({type: CAMPER_ERROR})
 // THUNK MIDDLEWARE
 export const fetchCamper = camperId => {
   return async dispatch => {
-    console.log('I was called!')
     try {
       const result = await axios.get(`/api/campers/${camperId}`)
       dispatch(gotCamper(result.data))
