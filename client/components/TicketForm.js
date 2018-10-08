@@ -188,6 +188,7 @@ class TicketForm extends Component {
                             <HelpSubSuccess />
                           </Modal.Content>
                         </Modal>
+                       <img className='ui image' src={this.props.cameraData.selectedPic}/> 
                       </Grid>
                     </FormGroup>
                   </form>
@@ -202,6 +203,7 @@ class TicketForm extends Component {
 }
 
 const mapState = ({cameraData, ticketForm}) => {
+  console.log(cameraData, 'cameradata ----------------------------------------------------')
   return {
     cameraData,
     ticketForm
