@@ -10,19 +10,10 @@ const getReservations = reservations => ({
   reservations
 })
 
-export const getReservationsError = () => ({type: GET_RESERVATIONS_ERROR})
-
-//REDUCER
-export default function reducer(reservations = [], action) {
-  switch (action.type) {
-    case GET_RESERVATIONS:
-      return action.reservations
-    case GET_RESERVATIONS_ERROR:
-      return reservations
-    default:
-      return reservations
-  }
-}
+export const getReservationsError = reservations => ({
+  type: GET_RESERVATIONS_ERROR,
+  reservations
+})
 
 //THUNK CREATORS
 export const fetchReservations = () => {
@@ -33,5 +24,16 @@ export const fetchReservations = () => {
     } catch (err) {
       dispatch(getReservationsError())
     }
+  }
+}
+//REDUCER
+export default function reducer(reservations = [], action) {
+  switch (action.type) {
+    case GET_RESERVATIONS:
+      return action.reservations
+    case GET_RESERVATIONS_ERROR:
+      return reservations
+    default:
+      return reservations
   }
 }

@@ -10,6 +10,7 @@ import {
   LandingPage,
   CampersList,
   AdminDashboard,
+  Reservations,
   TicketList,
   AdminCampsites,
   EditCampsite
@@ -34,6 +35,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/dashboard" component={AdminDashboard} />
         <Route path="/campers" component={CampersList} />
+        <Route path="/reservations" component={Reservations} />
         <Route path="/tickets" component={TicketList} />
         <Route exact path="/campsites" component={AdminCampsites} />
         <Route path="/campsites/edit/:id" component={EditCampsite} />
@@ -47,7 +49,7 @@ class Routes extends Component {
         )}
         {/* Displays our Login component as a fallback */}
         {/* <Route component={Login} /> */}
-        <Route path="*" component={LandingPage} />
+        {/* <Route path="*" component={LandingPage} /> */}
       </Switch>
     )
   }

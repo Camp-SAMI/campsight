@@ -26,7 +26,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to="/signup">Sign Up</Link>
           {/* <Amenities />
           <Type /> */}
-          <Link to="/dashboard">Admin</Link>{' '}
+          <Link to="/dashboard">Dashboard</Link>{' '}
           {/* move to log in have we do the log in*/}
           {/* <Amenities />
           <Type /> */}
