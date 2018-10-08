@@ -33,9 +33,9 @@ class TicketList extends Component {
         this.props.fetchTickets();
     }
 
-    handleClick(ticket, e) {
+   async  handleClick(ticket, e) {
         e.preventDefault();
-        this.props.fetchTicket(ticket.id)
+        await this.props.fetchTicket(ticket.id)
     }
 
     render() {
