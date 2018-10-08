@@ -25,7 +25,7 @@ router.get('/:camperId', async (req, res, next) => {
   }
 })
 
-router.post('/', isAdmin, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const newCamper = await Camper.create({
       firstName: req.body.firstName,
