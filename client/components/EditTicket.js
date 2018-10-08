@@ -47,15 +47,18 @@ class EditTicket extends Component {
       email: '',
       content: '',
       priority: '',
-      status: ''
+      status: '',
+      image: '',
+      location: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   componentDidMount() {
-    this.props.fetchTicket()
+    this.props.fetchTicket(this.props.ticket.id)
     const ticket = this.props.ticket
+    console.log(this.props.ticket, 'edit ticket form component did mount =======================================')
     this.setState({
       title: ticket.title,
       email: ticket.email,
@@ -141,6 +144,9 @@ class EditTicket extends Component {
             onChange={this.handleChange}
             defaultValue={this.state.status}
           />
+        </Segment>
+        <Segment>
+            <img />
         </Segment>
         <Button color="green" basic onClick={this.handleSubmit}>
           Update

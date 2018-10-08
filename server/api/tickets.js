@@ -18,6 +18,7 @@ router.get('/', async (req, res, next) => {
 
 //single ticket route
 router.get('/:id', async (req, res, next) => {
+    console.log(req.params.id, "single ticket route-----------------------------------------------")
   try {
     const singleTicket = await Ticket.findOne({
       where: {
