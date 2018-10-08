@@ -80,83 +80,88 @@ class EditTicket extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault()
+     // event.preventDefault()
+    const { editSubmit } = this.props;
     const ticket = {
-      title: this.state.title,
-      email: this.state.email,
-      content: this.state.content,
-      priority: this.state.priority,
-      status: this.state.status
+        id: this.props.ticket.id,
+        title: this.state.title,
+        email: this.state.email,
+        content: this.state.content,
+        priority: this.state.priority,
+        status: this.state.status,
+        image: this.state.image,
+        location: this.state.location
     }
-    this.props.updateTicket(ticket)
+    editSubmit(ticket);
   }
 
   render() {
+    const { ticket } = this.props;
     return (
-      <Container>
-        <Segment>
-          <Input
-            fluid
-            type="text"
-            name="title"
-            label="Title"
-            disabled
-            required={true}
-            onChange={this.handleChange}
-            defaultValue={this.state.title}
-          />
-          <Input
-            fluid
-            type="text"
-            name="email"
-            label="Email"
-            disabled
-            required={true}
-            onChange={this.handleChange}
-            defaultValue={this.state.email}
-          />
-        </Segment>
-        <Segment>
-          <TextArea
-            name="content"
-            label="Content"
-            disabled
-            defaultValue={this.state.content}
-            onChange={this.handleChange}
-            required={true}
-          />
-        </Segment>
-        <Segment>
-          <Dropdown
-            fluid
-            options={priorityOptions}
-            selection
-            item
-            name="prioirty"
-            label="Priority"
-            required={true}
-            onChange={this.handleChange}
-            defaultValue={this.state.priority}
-          />
-          <Dropdown
-            fluid
-            options={statusOptions}
-            selection
-            item
-            name="status"
-            label="Status"
-            required={true}
-            onChange={this.handleChange}
-            defaultValue={this.state.status}
-          />
-        </Segment>
-        <Segment>
-          <img src={this.state.image} />
-        </Segment>
-        <Button color="green" basic onClick={this.handleSubmit}>
-          Update
-        </Button>
-      </Container>
+        <Container>
+            <Segment>
+                <Input
+                    fluid
+                    type="text"
+                    name="title"
+                    label="Title"
+                    disabled
+                    required={true}
+                    onChange={this.handleChange}
+                    defaultValue={ticket.title}
+                />
+                <Input
+                    fluid
+                    type="text"
+                    name="email"
+                    label="Email"
+                    disabled
+                    required={true}
+                    onChange={this.handleChange}
+                    defaultValue={ticket.email}
+                />
+            </Segment>
+            <Segment>
+                <TextArea
+                    name="content"
+                    label="Content"
+                    disabled
+                    defaultValue={ticket.content}
+                    onChange={this.handleChange}
+                    required={true}
+                />
+            </Segment>
+            <Segment>
+                <Dropdown
+                    fluid
+                    options={priorityOptions}
+                    selection
+                    item
+                    name="prioirty"
+                    label="Priority"
+                    required={true}
+                    onChange={this.handleChange}
+                    defaultValue={ticket.priority}
+                />
+                <Dropdown
+                    fluid
+                    options={statusOptions}
+                    selection
+                    item
+                    name="status"
+                    label="Status"
+                    required={true}
+                    onChange={this.handleChange}
+                    defaultValue={ticket.status}
+                />
+            </Segment>
+            <Segment>
+                <img src={ticket.image} />
+            </Segment>
+            <Button color="green" basic onClick={this.handleSubmit}>
+            Update
+            </Button>
+        </Container>
     )
   }
 }

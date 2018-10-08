@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import UnassignedTicketTable from './UnassignedTicketTable';
 import OpenTicketTable from './OpenTicketTable';
 import ClosedTicketTable from './ClosedTicketTable';
+import TicketTable from './TicketTable';
 
 function mapStateToProps(state){
     const { tickets } = state;
@@ -27,15 +28,14 @@ const mapDispatchToProps = dispatch => ({
 class TicketList extends Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
+        this.editSubmit = this.editSubmit.bind(this);
     }
-    componentDidMount() {
-        this.props.fetchTickets();
+    async componentDidMount() {
+        await this.props.fetchTickets();
     }
 
-   async  handleClick(ticket, e) {
-        e.preventDefault();
-        await this.props.fetchTicket(ticket.id)
+   editSubmit(ticket, e) {
+        this.props.updateTicket(ticket);
     }
 
     render() {
@@ -47,11 +47,11 @@ class TicketList extends Component {
                     All Tickets
                 </Header>
                 <Divider hidden />
-                <UnassignedTicketTable unassignedTickets={unassignedTickets} handleClick={this.handleClick} />
+                <TicketTable tickets={unassignedTickets} editSubmit={this.editSubmit} />
                 <Divider hidden />
-                <OpenTicketTable openTickets={openTickets} handleClick={this.handleClick} />
+                <TicketTable tickets={openTickets} editSubmit={this.editSubmit} />
                 <Divider hidden />
-                <ClosedTicketTable closedTickets={closedTickets} handleClick={this.handleClick} />
+                <TicketTable tickets={closedTickets} editSubmit={this.editSubmit} />
             </Fragment>
         );
     }
