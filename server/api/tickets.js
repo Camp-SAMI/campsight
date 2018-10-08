@@ -67,7 +67,7 @@ router.post('/', async (req, res, next) => {
 })
 
 //put ticket route, staff/admin only for now
-router.put('/:id', requireStaffOrAdmin, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const updatedTicket = await Ticket.update(
       {
@@ -89,7 +89,7 @@ router.put('/:id', requireStaffOrAdmin, async (req, res, next) => {
 })
 
 //delete ticket route, admin only
-router.delete('/:id', requireAdmin, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     const ticketInfo = await Ticket.destroy({
       where: {id: req.params.id}

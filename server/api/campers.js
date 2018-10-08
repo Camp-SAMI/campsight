@@ -1,9 +1,9 @@
 const router = require('express').Router()
 const {Camper, Reservation} = require('../db/models')
-const isAdmin = require('../auth/isAdmin')
+// const isAdmin = require('../auth/isAdmin')
 // const isStafforAdmin = require('../auth/isStafforAdmin')
 
-router.get('/', isAdmin, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const campers = await Camper.findAll({
       limit: 25,
@@ -27,7 +27,7 @@ router.get('/:camperId', async (req, res, next) => {
   }
 })
 
-router.post('/', isAdmin, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
     const newCamper = await Camper.create({
       firstName: req.body.firstName,
@@ -41,16 +41,16 @@ router.post('/', isAdmin, async (req, res, next) => {
 })
 
 // Search functionality is not complete yet.
-router.get(`/search/:key`, async (req, res, next) => {
-  const key = req.params.key
-  try {
-    const campers = await Camper.findAll({
-      where: {}
-    })
-  } catch (err) {
-    next(err)
-  }
-})
+// router.get(`/search/:key`, async (req, res, next) => {
+//   const key = req.params.key
+//   try {
+//     const campers = await Camper.findAll({
+//       where: {}
+//     })
+//   } catch (err) {
+//     next(err)
+//   }
+// })
 
 // router.put(`/:camperId`, async (req, res, next) => {
 //   const camperId = +req.params.camperId
