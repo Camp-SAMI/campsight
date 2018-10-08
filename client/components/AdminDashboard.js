@@ -1,12 +1,18 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {TicketForm} from './index'
 import AdminSidebar from './AdminSidebar'
 
 class AdminDashboard extends Component {
   render() {
     return (
+   
       <div style={styles.div}>
-        <AdminSidebar />
+{/*       
+        <TicketForm /> */}
+     
+    
+        <AdminSidebar style={{position: 'relative'}}/>
       </div>
     )
   }

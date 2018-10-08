@@ -13,6 +13,7 @@ import filteredCampsites from './filteredCampsites'
 import campers from './campers'
 import ticket from './ticket'
 import tickets from './tickets'
+import {toggleCameraReducer,cameraData,ticketForm} from './ticketFormContainer'
 
 const reducer = combineReducers({
   amenities,
@@ -24,7 +25,10 @@ const reducer = combineReducers({
   user,
   campers,
   ticket,
-  tickets
+  tickets,
+  toggleCameraReducer,
+  cameraData,
+  ticketForm
 })
 
 export const selectTicketsList = (state) => state.tickets;
@@ -34,7 +38,7 @@ export const getUnassignedTickets = createSelector(selectTicketsList,
 );
 
 export const getClosedTickets = createSelector(selectTicketsList,
-  (ticketList) => ticketList.filter(t => t.status !== 'close')
+  (ticketList) => ticketList.filter(t => t.status === 'close')
 );
 
 export const getOpenTickets = createSelector(selectTicketsList,

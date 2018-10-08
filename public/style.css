@@ -59,21 +59,21 @@ form div {
   line-height: 200px;
 } */
 
-.MainContainer {
+ .MainContainer {
   perspective: 1px;
   transform-style: preserve-3d;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: scroll;
-}
+} 
 
-.ContentContainer {
+ .ContentContainer {
   position: relative;
   display: block;
   background-color: rgb(232, 236, 239);
   /* background-image: linear-gradient(rgb(54, 61, 71), rgb(135, 151, 163)); */
   z-index: 1;
-}
+} 
 
 .Content {
   max-width: 100%;
@@ -90,8 +90,9 @@ p {
   display: flex;
   flex: 1 0 auto;
   position: relative;
-  z-index: -1;
+  z-index: 1;
   height: 100vh;
+  width: 100vw;
   justify-content: center;
   align-items: center;
   transform: translateZ(-1px) scale(2);

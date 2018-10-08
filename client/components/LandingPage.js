@@ -56,7 +56,8 @@ class LandingPage extends Component {
       startTime: null,
       endTime: null,
       reservations: [],
-      reservedDates: []
+      reservedDates: [],
+      contextRef: {}
     }
     this.onAmenitiesChange = this.onAmenitiesChange.bind(this)
     this.onTypingChange = this.onTypingChange.bind(this)
@@ -154,6 +155,8 @@ class LandingPage extends Component {
       filteredCampsites
     } = this.props
 
+    const {contextRef} = this.state
+    console.log(this.state.contextRef, 'contextRef ----------------------')
     return (
       <div className="MainContainer">
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
