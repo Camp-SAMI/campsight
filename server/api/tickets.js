@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {Ticket, Camper, Reservation, Campsite} = require('../db/models')
-const requireAdmin = require('../auth/isAdmin')
-const requireStaffOrAdmin = require('../auth/isStafforAdmin')
+// const requireAdmin = require('../auth/isAdmin')
+// const requireStaffOrAdmin = require('../auth/isStafforAdmin')
 module.exports = router
 
 //all tickets route
@@ -58,7 +58,9 @@ router.post('/', async (req, res, next) => {
     let newTicket = await Ticket.create({
       title: req.body.title,
       email: req.body.email,
-      content: req.body.content ? req.body.content : ''
+      content: req.body.content ? req.body.content : '',
+      image: req.body.cameraData.selectedPic,
+      location: req.body.cameraData.cameraCapturedData
     })
     res.json(newTicket)
   } catch (err) {
@@ -67,6 +69,7 @@ router.post('/', async (req, res, next) => {
 })
 
 //put ticket route, staff/admin only for now
+// need to place in requireStaffOrAdmin, after creating a login
 router.put('/:id', async (req, res, next) => {
   try {
     const updatedTicket = await Ticket.update(

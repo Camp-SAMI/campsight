@@ -26,8 +26,20 @@ class Submenu extends Component {
         <Menu.Item>
           <Type onTypingChange={onTypingChange} />
         </Menu.Item>
+        <Menu.Item style={styles.time}>
+          <DatePicker
+            onStartTimeChange={onStartTimeChange}
+            onEndTimeChange={onEndTimeChange}
+          />
+        </Menu.Item>
       </Menu>
     )
+  }
+}
+
+const styles = {
+  time: {
+    marginLeft: 20
   }
 }
 

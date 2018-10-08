@@ -10,6 +10,7 @@ import {
   CampersList,
   CamperProfile,
   AdminDashboard,
+  TicketFormContainer,
   Reservations,
   TicketList,
   AdminCampsites,
@@ -34,6 +35,8 @@ class Routes extends Component {
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route path="/dashboard" component={AdminDashboard} />
+        <Route path="/campers" component={CampersList} />
+        <Route path="/ticketform" component={TicketFormContainer} />
         <Route path="/reservations" component={Reservations} />
         <Route path="/tickets" component={TicketList} />
         <Route exact path="/campsites" component={AdminCampsites} />

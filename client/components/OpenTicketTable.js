@@ -30,7 +30,7 @@ export default function OpenTicketTable(props){
                     { openTickets && openTickets.map(ticket => (
                         <Table.Row key={ticket.id}>
                             <Table.Cell>
-                                <NavLink to={`tickets/${ticket.id}`}>ticket.id</NavLink>
+                                <NavLink to={`tickets/${ticket.id}`}>{ticket.id}</NavLink>
                             </Table.Cell>
                             <Table.Cell>
                                 <NavLink to={`tickets/${ticket.id}`}>{ticket.title}</NavLink>
