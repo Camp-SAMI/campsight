@@ -10,6 +10,7 @@ import {
 } from 'semantic-ui-react'
 import {fetchTicket} from '../store/ticket'
 import {updateTicketToServer} from '../store/tickets'
+import {MapView} from '../components'
 
 const statusOptions = [
   {value: 'open', text: 'Open'},
@@ -152,6 +153,9 @@ class EditTicket extends Component {
         </Segment>
         <Segment>
           <img src={this.state.image} />
+        </Segment>
+        <Segment>
+          {/* <MapView  /> */}
         </Segment>
         <Button color="green" basic onClick={this.handleSubmit}>
           Update
