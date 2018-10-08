@@ -5,12 +5,12 @@ import EditTicket from './EditTicket';
 
 export default function ClosedTicketTable(props){
     const { closedTickets, handleClick } = props;
-
+    console.log(closedTickets);
     return (
         <Container>
             <Divider hidden />
             <Header as="h2" floated="left">
-                Open Tickets
+                Closed Tickets
             </Header>
             <Divider hidden />
             <Table celled>

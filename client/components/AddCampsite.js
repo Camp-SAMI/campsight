@@ -61,7 +61,7 @@ class AddCampsite extends Component {
         const campsite = {
             name: this.state.name,
             latitude: this.state.latitude, 
-            longitude:this.state.longitude,
+            longitude: this.state.longitude,
             coverImage: this.state.coverImage,
             images: this.state.images.split(', '),
             amenities: this.state.amenities,

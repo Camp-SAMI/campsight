@@ -20,6 +20,7 @@ class ReservationRow extends Component {
   render() {
     const {reserv} = this.props
     const {reservation} = this.props
+    console.log('props', this.props);
     console.log('RESERVARION', reservation)
     return (
       <Table.Row key={reserv.id}>
