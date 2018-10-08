@@ -19,7 +19,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     fetchCampsites: () => dispatch(fetchCampsites()),
-    fetchAmenities: () => dispatch(fetchAmenities()),
+    // fetchAmenities: () => dispatch(fetchAmenities()),
     updateCampsite: campsite => dispatch(updateCampsiteToServer(campsite)),
     addCampsite: campsite => dispatch(addNewCampsiteToServer(campsite))
 })
@@ -36,6 +36,7 @@ export class AdminCampsites extends Component {
             isSearch: false
         }
         this.handleSelectPagination = this.handleSelectPagination.bind(this);
+        this.editSubmit = this.editSubmit.bind(this);
     }
 
     async componentDidMount() {
@@ -45,7 +46,7 @@ export class AdminCampsites extends Component {
             const perPage = this.state.perPage;
             const firstPage = this.props.campsites.slice(0, perPage);
             const numPages = Math.ceil(this.props.campsites.length / perPage);
-            await this.props.fetchAmenities();
+            // await this.props.fetchAmenities();
             this.setState({
                 campsites: campsites,
                 currentPage: firstPage,
@@ -62,13 +63,15 @@ export class AdminCampsites extends Component {
     }
 
     editSubmit(campsiteInfo, event) {
-        event.preventDefault();
+        // event.preventDefault();
         let campsite = {
             id: campsiteInfo.id,
             name: campsiteInfo.name,
-            location: locationConverter(campsiteInfo.latitude, campsiteInfo.latitude),
+            latitude: campsiteInfo.latitude,
+            longitude: campsiteInfo.longitude,
+            // location: locationConverter(campsiteInfo.latitude, campsiteInfo.latitude),
             coverImage: campsiteInfo.coverImage,
-            images: campsiteInfo.images.split(', '),
+            images: campsiteInfo.images,
             amenities: campsiteInfo.amenities,
             typing: campsiteInfo.typing,
             desc: campsiteInfo.desc,
@@ -82,7 +85,7 @@ export class AdminCampsites extends Component {
             this.props.campsites.length && this.state.currentPage.length && this.state.numPages
         ) {
             const campsites = this.props.campsites;
-            const amenities = this.props.amenities;
+            // const amenities = this.props.amenities;
             const currentPage = this.state.currentPage;
             const data = [...this.props.campsites];
 
@@ -109,7 +112,7 @@ export class AdminCampsites extends Component {
                             <Table.Body>
                                 {
                                     currentPage && currentPage.map(campsite =>
-                                        <CampsiteRow key={campsite.id} campsite={campsite} amenities={amenities} editSubmit={this.editSubmit} />
+                                        <CampsiteRow key={campsite.id} campsite={campsite} editSubmit={this.editSubmit} />
                                     )
                                 }
                             </Table.Body>

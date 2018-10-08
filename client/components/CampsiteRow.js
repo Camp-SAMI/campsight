@@ -3,6 +3,7 @@ import { Table, Button, Modal} from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchCampsite } from '../store/campsite';
 import { formatPrice } from '../utils/formatPrice';
+import EditCampsite from './EditCampsite';
 
 const mapDispatchToProps = dispatch => ({
     fetchCampsite: id => dispatch(fetchCampsite(id))
@@ -14,12 +15,14 @@ class CampsiteRow extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(id) {
-        this.props.fetchCampsite(id);
+    async handleClick(id) {
+        await this.props.fetchCampsite(id);
+        console.log('campsite', this.props.campsite);
     }
 
     render() {
-        const {campsite, amenities, editSubmit} = this.props;
+        const {campsite, editSubmit} = this.props;
+        console.log(campsite);
         return (
             <Table.Row key={campsite.id}>
                 <Table.Cell>{campsite.id}</Table.Cell>
@@ -32,8 +35,7 @@ class CampsiteRow extends Component {
                 {/* <Table.Cell>{campsite.amenities.join(', ')}</Table.Cell> */}
                 {/* <Table.Cell>{campsite.desc}</Table.Cell> */}
                 <Table.Cell>
-                    Filler
-                    {/* <Modal
+                    <Modal
                         trigger={
                             <Button
                                 basic
@@ -45,9 +47,9 @@ class CampsiteRow extends Component {
                         }
                     >
                         <Modal.Content>
-                            {/* <CampsiteForm campsite={campsite} amenities={amenities} handleSubmit={editSubmit} /> */}
-                       {/*} </Modal.Content>
-                    </Modal> */}
+                            <EditCampsite campsite={campsite} editSubmit={editSubmit} />
+                        </Modal.Content>
+                    </Modal>
                 </Table.Cell>
             </Table.Row>
         )
