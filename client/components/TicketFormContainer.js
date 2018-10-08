@@ -19,7 +19,7 @@ class TicketFormContainer extends Component {
 const mapState = state => {
   
   return {
-  toggle: state.ticketFormContainer
+  toggle: state.toggleCameraReducer
 }}
 
 export default connect(mapState)(TicketFormContainer)

@@ -1,40 +1,51 @@
-import axios from 'axios';
+import axios from 'axios'
 
 //ACTION TYPES
-const GET_SINGLE_TICKET = 'GET_SINGLE_TICKET';
-const GET_SINGLE_TICKET_ERROR = 'GET_SINGLE_TICKET_ERROR';
+const GET_SINGLE_TICKET = 'GET_SINGLE_TICKET'
+const GET_SINGLE_TICKET_ERROR = 'GET_SINGLE_TICKET_ERROR'
 
 //ACTION CREATORS
 const getTicket = ticket => ({
-    type: GET_SINGLE_TICKET,
-    ticket
-});
+  type: GET_SINGLE_TICKET,
+  ticket
+})
 
 const getTicketError = () => ({
-    type: GET_SINGLE_TICKET_ERROR
-});
+  type: GET_SINGLE_TICKET_ERROR
+})
 
 //REDUCER
 export default function reducer(ticket = {}, action) {
-    switch (action.type) {
-        case GET_SINGLE_TICKET:
-            return action.ticket;
-        case GET_SINGLE_TICKET_ERROR:
-            return ticket;
-        default:
-            return ticket;
-    }
+  switch (action.type) {
+    case GET_SINGLE_TICKET:
+      return action.ticket
+    case GET_SINGLE_TICKET_ERROR:
+      return ticket
+    default:
+      return ticket
+  }
 }
 
 //THUNK CREATORS
 
-export const fetchTicket = id => {
-    return async dispatch => {
-        try {
-            const res = await axios.get(`/api/tickets/${id}`);
-            dispatch(getTicket(res.data));
-        } catch (err) {
-            dispatch(getTicketError());
-        }
+export const createTicket = form => {
+    console.log(form, "----------------- form from createTicket")
+  return async dispatch => {
+    try {
+      const data = await axios.get('/apit/tickets')
+    } catch (err) {
+      console.log(err)
     }
+  }
+}
+
+export const fetchTicket = id => {
+  return async dispatch => {
+    try {
+      const res = await axios.get(`/api/tickets/${id}`)
+      dispatch(getTicket(res.data))
+    } catch (err) {
+      dispatch(getTicketError())
+    }
+  }
 }

@@ -2,26 +2,42 @@ import React, {Component, Fragment} from 'react'
 import Webcam from 'react-webcam'
 import {Typography, Button, Grid, Card} from '@material-ui/core'
 import {connect} from 'react-redux'
-import {toggle_camera} from '../store/ticketFormContainer'
+import {toggleCamera, setCameraData} from '../store/ticketFormContainer'
 
 class Camera extends Component {
   state = {
-    image: ''
+    image: '',
+    point: {}
   }
   setRef = webcam => {
     this.webcam = webcam
   }
 
+  locationFunc = position => {
+    this.setState({point:{
+      type: 'Point',
+      coordinates: [position.coords.latitude, position.coords.longitude]
+    }})
+  }
+
   capture = () => {
     const imageSrc = this.webcam.getScreenshot()
+
+    navigator.geolocation.getCurrentPosition(this.locationFunc)
     this.setState({image: imageSrc})
-    navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position.coords.latitude, position.coords.longitude)
-    })
   }
 
   usePicture = () => {
     const selectedPic = this.state.image
+    const cameraCapturedData = this.state.point
+
+    const cameraImagePos = {selectedPic, cameraCapturedData}
+    console.log(cameraImagePos)
+    this.props.setCameraData(cameraImagePos)
+    this.props.toggle()
+  }
+
+  toggle = () => {
     this.props.toggle()
   }
 
@@ -63,6 +79,7 @@ class Camera extends Component {
                           color="primary"
                           onClick={this.retake}
                           align="center"
+                          style={styles.button}
                         >
                           Retake
                         </Button>
@@ -74,21 +91,39 @@ class Camera extends Component {
                           color="primary"
                           onClick={this.usePicture}
                           align="center"
+                          style={styles.button}
                         >
                           Use Picture
                         </Button>
                       </Grid>
                     </Fragment>
                   ) : (
-                    <Button
-                      variant="raised"
-                      size="large"
-                      color="primary"
-                      onClick={this.capture}
-                      align="center"
-                    >
-                      Take Pic
-                    </Button>
+                    <Fragment>
+                      <Grid item>
+                        <Button
+                          variant="raised"
+                          size="large"
+                          color="primary"
+                          onClick={this.capture}
+                          align="center"
+                          style={styles.button}
+                        >
+                          Take Pic
+                        </Button>
+                      </Grid>
+                      <Grid item>
+                        <Button
+                          variant="raised"
+                          size="large"
+                          color="primary"
+                          onClick={this.toggle}
+                          align="center"
+                          style={styles.button}
+                        >
+                          Back
+                        </Button>
+                      </Grid>
+                    </Fragment>
                   )}
                 </Grid>
               </Grid>
@@ -101,7 +136,14 @@ class Camera extends Component {
 }
 
 const mapProps = dispatch => ({
-  toggle: () => dispatch(toggle_camera())
+  toggle: () => dispatch(toggleCamera()),
+  setCameraData: data => dispatch(setCameraData(data))
 })
 
 export default connect(null, mapProps)(Camera)
+
+const styles = {
+  button: {
+    margin: 10
+  }
+}
