@@ -10,6 +10,7 @@ import {
 } from 'semantic-ui-react'
 import {fetchTicket} from '../store/ticket'
 import {updateTicketToServer} from '../store/tickets'
+import {MapView} from '../components'
 
 const statusOptions = [
   {value: 'open', text: 'Open'},
