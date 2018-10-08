@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 import { Pagination, Container, Table, Divider, Header, Button } from 'semantic-ui-react';
 import {formatPrice} from '../utils/formatPrice';
 import locationConverter from '../utils/locationConverter';
-import { CampsiteRow } from './CampsiteRow';
+import CampsiteRow from './CampsiteRow';
 
 const mapStateToProps = state => {
     return {

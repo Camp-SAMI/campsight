@@ -37,7 +37,7 @@ class AddCampsite extends Component {
             images: '',
             amenities: [],
             typing: '',
-            desc: '',
+            desc: 'Nestled under Jackalberry and Mopanetree canopies, Tapioca campsite, laid out beautifully on the banks of the Kwando River, offers you the tranquillity of nature’s bounty. ',
             cost: 3000
         }
         this.handleChange = this.handleChange.bind(this);
@@ -49,17 +49,19 @@ class AddCampsite extends Component {
         this.props.fetchAmenities();
     }
 
-    handleChange = name => event => {
+    handleChange = (e, {name, value} ) => {
         this.setState({
-            [name]: event.target.value
-        })
+            [name]: value
+        });
+        console.log(this.state);
     }
 
-    handleSubmit(event) {
+    handleSubmit() {
         event.preventDefault();
         const campsite = {
             name: this.state.name,
-            location: locationConverter(this.state.latitude, this.state.longitude),
+            latitude: this.state.latitude, 
+            longitude:this.state.longitude,
             coverImage: this.state.coverImage,
             images: this.state.images.split(', '),
             amenities: this.state.amenities,
@@ -67,6 +69,7 @@ class AddCampsite extends Component {
             desc: this.state.desc,
             cost: this.state.cost
         }
+        console.log('campsite', campsite);
         this.props.addCampsite(campsite);
     }
 
@@ -77,7 +80,7 @@ class AddCampsite extends Component {
         });
         return (
             <Segment inverted>
-                <Form inverted>
+                <Form inverted onSubmit={this.handleSubmit}>
                     <Form.Field 
                         control={Input}
                         fluid
@@ -152,6 +155,7 @@ class AddCampsite extends Component {
                         name="desc"
                         label="Description"
                         onChange={this.handleChange}
+                        defaultValue={this.state.desc}
                     />
                     <Form.Field
                         control={Input}
@@ -164,8 +168,8 @@ class AddCampsite extends Component {
                         onChange={this.handleChange}
                         required={true}
                     />
+                    <Button>Submit</Button>
                 </Form>
-                <Button onClick={this.handleSubmit}>Submit</Button>
             </Segment>
         )
     }

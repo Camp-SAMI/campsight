@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Table, Button, Modal} from 'semantic-ui-react';
-import CampsiteForm from './CampsiteForm';
 import { connect } from 'react-redux';
 import { fetchCampsite } from '../store/campsite';
 import { formatPrice } from '../utils/formatPrice';
@@ -28,12 +27,13 @@ class CampsiteRow extends Component {
                 <Table.Cell>{campsite.location.coordinates[0]}</Table.Cell>
                 <Table.Cell>{campsite.location.coordinates[1]}</Table.Cell>
                 {/* <Table.Cell>{campsite.coverImage}</Table.Cell> */}
-                <Table.Cell>{campsite.amenities.join(', ')}</Table.Cell>
                 <Table.Cell>{campsite.typing}</Table.Cell>
-                {/* <Table.Cell>{campsite.desc}</Table.Cell> */}
                 <Table.Cell>{formatPrice(campsite.cost)}</Table.Cell>
+                {/* <Table.Cell>{campsite.amenities.join(', ')}</Table.Cell> */}
+                {/* <Table.Cell>{campsite.desc}</Table.Cell> */}
                 <Table.Cell>
-                    <Modal
+                    Filler
+                    {/* <Modal
                         trigger={
                             <Button
                                 basic
@@ -45,9 +45,9 @@ class CampsiteRow extends Component {
                         }
                     >
                         <Modal.Content>
-                            <CampsiteForm campsite={campsite} amenities={amenities} handleSubmit={editSubmit} />
-                        </Modal.Content>
-                    </Modal>
+                            {/* <CampsiteForm campsite={campsite} amenities={amenities} handleSubmit={editSubmit} /> */}
+                       {/*} </Modal.Content>
+                    </Modal> */}
                 </Table.Cell>
             </Table.Row>
         )

@@ -48,7 +48,7 @@ export const fetchCampsites = () => {
 
 export const getCampsitesWithCompatibleTimes = (start, end) => {
     return async dispatch => {
-        const allCampsites = await axios.get('api/campsites').data;
+        const allCampsites = await axios.get('/api/campsites').data;
         const filteredCampsites = allCampsites.filter(function(campsite) {
             return !campsite.daysBooked().includes(start) && !campsite.daysBooked().includes(end);
         });
@@ -58,14 +58,15 @@ export const getCampsitesWithCompatibleTimes = (start, end) => {
 
 export const updateCampsiteToServer = updateInfo => {
     return async dispatch => {
-        const {data} = await axios.put(`api/campsites/${updateInfo.id}`, updateInfo);
+        const {data} = await axios.put(`/api/campsites/${updateInfo.id}`, updateInfo);
         dispatch(updateCampsite(data));
     }
 }
 
 export const addNewCampsiteToServer = campsiteInfo => {
     return async dispatch => {
-        const {data} = await axios.post(`api/campsites/${campsiteInfo.id}`, campsiteInfo);
+        const res = await axios.post(`/api/campsites`, campsiteInfo);
+        const data = res.data;
         dispatch(createCampsite(data));
     }
 }
