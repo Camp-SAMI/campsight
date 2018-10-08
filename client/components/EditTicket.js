@@ -56,15 +56,20 @@ class EditTicket extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchTicket(this.props.ticket.id)
+   // this.props.fetchTicket(this.props.ticket.id)
     const ticket = this.props.ticket
-    console.log(this.props.ticket, 'edit ticket form component did mount =======================================')
+    // console.log(
+    //   this.props.ticket,
+    //   'edit ticket form component did mount ======================================='
+    // )
     this.setState({
       title: ticket.title,
       email: ticket.email,
       content: ticket.content,
       priority: ticket.priority,
-      status: ticket.status
+      status: ticket.status,
+      image: ticket.image,
+      location: ticket.location
     })
   }
 
@@ -146,7 +151,7 @@ class EditTicket extends Component {
           />
         </Segment>
         <Segment>
-            <img />
+          <img src={this.state.image} />
         </Segment>
         <Button color="green" basic onClick={this.handleSubmit}>
           Update

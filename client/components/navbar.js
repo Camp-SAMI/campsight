@@ -57,6 +57,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           {/* <Menu.Item as={Link} to="/home">
           Home
         </Menu.Item> */}
+        <Menu.Item as={Link} to='/TicketForm'>
+        Guest Help Form</Menu.Item>
           <Menu.Item as={Link} to="/login">
             Login
           </Menu.Item>
