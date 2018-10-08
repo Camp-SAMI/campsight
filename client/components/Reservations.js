@@ -11,7 +11,6 @@ class Reservations extends Component {
   }
   render() {
     const reservations = this.props.reservations
-    console.log('RESERVATIONS', reservations)
     return (
       <Fragment>
         <Container>

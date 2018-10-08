@@ -11,6 +11,7 @@ class Checkout extends React.Component {
     const totalCost =
       this.props.cost *
       differenceInCalendarDays(this.props.endTime, this.props.startTime)
+    console.log('The total cost is =>', this.totalCost)
     // Call Axios ...
     try {
       const res = await axios.post(`/api/reservations`, {
