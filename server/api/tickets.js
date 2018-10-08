@@ -50,7 +50,8 @@ router.post('/', async (req, res, next) => {
 })
 
 //put ticket route, staff/admin only for now
-router.put('/:id', requireStaffOrAdmin, async (req, res, next) => {
+// need to place in requireStaffOrAdmin, after creating a login
+router.put('/:id', async (req, res, next) => {
   try {
     const updatedTicket = await Ticket.update(
       {

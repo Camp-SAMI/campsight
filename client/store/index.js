@@ -38,7 +38,7 @@ export const getUnassignedTickets = createSelector(selectTicketsList,
 );
 
 export const getClosedTickets = createSelector(selectTicketsList,
-  (ticketList) => ticketList.filter(t => t.status !== 'close')
+  (ticketList) => ticketList.filter(t => t.status === 'close')
 );
 
 export const getOpenTickets = createSelector(selectTicketsList,
