@@ -27,7 +27,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <Link to='/ticketform'>Guest Help Form</Link>
           {/* <Amenities />
           <Type /> */}
-          <Link to="/dashboard">Admin</Link>{' '}
+          <Link to="/dashboard">Dashboard</Link>{' '}
           {/* move to log in have we do the log in*/}
           {/* <Amenities />
           <Type /> */}

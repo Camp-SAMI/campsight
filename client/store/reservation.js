@@ -16,6 +16,7 @@ export const getReservationError = () => ({
 
 //REDUCER
 export default function reducer(reservation = {}, action) {
+  console.log('ACTION', action)
   switch (action.type) {
     case GET_SINGLE_RESERVATION:
       return action.reservation
@@ -38,7 +39,7 @@ export const fetchSingleReservation = id => {
   }
 }
 
-export const fetchLatestCampsiteReservation = campsiteId =>{
+export const fetchLatestCampsiteReservation = campsiteId => {
   return async dispatch => {
     try {
       const res = await axios.get(`/api/reservations/${campsiteId}/latest`)

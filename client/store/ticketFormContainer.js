@@ -1,6 +1,7 @@
 //ACTION TYPES
 const TOGGLE_CAMERA = 'TOGGLE_CAMERA'
 const SET_CAMERA_DATA = 'SET_CAMERA_DATA'
+const PERSIST_TICKET_FORM = 'PERSIST_TICKET_FORM'
 
 //ACTION CREATORS
 export const toggleCamera = () => ({
@@ -12,7 +13,23 @@ export const setCameraData = cameraData => ({
   cameraData
 })
 
+export const persistTicketForm = formData =>({
+  type: PERSIST_TICKET_FORM,
+  formData
+})
+
 //REDUCER
+
+export function ticketForm(ticketFormData = {}, action){
+  switch(action.type){
+    case PERSIST_TICKET_FORM:
+      console.log(action.formData, "++++++++++++++++++++++++++++++++++ formData from reducer")
+      return action.formData
+    default: 
+      return ticketFormData
+  }
+}
+
 
 export function cameraData(camera = {}, action) {
   switch (action.type) {

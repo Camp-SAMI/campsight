@@ -10,7 +10,7 @@ import {
   Snackbar
 } from '@material-ui/core'
 import {connect} from 'react-redux'
-import {toggleCamera} from '../store/ticketFormContainer'
+import {toggleCamera, persistTicketForm} from '../store/ticketFormContainer'
 import {createTicket} from '../store/ticket'
 
 class TicketForm extends Component {
@@ -20,6 +20,14 @@ class TicketForm extends Component {
     email: '',
     campsite: '',
     description: ''
+  }
+
+  componentDidMount(){
+    const formData = this.props.ticketForm
+  
+    this.setState(
+      formData
+    )
   }
 
   handleChange = ({target: {name, value}}) => {
@@ -60,6 +68,8 @@ class TicketForm extends Component {
   }
 
   toggle = () => {
+   
+   this.props.persistTicketForm(this.state)
     this.props.toggle()
   }
 
@@ -172,15 +182,18 @@ class TicketForm extends Component {
   }
 }
 
-const mapState = ({cameraData}) => {
+const mapState = ({cameraData, ticketForm}) => {
+  console.log(ticketForm, "mapstate ___________________-")
   return {
-    cameraData
+    cameraData,
+    ticketForm
   }
 }
 
 const mapProps = dispatch => ({
   toggle: () => dispatch(toggleCamera()),
-  createTicket: form => dispatch(createTicket(form))
+  createTicket: form => dispatch(createTicket(form)),
+  persistTicketForm: form => dispatch(persistTicketForm(form))
 })
 
 export default connect(mapState, mapProps)(TicketForm)
