@@ -128,7 +128,7 @@ class EditTicket extends Component {
                       options={priorityOptions}
                       selection
                       item
-                      name="prioirty"
+                      name="priority"
                       label="Priority"
                       required={true}
                       onChange={this.handleChange}
