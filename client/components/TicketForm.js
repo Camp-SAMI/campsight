@@ -203,7 +203,7 @@ class TicketForm extends Component {
 }
 
 const mapState = ({cameraData, ticketForm}) => {
-  console.log(cameraData, 'cameradata ----------------------------------------------------')
+
   return {
     cameraData,
     ticketForm

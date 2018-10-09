@@ -40,7 +40,7 @@ Camper.hasMany(Reservation, {foreignKey: 'camperId', allowNull: false})
 Reservation.belongsTo(Camper)
 
 Amenity.belongsToMany(Campsite, {through: campsiteAmenities})
-Campsite.hasMany(Amenity)
+Campsite.belongsToMany(Amenity, {through: campsiteAmenities})
 
 
 module.exports = {
