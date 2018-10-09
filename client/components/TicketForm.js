@@ -44,7 +44,7 @@ class TicketForm extends Component {
       name: event.target.name.value,
       email: event.target.email.value,
       campsite: event.target.campsite.value,
-      description: event.target.description.value,
+      content: event.target.content.value,
       cameraData: this.props.cameraData
     }
     this.props.createTicket(form)
@@ -54,7 +54,7 @@ class TicketForm extends Component {
       name: '',
       email: '',
       campsite: '',
-      description: ''
+      content: ''
   
     }))
   }
@@ -65,7 +65,7 @@ class TicketForm extends Component {
       name: '',
       email: '',
       campsite: '',
-      description: ''
+      content: ''
     })
   }
 
@@ -75,7 +75,7 @@ class TicketForm extends Component {
   }
 
   render() {
-    const {title, name, email, description, campsite} = this.state
+    const {title, name, email, content, campsite} = this.state
 
     return (
       <Fragment>
@@ -133,13 +133,13 @@ class TicketForm extends Component {
                         style={styles.textFields}
                       />
                       <TextField
-                        name="description"
-                        value={description}
+                        name="content"
+                        value={content}
                         variant="outlined"
                         onChange={this.handleChange}
                         multiline
                         rows="4"
-                        label="Description"
+                        label="Content"
                         style={styles.textFields}
                       />
                       <Grid container alignItems="center" direction="column">

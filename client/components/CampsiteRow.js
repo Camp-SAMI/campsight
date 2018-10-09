@@ -17,12 +17,10 @@ class CampsiteRow extends Component {
 
     async handleClick(id) {
         await this.props.fetchCampsite(id);
-        console.log('campsite', this.props.campsite);
     }
 
     render() {
         const {campsite, editSubmit} = this.props;
-        console.log(campsite);
         return (
             <Table.Row key={campsite.id}>
                 <Table.Cell>{campsite.id}</Table.Cell>
