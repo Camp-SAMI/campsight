@@ -48,16 +48,17 @@ for (let i = 0; i < numberOfCampers; i++) {
 const reservations = []
 for (let i = 0; i < reservationQuantity; i++) {
   const startTimeRes = chance.date({year: 2018})
-
+  console.log(startTimeRes)
   const days = chance.integer({min: 1, max: 14})
   startTimeRes.addDays = function() {
     startTimeRes.setDate(startTimeRes.getDate() + days)
     return startTimeRes
   }
 
-  console.log('days', days)
+
   const endTime = new Date(startTimeRes)
   endTime.setDate(startTimeRes.getDate() + days)
+
 
   chance.mixin({
     reservation: () => ({
