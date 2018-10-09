@@ -79,7 +79,7 @@ export const createTicket = ticket => {
 }
 export const updateTicketToServer = updateInfo => {
   return async dispatch => {
-    const {data} = await axios.put(`api/tickets/${updateInfo.id}`, updateInfo)
+    const {data} = await axios.put(`api/tickets/${updateInfo.id}`, updateInfo);
     dispatch(updateTicket(data))
   }
 }

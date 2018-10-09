@@ -31,10 +31,12 @@ class TicketList extends Component {
         this.editSubmit = this.editSubmit.bind(this);
     }
     async componentDidMount() {
-        await this.props.fetchTickets();
+        if (this.props.fetchTickets)
+            await this.props.fetchTickets();
     }
 
    editSubmit(ticket, e) {
+        console.log('tick', ticket);
         this.props.updateTicket(ticket);
     }
 
