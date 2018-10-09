@@ -29,8 +29,19 @@ class CampsiteCollection extends Component {
       perPage: 6,
       currentPage: [],
       numPages: 0,
-      searching: false
+      searching: false,
+      modalOpen: false
     }
+    this.handleClose = this.handleClose.bind(this)
+    this.handleOpen = this.handleOpen.bind(this)
+  }
+
+  handleOpen() {
+    this.setState({modalOpen: true})
+  }
+
+  handleClose() {
+    this.setState({modalOpen: false})
   }
 
   componentDidMount() {
@@ -54,9 +65,14 @@ class CampsiteCollection extends Component {
               <Modal
                 trigger={
                   <div>
-                    <CampsiteBlock campsite={campsite} />
+                    <CampsiteBlock
+                      campsite={campsite}
+                      onClick={this.handleOpen}
+                    />
                   </div>
                 }
+                // open={this.state.modalOpen}
+                // onClose={this.handleClose}
               >
                 <Modal.Content>
                   <CampsiteDetail id={campsite.id} />

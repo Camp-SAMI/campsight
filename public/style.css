@@ -59,21 +59,21 @@ form div {
   line-height: 200px;
 } */
 
- .MainContainer {
+.MainContainer {
   perspective: 1px;
   transform-style: preserve-3d;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: scroll;
-} 
+}
 
- .ContentContainer {
+.ContentContainer {
   position: relative;
   display: block;
   background-color: rgb(232, 236, 239);
   /* background-image: linear-gradient(rgb(54, 61, 71), rgb(135, 151, 163)); */
   z-index: 1;
-} 
+}
 
 .Content {
   max-width: 100%;
@@ -102,7 +102,34 @@ p {
   background-size: 100% 100%;
 }
 
+.submenu {
+  background-color: aquamarine;
+}
+
 /* dark-gary-blue */
 /* rgb(54, 61, 71) */
 /* light-gray-blue */
 /* rgb(70, 82, 99) */
+
+/* tents */
+/* https://cdn.muenchen-p.de/.imaging/stk/responsive/image980/dms/lhm/tourismus/camping-l/document/camping-l.jpg */
+/* http://s3.amazonaws.com/ncc-ccn/images/_cardWide/camping-card.jpg?mtime=20170425165109 */
+/* https://media-cdn.tripadvisor.com/media/photo-s/0d/71/ff/2c/oloiden-camping-grounds.jpg */
+/* https://sabtusore.com/wp-content/uploads/2017/10/camping-tourist.jpg */
+/* https://www.volcanohuts.com/images/accommodation/21835_295299363154_294919853154_3480307_3300667_n-1.jpe */
+/* https://media-cdn.tripadvisor.com/media/photo-s/0e/3d/60/df/camping-grounds.jpg */
+/* https://idsb.tmgrup.com.tr/2015/07/10/HaberDetay/1436552118171.jpg */
+/* http://unl-sd.org/img/new-forest-dating-services.jpg */
+
+/* other images */
+/* https://vtstateparks.com/assets/images/branbury-tent-site.jpg */
+/* https://www.nps.gov/maca/planyourvisit/images/MapleSpringsCampground-Campsite.jpg?maxwidth=1200&maxheight=1200&autorotate=false */
+/* https://www.visitstaugustine.com/sites/default/files/styles/large/public/taxonomy/faver_dykes_st_augustine_florida.jpg */
+/* https://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5302302.jpg */
+
+/* campers */
+/* https://www.kennedypark.co.nz/assets/Uploads/powered-site.jpg */
+/* https://camperrevamper.files.wordpress.com/2010/10/red_shasta.jpg */
+/* https://s3.amazonaws.com/images.gearjunkie.com/uploads/2017/03/woolrich-campers-woods.jpg */
+/* http://www.southsidervoice.com/uploads/1/8/6/1/18619172/ssv-campers-cummings-2_orig.jpg */
+/* https://c1.staticflickr.com/5/4360/37100418336_deaba61820_b.jpg */
