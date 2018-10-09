@@ -72,13 +72,15 @@ router.post('/', async (req, res, next) => {
 // need to place in requireStaffOrAdmin, after creating a login
 router.put('/:id', async (req, res, next) => {
   try {
-    const updatedTicket = await Ticket.update(
+    const [count, [updatedTicket]] = await Ticket.update(
       {
         title: req.body.title,
         email: req.body.email,
         content: req.body.content,
         priority: req.body.priority,
-        status: req.body.status
+        status: req.body.status,
+        image: req.body.image,
+        location: req.body.location
       },
       {
         returning: true,

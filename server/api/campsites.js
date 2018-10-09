@@ -53,9 +53,8 @@ router.post('/', async (req, res, next) => {
 })
 
 router.put('/:campsiteId', async (req, res, next) => {
-    console.log('body', req.body);
     try {
-        const campsiteUpdate = await Campsite.update(req.body, {
+        const [count, [campsiteUpdate]] = await Campsite.update(req.body, {
             where: { id: req.params.campsiteId },
             returning: true
         });
