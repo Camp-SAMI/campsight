@@ -8,7 +8,7 @@ const CampsiteBlock = props => {
   const {campsite} = props
   return (
     <div>
-      <Card>
+      <Card color="teal">
         <Image src={campsite.coverImage} />
         <Card.Content>
           <Card.Header>Name: {campsite.name}</Card.Header>

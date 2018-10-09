@@ -70,7 +70,7 @@ form div {
 .ContentContainer {
   position: relative;
   display: block;
-  background-color: rgb(232, 236, 239);
+  background-color: whitesmoke;
   /* background-image: linear-gradient(rgb(54, 61, 71), rgb(135, 151, 163)); */
   z-index: 1;
 }
@@ -97,14 +97,14 @@ p {
   justify-content: center;
   align-items: center;
   transform: translateZ(-1px) scale(2);
-  background: url('/image4.png');
+  background: url('/image6.jpg');
   /* background-color: rgb(250, 228, 216); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
-.submenu {
-  background-color: aquamarine;
+.mapBox {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 /* dark-gary-blue */
