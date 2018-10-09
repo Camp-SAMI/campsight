@@ -45,7 +45,6 @@ class EditCampsite extends Component {
     componentDidMount() {
         this.props.fetchAmenities();
         // await this.props.fetchCampsite(this.props.id);
-        console.log('campsite location', this.props.campsite.location);
         const imagesStr = this.props.images ? this.props.images.join(', ') : '';
         this.setState({
             name: this.props.campsite.name,
@@ -58,7 +57,6 @@ class EditCampsite extends Component {
             desc: this.props.desc,
             cost: this.props.cost
         });
-        console.log('state', this.state);
     }
 
     handleChange(e, {name, value}) {

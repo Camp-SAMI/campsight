@@ -39,7 +39,7 @@ class AdminSidebar extends Component {
             <Icon name="calendar check" />
             Reservations
           </Menu.Item>
-          <Menu.Item as="a">
+          <Menu.Item href="/campsites">
             <Icon name="image outline" />
             Campsites
           </Menu.Item>
