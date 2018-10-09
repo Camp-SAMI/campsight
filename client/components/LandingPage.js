@@ -74,7 +74,6 @@ class LandingPage extends Component {
     this.props.getFilteredCampsites(this.props.campsites, [], null, null, '')
     // const filteredReservations = this.props.filteredCampsites.map(c => c.reservations);
     // const filteredDates = filteredReservations.map(r => r.daysBooked);
-    // console.log('filteredDates', filteredDates);
     this.setState({
       // amenities: amenities,
       reservations: this.props.reservations
@@ -97,7 +96,6 @@ class LandingPage extends Component {
   }
 
   onStartTimeChange(e, {value}) {
-    // console.log('e', value);
     const startTime = value
     const endTime = this.state.endTime
     if (startTime && endTime) {
@@ -115,7 +113,6 @@ class LandingPage extends Component {
   }
 
   onEndTimeChange(e, {value}) {
-    // console.log('e', value);
     const startTime = this.state.startTime
     const endTime = value
     if (startTime && endTime) {
@@ -156,7 +153,6 @@ class LandingPage extends Component {
     } = this.props
 
     const {contextRef} = this.state
-    // console.log(this.state.contextRef, 'contextRef ----------------------')
     return (
       <div className="MainContainer">
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
@@ -178,11 +174,18 @@ class LandingPage extends Component {
                   <CampsiteCollection
                     campsites={filteredCampsites}
                     campsite={campsite}
+                    filteredStartTime={this.state.startTime}
+                    filteredEndTime={this.state.endTime}
                   />
                 </Grid.Column>
                 {/* <Sticky> */}
                 <Grid.Column width={9}>
-                  <MapView campsites={filteredCampsites} campsite={campsite} />
+                  <MapView
+                    campsites={filteredCampsites}
+                    campsite={campsite}
+                    filteredStartTime={this.state.startTime}
+                    filteredEndTime={this.state.endTime}
+                  />
                 </Grid.Column>
                 {/* </Sticky> */}
               </Grid.Row>

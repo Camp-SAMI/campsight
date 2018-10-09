@@ -31,6 +31,7 @@ export const fetchReservations = camperId => {
     }
   }
 }
+
 //REDUCER
 export default function reducer(reservations = [], action) {
   switch (action.type) {

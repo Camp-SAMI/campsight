@@ -164,28 +164,28 @@ class TicketForm extends Component {
                         </Grid>
                       </Grid>
                       <Grid justify="center" alignContent="center" container>
-                      <Grid item>
-                        <Modal
-                          style={{
-                            height: 65,
-                            justifyContent: 'center',
-                            alignContent: 'center'
-                          }}
-                          trigger={
-                            <Button
-                              variant="raised"
-                              style={styles.button}
-                              color="primary"
-                              type="submit"
-                            >
-                              Submit Form
-                            </Button>
-                          }
-                        >
-                          <Modal.Content>
-                            <HelpSubSuccess />
-                          </Modal.Content>
-                        </Modal>
+                        <Grid item>
+                          <Modal
+                            style={{
+                              height: 65,
+                              justifyContent: 'center',
+                              alignContent: 'center'
+                            }}
+                            trigger={
+                              <Button
+                                variant="raised"
+                                style={styles.button}
+                                color="primary"
+                                type="submit"
+                              >
+                                Submit Form
+                              </Button>
+                            }
+                          >
+                            <Modal.Content>
+                              <HelpSubSuccess />
+                            </Modal.Content>
+                          </Modal>
                         </Grid>
                       </Grid>
                       <img

@@ -18,7 +18,6 @@ class CamperProfile extends Component {
   render() {
     const {firstName, lastName, email, reservations} = this.props.camper
     const {tickets} = this.props
-    console.log('Single Camper Props =>', this.props)
     const panes = [
       {
         menuItem: `Reservations`,

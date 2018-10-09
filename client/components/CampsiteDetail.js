@@ -9,7 +9,7 @@ import {
 } from 'semantic-ui-react'
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom'
+// import {withRouter} from 'react-router-dom'
 
 import {fetchCampsite} from '../store/campsite'
 import ReservationForm from './ReservationForm'
@@ -64,7 +64,7 @@ class CampsiteDetail extends Component {
                       amenities.map(amenity => (
                         <List.Item key={amenity.category}>
                           <List.Icon
-                            name={amenity.category || 'bandcamp'}
+                            name={amenity.category.toLowerCase() || 'bandcamp'}
                             size="large"
                             verticalAlign="middle"
                           />
@@ -150,9 +150,8 @@ class CampsiteDetail extends Component {
                     <ReservationForm
                       id={Number(this.props.id || this.props.match.params.id)}
                       cost={cost}
-                      // fetchLatestCampsiteReservation={
-                      //   fetchLatestCampsiteReservation
-                      // }
+                      filteredStartTime={this.props.filteredStartTime}
+                      filteredEndTime={this.props.filteredEndTime}
                     />
                   </Fragment>
                 </Fragment>
