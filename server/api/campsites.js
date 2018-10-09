@@ -1,67 +1,62 @@
-const router = require('express').Router();
-const { Campsite, Amenity, Reservation, Campground } = require('../db/models');
+const router = require('express').Router()
+const {Campsite, Amenity, Reservation, Campground} = require('../db/models')
 
 router.get('/', async (req, res, next) => {
-    try {
-        const campsites = await Campsite.findAll({
-            include: [{model: Amenity}, {model: Reservation}]
-        });
-        res.json(campsites);
-    }
-    catch (err) {
-        next(err);
-    }
-});
+  try {
+    const campsites = await Campsite.findAll({
+      include: [{model: Amenity}, {model: Reservation}]
+    })
+    res.json(campsites)
+  } catch (err) {
+    next(err)
+  }
+})
 
 router.get('/:campsiteId', async (req, res, next) => {
-    // console.log('params', req.params);
-    try {
-        const target = await Campsite.findById(req.params.campsiteId, {
-            include: [{model: Amenity}, {model: Reservation}]
-        });
-        res.json(target);
-    }
-    catch (err) {
-        next(err);
-    }
+  try {
+    const target = await Campsite.findById(req.params.campsiteId, {
+      include: [{model: Amenity}, {model: Reservation}]
+    })
+    res.json(target)
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.post('/', async (req, res, next) => {
-    try {
-        const newCampsite = await Campsite.create({
-            name: req.body.name,
-            location : {
-                type: 'Point',
-                coordinates: [req.body.latitude, req.body.longitude]
-            },
-            campgroundId: req.body.campgroundId,
-            coverImage: req.body.coverImage ? req.body.coverImage : '',
-            images: req.body.images.length ? req.body.images : [],
-            typing: req.body.typing,
-            cost: req.body.cost
-        });
-        let amenItems = req.body.amenities.map(amen => amen.toLowerCase());
-        const amenities = await Amenity.findAll();
-        const amenityInfos = amenities.filter(a => amenItems.includes(a.category));
-        await newCampsite.setAmenities(amenityInfos);
-        await newCampsite.save();
-        res.json(newCampsite);
-    }
-    catch (err) {
-        next(err);
-    }
+  try {
+    const newCampsite = await Campsite.create({
+      name: req.body.name,
+      location: {
+        type: 'Point',
+        coordinates: [req.body.latitude, req.body.longitude]
+      },
+      campgroundId: req.body.campgroundId,
+      coverImage: req.body.coverImage ? req.body.coverImage : '',
+      images: req.body.images.length ? req.body.images : [],
+      typing: req.body.typing,
+      cost: req.body.cost
+    })
+    let amenItems = req.body.amenities.map(amen => amen.toLowerCase())
+    const amenities = await Amenity.findAll()
+    const amenityInfos = amenities.filter(a => amenItems.includes(a.category))
+    await newCampsite.setAmenities(amenityInfos)
+    await newCampsite.save()
+    res.json(newCampsite)
+  } catch (err) {
+    next(err)
+  }
 })
 
 router.put('/:campsiteId', async (req, res, next) => {
-    try {
-        const [count, [campsiteUpdate]] = await Campsite.update(req.body, {
-            where: { id: req.params.campsiteId },
-            returning: true
-        });
-        res.json(campsiteUpdate);
-    }
-    catch (err) {
-        next(err);
-    }
+  try {
+    const [count, [campsiteUpdate]] = await Campsite.update(req.body, {
+      where: {id: req.params.campsiteId},
+      returning: true
+    })
+    res.json(campsiteUpdate)
+  } catch (err) {
+    next(err)
+  }
 })
-module.exports = router;
+module.exports = router
