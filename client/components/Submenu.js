@@ -13,7 +13,7 @@ class Submenu extends Component {
       onTypingChange
     } = this.props
     return (
-      <Menu color="red" attached="top" stackable style={{height: 60}}>
+      <Menu inverted color="teal" attached="top" stackable style={{height: 60}}>
         <Menu.Item>
           <Amenities onAmenitiesChange={onAmenitiesChange} />
         </Menu.Item>

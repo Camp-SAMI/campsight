@@ -35,6 +35,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   <Menu
     className="navBar"
     inverted
+    color="teal"
     attached="top"
     stackable
     style={{height: 60}}
