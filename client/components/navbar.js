@@ -41,6 +41,32 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   >
     {isLoggedIn ? (
       <React.Fragment>
+        <Segment.Group>
+          <Responsive as={Segment} {...Responsive.onlyMobile}>
+            <Menu
+              style={{
+                margin: -20,
+                padding: 0,
+                backgroundColor: 'black',
+                color: 'white'
+              }}
+            >
+              <Dropdown className="link item" text="Menu" simple item>
+                <Dropdown.Menu
+                  style={{backgroundColor: 'black', color: 'white'}}
+                >
+                  <Dropdown.Item
+                    style={{backgroundColor: 'black', color: 'white'}}
+                  >
+                    <Link to="/">Home</Link>
+                    <Link to="/TicketForm">Guest Help Form</Link>
+                    <Link to='/home'>Dashboard</Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu>
+          </Responsive>
+        </Segment.Group>
         {/* The navbar will show these links after you log in */}
         <Menu.Item as={Link} to="/">
           Home
@@ -71,6 +97,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
                   <Dropdown.Item
                     style={{backgroundColor: 'black', color: 'white'}}
                   >
+                    <Link to="/">Home</Link>
                     <Link to="/TicketForm">Guest Help Form</Link>
                   </Dropdown.Item>
                 </Dropdown.Menu>
