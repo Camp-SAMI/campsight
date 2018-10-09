@@ -1,6 +1,8 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Container, Divider} from 'semantic-ui-react'
+import AdminSidebar from './AdminSidebar'
 
 /**
  * COMPONENT
@@ -9,9 +11,12 @@ export const UserHome = props => {
   const {email} = props
 
   return (
-    <div>
+    <Fragment>
+      <div style={styles.div}>
+        <AdminSidebar style={{position: 'relative'}} />
+      </div>
       <h3>Welcome, {email}</h3>
-    </div>
+    </Fragment>
   )
 }
 
@@ -31,4 +36,11 @@ export default connect(mapState)(UserHome)
  */
 UserHome.propTypes = {
   email: PropTypes.string
+}
+
+/**STYLES */
+const styles = {
+  div: {
+    height: '100vh'
+  }
 }
