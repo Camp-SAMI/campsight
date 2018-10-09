@@ -13,7 +13,7 @@ class Submenu extends Component {
       onTypingChange
     } = this.props
     return (
-      <Menu inverted attached="top" stackable style={{height: 60}}>
+      <Menu color="red" attached="top" stackable style={{height: 60}}>
         <Menu.Item>
           <Amenities onAmenitiesChange={onAmenitiesChange} />
         </Menu.Item>
@@ -26,21 +26,21 @@ class Submenu extends Component {
         <Menu.Item>
           <Type onTypingChange={onTypingChange} />
         </Menu.Item>
-        <Menu.Item style={styles.time}>
+        {/* <Menu.Item style={styles.time}>
           <DatePicker
             onStartTimeChange={onStartTimeChange}
             onEndTimeChange={onEndTimeChange}
           />
-        </Menu.Item>
+        </Menu.Item> */}
       </Menu>
     )
   }
 }
 
-const styles = {
-  time: {
-    marginLeft: 20
-  }
-}
+// const styles = {
+//   time: {
+//     marginLeft: 20
+//   }
+// }
 
 export default Submenu

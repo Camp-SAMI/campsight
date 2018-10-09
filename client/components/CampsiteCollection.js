@@ -36,7 +36,10 @@ class CampsiteCollection extends Component {
               <Modal
                 trigger={
                   <div>
-                    <CampsiteBlock campsite={campsite} />
+                    <CampsiteBlock
+                      campsite={campsite}
+                      onClick={this.handleOpen}
+                    />
                   </div>
                 }
               >

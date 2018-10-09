@@ -25,7 +25,7 @@ export function getFilteredCampsites(campsites, selectedAmenities, startTime, en
     return dispatch => {
         const filteredCamps = campsites.filter(camp => {
             return (
-                (!selectedAmenities.length || selectedAmenities.every(amenity => camp.amenities.includes(amenity))) &&
+                (!selectedAmenities.length || selectedAmenities.every(amenity => camp.amenities.map(am => am.category).includes(amenity))) &&
                 (!startTime || !endTime || camp.reservations.every(reservation => checkReservationRange(startTime, endTime, reservation))) &&
                 (!typing || typing === camp.typing)
             );

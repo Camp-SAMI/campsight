@@ -3,6 +3,9 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import Button from '@material-ui/core/Button'
 import {withRouter} from 'react-router-dom'
+import {differenceInCalendarDays} from 'date-fns'
+import {gotItinerary} from '../store/itinerary'
+import {connect} from 'react-redux'
 
 class Checkout extends React.Component {
   state = {
@@ -25,17 +28,10 @@ class Checkout extends React.Component {
       })
       // Use an alert module ...
       console.log('Returned after making a Reservation backend', res.data)
-      alert('Please check your email for Order confirmation')
+      // alert('Please check your email for Order confirmation')
+      this.props.gotItinerary(res.data)
 
-      // Disable reserve button
-      this.setState({reserved: true})
-
-      /**
-       * Close current modal,
-       * Trigger next modal with Reservation summary
-       * Close Reservation Summmary modal
-       */
-      this.props.history.push(`/`)
+      this.props.history.push(`/itinerary`)
     } catch (err) {
       console.error(err)
     }
@@ -88,4 +84,7 @@ class Checkout extends React.Component {
   }
 }
 
-export default withRouter(Checkout)
+const mapDispatchToProps = dispatch => ({
+  gotItinerary: itinerary => dispatch(gotItinerary(itinerary))
+})
+export default connect(null, mapDispatchToProps)(withRouter(Checkout))
