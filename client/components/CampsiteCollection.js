@@ -59,7 +59,7 @@ class CampsiteCollection extends Component {
     const amenities = this.state.amenities
     if (this.props.campsites.length && this.state.currentPage) {
       return (
-        <Grid>
+        <Grid style={{marginLeft: 20}}>
           {this.props.campsites.map(campsite => (
             <Grid.Column key={campsite.id} width={8}>
               <Modal
