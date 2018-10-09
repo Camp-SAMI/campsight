@@ -16,12 +16,14 @@ class TicketRow extends Component {
 
     async handleClick(id) {
         await this.props.fetchTicket(id);
+        console.log('id', id);
     }
 
     render() {
         const {ticket, editSubmit} = this.props;
+        console.log('ticket', ticket);
         return (
-            <Table.Row key={ticket.id}>
+            <Table.Row>
                 <Table.Cell>{ticket.id}</Table.Cell>
                 <Table.Cell>{ticket.title}</Table.Cell>
                 <Table.Cell>{ticket.email}</Table.Cell>

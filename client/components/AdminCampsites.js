@@ -9,8 +9,9 @@ import locationConverter from '../utils/locationConverter';
 import CampsiteRow from './CampsiteRow';
 
 const mapStateToProps = state => {
+    const campsites = state.campsites.sort((a,b) => a.id - b.id);
     return {
-        campsites: state.campsites,
+        campsites: campsites,
         campsite: state.campsite,
         user: state.user,
         amenities: state.amenities
@@ -28,8 +29,8 @@ export class AdminCampsites extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            campsites: [],
-            currentPage: [],
+            // campsites: [],
+            // currentPage: [],
             perPage: 15,
             activePage: 1,
             numPages: 0,
@@ -42,24 +43,20 @@ export class AdminCampsites extends Component {
     async componentDidMount() {
         if (this.props.fetchCampsites){
             await this.props.fetchCampsites();
-            const campsites = this.props.campsites.sort((a,b) => a.id - b.id);
             const perPage = this.state.perPage;
-            const firstPage = this.props.campsites.slice(0, perPage);
             const numPages = Math.ceil(this.props.campsites.length / perPage);
             // await this.props.fetchAmenities();
             this.setState({
-                campsites: campsites,
-                currentPage: firstPage,
+                // campsites: campsites,
+                // currentPage: firstPage,
                 numPages: numPages
             })
         }
     }
 
     handleSelectPagination = (evt, {activePage}) => {
-        const startIndex = (activePage - 1) * this.state.perPage;
-        const endIndex = startIndex + this.state.perPage;
-        const currentPage = this.state.campsites.slice(startIndex, endIndex);
-        this.setState({currentPage: currentPage, activePage: activePage});
+        // const currentPage = this.props.campsites.slice(startIndex, endIndex);
+        this.setState({activePage: activePage});
     }
 
     editSubmit(campsiteInfo, event) {
@@ -82,11 +79,13 @@ export class AdminCampsites extends Component {
 
     render() {
         if (
-            this.props.campsites.length && this.state.currentPage.length && this.state.numPages
+            this.props.campsites.length && this.state.numPages
         ) {
             const campsites = this.props.campsites;
             // const amenities = this.props.amenities;
-            const currentPage = this.state.currentPage;
+            const startIndex = (this.state.activePage - 1) * this.state.perPage;
+            const endIndex = startIndex + this.state.perPage;
+            const currentPage = campsites.slice(startIndex, endIndex);
             const data = [...this.props.campsites];
 
             return (

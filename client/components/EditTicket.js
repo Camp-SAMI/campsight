@@ -6,7 +6,8 @@ import {
   Button,
   Dropdown,
   TextArea,
-  Segment
+  Segment,
+  Form
 } from 'semantic-ui-react'
 import {fetchTicket} from '../store/ticket'
 import {updateTicketToServer} from '../store/tickets'
@@ -27,19 +28,6 @@ const priorityOptions = [
   {value: '5', text: '5'}
 ]
 
-const mapStateToProps = state => {
-  return {
-    ticket: state.ticket,
-    tickets: state.tickets,
-    user: state.user
-  }
-}
-
-const mapDispatchToProps = dispatch => ({
-  fetchTicket: id => dispatch(fetchTicket(id)),
-  updateTicket: ticket => dispatch(updateTicketToServer(ticket))
-})
-
 class EditTicket extends Component {
   constructor(props) {
     super(props)
@@ -58,20 +46,20 @@ class EditTicket extends Component {
 
   componentDidMount() {
    // this.props.fetchTicket(this.props.ticket.id)
-    const ticket = this.props.ticket
     // console.log(
     //   this.props.ticket,
     //   'edit ticket form component did mount ======================================='
     // )
     this.setState({
-      title: ticket.title,
-      email: ticket.email,
-      content: ticket.content,
-      priority: ticket.priority,
-      status: ticket.status,
-      image: ticket.image,
-      location: ticket.location
+      title: this.props.ticket.title,
+      email: this.props.ticket.email,
+      content: this.props.ticket.content,
+      priority: this.props.ticket.priority,
+      status: this.props.ticket.status,
+      image: this.props.ticket.image,
+      location: this.props.ticket.location
     })
+    console.log('ticket', this.props.ticket);
   }
 
   handleChange(e, {name, value}) {
@@ -100,71 +88,71 @@ class EditTicket extends Component {
     const { ticket } = this.props;
     return (
         <Container>
-            <Segment>
-                <Input
-                    fluid
-                    type="text"
-                    name="title"
-                    label="Title"
-                    disabled
-                    required={true}
-                    onChange={this.handleChange}
-                    defaultValue={ticket.title}
-                />
-                <Input
-                    fluid
-                    type="text"
-                    name="email"
-                    label="Email"
-                    disabled
-                    required={true}
-                    onChange={this.handleChange}
-                    defaultValue={ticket.email}
-                />
-            </Segment>
-            <Segment>
-                <TextArea
-                    name="content"
-                    label="Content"
-                    disabled
-                    defaultValue={ticket.content}
-                    onChange={this.handleChange}
-                    required={true}
-                />
-            </Segment>
-            <Segment>
-                <Dropdown
-                    fluid
-                    options={priorityOptions}
-                    selection
-                    item
-                    name="prioirty"
-                    label="Priority"
-                    required={true}
-                    onChange={this.handleChange}
-                    defaultValue={ticket.priority}
-                />
-                <Dropdown
-                    fluid
-                    options={statusOptions}
-                    selection
-                    item
-                    name="status"
-                    label="Status"
-                    required={true}
-                    onChange={this.handleChange}
-                    defaultValue={ticket.status}
-                />
-            </Segment>
-            <Segment>
-                <img src={ticket.image} />
-            </Segment>
-            <Button color="green" basic onClick={this.handleSubmit}>
-            Update
-            </Button>
+          <Segment>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Group widths="equal">
+                  <Form.Input
+                      fluid
+                      type="text"
+                      name="title"
+                      label="Title"
+                      // disabled
+                      required={true}
+                      // onChange={this.handleChange}
+                      value={ticket.title}
+                  />
+                  <Form.Input
+                      fluid
+                      type="text"
+                      name="email"
+                      label="Email"
+                      // disabled
+                      required={true}
+                      // onChange={this.handleChange}
+                      value={ticket.email}
+                  />
+              </Form.Group>
+              <Form.Group widths="equal">
+                  <Form.TextArea
+                      name="content"
+                      label="Content"
+                      // disabled
+                      value={ticket.content}
+                      // onChange={this.handleChange}
+                      required={true}
+                  />
+              </Form.Group>
+              <Form.Group widths="equal">
+                  <Form.Dropdown
+                      fluid
+                      options={priorityOptions}
+                      selection
+                      item
+                      name="prioirty"
+                      label="Priority"
+                      required={true}
+                      onChange={this.handleChange}
+                      defaultValue={ticket.priority}
+                  />
+                  <Form.Dropdown
+                      fluid
+                      options={statusOptions}
+                      selection
+                      item
+                      name="status"
+                      label="Status"
+                      required={true}
+                      onChange={this.handleChange}
+                      defaultValue={ticket.status}
+                  />
+              </Form.Group>
+              <img src={ticket.image} />
+              <Button color="green" basic>Update</Button>
+            </Form>
+          </Segment>
         </Container>
     )
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditTicket)
+export default EditTicket;
