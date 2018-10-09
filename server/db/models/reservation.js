@@ -1,8 +1,13 @@
+const _ = require('lodash')
 const compareDesc = require('date-fns/compareDesc')
+const compareAsc = require('date-fns/compareAsc')
+const eachDayOfInterval = require('date-fns/eachDayOfInterval')
+var format = require('date-fns/format')
 
 const Sequelize = require('sequelize')
+const Op = require('sequelize').Op
 const db = require('../db')
-const eachDayOfInterval = require('date-fns/eachDayOfInterval')
+
 const reservation = db.define('reservation', {
   startTime: {
     type: Sequelize.DATE,
@@ -19,22 +24,10 @@ const reservation = db.define('reservation', {
   daysBooked: {
     type: Sequelize.VIRTUAL,
     get() {
-      let dates = []
-      let currentDate = new Date(this.startTime)
-      currentDate.setHours(0)
-      currentDate.setMinutes(0)
-      currentDate.setSeconds(0)
-      currentDate.setMilliseconds(0)
-      let endDate = new Date(this.endTime)
-      endDate.setHours(0)
-      endDate.setMinutes(0)
-      endDate.setSeconds(0)
-      endDate.setMilliseconds(0)
-      dates = eachDayOfInterval({
-        start: currentDate,
-        end: endDate
+      return eachDayOfInterval({
+        start: this.startTime,
+        end: this.endTime
       })
-      return dates
     }
   },
   totalCost: {
@@ -43,7 +36,7 @@ const reservation = db.define('reservation', {
   }
 })
 
-// Gets the latest reservation for a given campsite
+// Gets the lates reservation for a given campsite
 // How do I account for all the pockets of unbooked days
 // between reservations up until the latest reservation?
 reservation.getLatestCampsiteReservation = async function(campsiteId) {
@@ -58,6 +51,27 @@ reservation.getLatestCampsiteReservation = async function(campsiteId) {
     } else {
       return 'There is nothing here'
     }
+  } catch (error) {
+    return `${error.message}`
+  }
+}
+
+reservation.getCurrentCampsiteReservations = async function(campsiteId) {
+  try {
+    const reservations = await this.findAll({
+      where: {
+        campsiteId,
+        startTime: {[Op.gte]: new Date()}
+      }
+    })
+    const currentBookedDays = reservations
+      .reduce((acc, curr, idx) => {
+        acc = acc.concat(curr.daysBooked)
+        return acc
+      }, [])
+      .sort((a, b) => compareAsc(a, b))
+      .map(data => format(new Date(data), 'MM/DD/YYYY'))
+    return _.uniq(currentBookedDays)
   } catch (error) {
     return `${error.message}`
   }

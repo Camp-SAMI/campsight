@@ -35,12 +35,12 @@ router.get('/:id', async (req, res, next) => {
 router.get(`/:campsiteId/latest`, async (req, res, next) => {
   const campsiteId = Number(req.params.campsiteId)
   try {
-    const reservation = await Reservation.getLatestCampsiteReservation(
+    const reservations = await Reservation.getCurrentCampsiteReservations(
       campsiteId
     )
-    if (reservation !== {}) {
-      // console.log(`latest reservation =>`, reservation)
-      res.status(200).json(reservation)
+    if (reservations.length) {
+      console.log(`Current reservations =>`, reservations)
+      res.status(200).json(reservations)
     } else {
       res.status(404)
     }

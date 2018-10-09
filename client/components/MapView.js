@@ -64,7 +64,11 @@ class MapView extends Component {
 
         <Modal open={this.state.isModalOpen} onClose={this.closeModal}>
           <Modal.Content>
-            <CampsiteDetail id={this.state.selectedCampsiteId} />
+            <CampsiteDetail
+              id={this.state.selectedCampsiteId}
+              filteredStartTime={this.props.filteredStartTime}
+              filteredEndTime={this.props.filteredEndTime}
+            />
           </Modal.Content>
         </Modal>
       </div>

@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {format} from 'date-fns'
 
 const Itinerary = props => {
-  console.log('ITINERARY OBJECT', props)
   return (
     <Container>
       <h1>Your reservation was successful</h1>
