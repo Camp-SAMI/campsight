@@ -1,4 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
+import areIntervalsOverlapping from 'date-fns/areIntervalsOverlapping';
+import startOfWeek from 'date-fns/startOfWeek';
+import endOfWeek from 'date-fns/endOfWeek';
 
 //ACTION TYPES
 const GET_RESERVATIONS = 'GET_RESERVATIONS'
@@ -31,6 +34,21 @@ export const fetchReservations = camperId => {
     }
   }
 }
+
+export const fetchReservationsThisWeek = () => {
+  return async dispatch => {
+    console.log('ai')
+    try {
+      const res = await axios.get('/api/reservations/');
+      const data = res.data;
+      console.log('data', data);
+      dispatch(getReservations(data));
+    } catch (err) {
+      dispatch(getReservationsError())
+    }
+  }
+}
+
 //REDUCER
 export default function reducer(reservations = [], action) {
   switch (action.type) {
