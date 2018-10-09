@@ -178,6 +178,9 @@ class ReservationForm extends PureComponent {
           </Grid>
           <Grid item xs={12}>
             <Checkout
+              style={{
+                backgroundColor: '#1cb5ac'
+              }}
               campsiteId={this.props.id}
               startTime={this.state.selectedStartDate}
               endTime={this.state.selectedEndDate}

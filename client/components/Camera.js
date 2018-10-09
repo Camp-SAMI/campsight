@@ -50,11 +50,7 @@ class Camera extends Component {
     return (
       <Grid container justify="center" alignContent="center">
         <Card raised>
-          <Grid item>
-            <Typography style={{marginTop: 20}} variant="subheading">
-              Camera
-            </Typography>
-          </Grid>
+          
           <Grid container justify="center" alignContent="center">
             <div>
               <Grid item>
@@ -145,6 +141,7 @@ export default connect(null, mapProps)(Camera)
 
 const styles = {
   button: {
-    margin: 10
+    margin: 10,
+    backgroundColor: '#1cb5ac'
   }
 }

@@ -54,14 +54,22 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             >
               <Dropdown className="link item" text="Menu" simple item>
                 <Dropdown.Menu
-                  style={{backgroundColor: 'black', color: 'white'}}
+                  style={{backgroundColor: '#1cb5ac', color: 'white'}}
                 >
                   <Dropdown.Item
-                    style={{backgroundColor: 'black', color: 'white'}}
+                    style={{backgroundColor: '#1cb5ac', color: 'white'}}
                   >
                     <Link to="/">Home</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    style={{backgroundColor: '#1cb5ac', color: 'white'}}
+                  >
                     <Link to="/TicketForm">Guest Help Form</Link>
-                    <Link to='/home'>Dashboard</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    style={{backgroundColor: '#1cb5ac', color: 'white'}}
+                  >
+                    <Link to="/home">Dashboard</Link>
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
@@ -87,18 +95,22 @@ const Navbar = ({handleClick, isLoggedIn}) => (
               style={{
                 margin: -20,
                 padding: 0,
-                backgroundColor: 'black',
+                backgroundColor: '#1cb5ac',
                 color: 'white'
               }}
             >
               <Dropdown className="link item" text="Menu" simple item>
                 <Dropdown.Menu
-                  style={{backgroundColor: 'black', color: 'white'}}
+                  style={{backgroundColor: '#1cb5ac', color: 'white'}}
                 >
                   <Dropdown.Item
-                    style={{backgroundColor: 'black', color: 'white'}}
+                    style={{backgroundColor: '#1cb5ac', color: 'white'}}
                   >
                     <Link to="/">Home</Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item
+                    style={{backgroundColor: '#1cb5ac', color: 'white'}}
+                  >
                     <Link to="/TicketForm">Guest Help Form</Link>
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -106,6 +118,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             </Menu>
           </Responsive>
         </Segment.Group>
+        <Segment.Group>
+         <Responsive as={Segment} {...Responsive.onlyLargeScreen}>
         <Menu.Item as={Link} to="/">
           Home
         </Menu.Item>
@@ -124,6 +138,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             Sign Up
           </Menu.Item> */}
         </Menu.Menu>
+      </Responsive>
+      </Segment.Group>
       </React.Fragment>
     )}
   </Menu>
