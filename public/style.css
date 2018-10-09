@@ -80,6 +80,7 @@ form div {
   margin: 0 auto;
   padding: 75px 0;
   min-height: 100%;
+  z-index: 1;
 }
 
 p {
