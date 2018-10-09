@@ -1,4 +1,4 @@
-import {addDays, lastDayOfYear} from 'date-fns'
+import {addDays, lastDayOfYear, differenceInCalendarDays} from 'date-fns'
 
 import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
@@ -6,7 +6,7 @@ import {withRouter} from 'react-router-dom'
 
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
-// import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 import DateFnsUtils from 'material-ui-pickers/utils/date-fns-utils'
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider'
@@ -14,6 +14,7 @@ import {InlineDatePicker} from 'material-ui-pickers/DatePicker'
 
 import Checkout from './Checkout'
 import {fetchLatestCampsiteReservation} from '../store/reservation'
+import {formatPrice} from '../utils/formatPrice'
 
 class ReservationForm extends PureComponent {
   START_DATE = lastDayOfYear(new Date())
@@ -50,6 +51,12 @@ class ReservationForm extends PureComponent {
       email
     } = this.state
     const latestDate = addDays(this.props.latestReservation.endTime, 1)
+    const totalCost =
+      this.props.cost *
+      differenceInCalendarDays(
+        this.state.selectedEndDate,
+        this.state.selectedStartDate
+      )
 
     return (
       <Fragment>
@@ -157,13 +164,19 @@ class ReservationForm extends PureComponent {
                 shrink: true
               }}
               inputProps={{
-                min: 1
+                min: 1,
+                max: 10
               }}
               margin="normal"
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12}>
+            <Typography variant="display2" component="h2">
+              {`Total Cost = ${formatPrice(totalCost)}`}
+            </Typography>
+          </Grid>
+          <Grid item xs={12}>
             <Checkout
               campsiteId={this.props.id}
               startTime={this.state.selectedStartDate}
@@ -172,7 +185,7 @@ class ReservationForm extends PureComponent {
               firstName={this.state.firstName}
               lastName={this.state.lastName}
               email={this.state.email}
-              cost={this.props.cost}
+              totalCost={totalCost}
             />
           </Grid>
         </Grid>

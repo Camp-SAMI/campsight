@@ -3,12 +3,11 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import Button from '@material-ui/core/Button'
 import {withRouter} from 'react-router-dom'
-import {differenceInCalendarDays} from 'date-fns'
 
 class Checkout extends React.Component {
-  // Calculate the total cost of camping
-  totalCost = this.props.cost *
-    differenceInCalendarDays(this.props.endTime, this.props.startTime)
+  state = {
+    reserved: false
+  }
 
   onToken = async (token, address) => {
     try {
@@ -21,12 +20,15 @@ class Checkout extends React.Component {
         lastName: this.props.lastName,
         email: this.props.email,
         address: address,
-        totalCost: this.totalCost,
+        totalCost: this.props.totalCost,
         token: JSON.stringify(token)
       })
       // Use an alert module ...
       console.log('Returned after making a Reservation backend', res.data)
       alert('Please check your email for Order confirmation')
+
+      // Disable reserve button
+      this.setState({reserved: true})
 
       /**
        * Close current modal,
@@ -47,7 +49,7 @@ class Checkout extends React.Component {
         image="https://react.semantic-ui.com/images/avatar/large/matthew.png" // the pop-in header image (default none)
         ComponentClass="div"
         panelLabel="Checkout" // prepended to the amount in the bottom pay button
-        amount={this.totalCost} // cents
+        amount={this.props.totalCost} // cents
         currency="USD"
         stripeKey="pk_test_E0MMENnIPp3UuKcEwdSvVuZ4"
         locale="en"
@@ -72,7 +74,13 @@ class Checkout extends React.Component {
         // useful if you're using React-Tap-Event-Plugin
         // triggerEvent="onTouchTap"
       >
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+          disabled={this.state.reserved}
+        >
           Reserve
         </Button>
       </StripeCheckout>
