@@ -21,8 +21,7 @@ class TicketForm extends Component {
     name: '',
     email: '',
     campsite: '',
-    description: '',
-   
+    description: ''
   }
 
   componentDidMount() {
@@ -55,7 +54,6 @@ class TicketForm extends Component {
       email: '',
       campsite: '',
       content: ''
-  
     }))
   }
 
@@ -79,131 +77,134 @@ class TicketForm extends Component {
 
     return (
       <Fragment>
-      
+        <Grid container direction="column" justify="center" alignItems="center">
           <Grid
             container
             direction="column"
             justify="center"
             alignItems="center"
+            style={styles.gridContainer}
           >
-            <Grid
-              container
-              direction="column"
-              justify="center"
-              alignItems="center"
-              style={styles.gridContainer}
-            >
-              <Card raised style={styles.card}>
-                <Grid direction="column" container alignItems="center" item>
-                  <Typography align="center" variant="display1">
-                    Submit Ticket Form
-                  </Typography>
-                  <form onSubmit={this.onSubmit}>
-                    <FormGroup>
-                      <TextField
-                        name="title"
-                        onChange={this.handleChange}
-                        value={title}
-                        variant="outlined"
-                        label="Title"
-                        style={styles.textFields}
-                      />
-                      <TextField
-                        name="name"
-                        variant="outlined"
-                        value={name}
-                        onChange={this.handleChange}
-                        label="Name"
-                        style={styles.textFields}
-                      />
-                      <TextField
-                        name="email"
-                        variant="outlined"
-                        value={email}
-                        onChange={this.handleChange}
-                        label="Email"
-                        style={styles.textFields}
-                      />
-                      <TextField
-                        name="campsite"
-                        variant="outlined"
-                        value={campsite}
-                        onChange={this.handleChange}
-                        label="Campsite"
-                        style={styles.textFields}
-                      />
-                      <TextField
-                        name="content"
-                        value={content}
-                        variant="outlined"
-                        onChange={this.handleChange}
-                        multiline
-                        rows="4"
-                        label="Content"
-                        style={styles.textFields}
-                      />
-                      <Grid container alignItems="center" direction="column">
-                        <Grid
-                          direction="row"
-                          justify="space-evenly"
-                          alignItems="center"
-                          spacing={16}
-                          container
-                        >
-                          <Grid item>
-                            <Button
-                              style={styles.smButton}
-                              variant="raised"
-                              color="primary"
-                              onClick={this.clearForm}
-                            >
-                              Clear Form
-                            </Button>
-                          </Grid>
-                          <Grid item>
-                            <Button
-                              style={styles.smButton}
-                              variant="raised"
-                              color="primary"
-                              onClick={this.toggle}
-                            >
-                              Camera
-                            </Button>
-                          </Grid>
+            <Card raised style={styles.card}>
+              <Grid direction="column" container alignItems="center" item>
+                <Typography align="center" variant="display1">
+                  Submit Ticket Form
+                </Typography>
+                <form onSubmit={this.onSubmit}>
+                  <FormGroup>
+                    <TextField
+                      name="title"
+                      onChange={this.handleChange}
+                      value={title}
+                      variant="outlined"
+                      label="Title"
+                      style={styles.textFields}
+                    />
+                    <TextField
+                      name="name"
+                      variant="outlined"
+                      value={name}
+                      onChange={this.handleChange}
+                      label="Name"
+                      style={styles.textFields}
+                    />
+                    <TextField
+                      name="email"
+                      variant="outlined"
+                      value={email}
+                      onChange={this.handleChange}
+                      label="Email"
+                      style={styles.textFields}
+                    />
+                    <TextField
+                      name="campsite"
+                      variant="outlined"
+                      value={campsite}
+                      onChange={this.handleChange}
+                      label="Campsite"
+                      style={styles.textFields}
+                    />
+                    <TextField
+                      name="content"
+                      value={content}
+                      variant="outlined"
+                      onChange={this.handleChange}
+                      multiline
+                      rows="4"
+                      label="Content"
+                      style={styles.textFields}
+                    />
+                    <Grid container alignItems="center" direction="column">
+                      <Grid
+                        direction="row"
+                        justify="space-evenly"
+                        alignItems="center"
+                        spacing={16}
+                        container
+                      >
+                        <Grid item>
+                          <Button
+                            style={styles.smButton}
+                            variant="raised"
+                            color="primary"
+                            onClick={this.clearForm}
+                          >
+                            Clear Form
+                          </Button>
                         </Grid>
+                        <Grid item>
+                          <Button
+                            style={styles.smButton}
+                            variant="raised"
+                            color="primary"
+                            onClick={this.toggle}
+                          >
+                            Camera
+                          </Button>
+                        </Grid>
+                      </Grid>
+                      <Grid justify="center" alignContent="center" container>
+                      <Grid item>
                         <Modal
+                          style={{
+                            height: 65,
+                            justifyContent: 'center',
+                            alignContent: 'center'
+                          }}
                           trigger={
-                        <Button
-                          variant="raised"
-                          style={styles.button}
-                          color="primary"
-                          type="submit"
-                        >
-                          Submit Form
-                        </Button>
-                           
+                            <Button
+                              variant="raised"
+                              style={styles.button}
+                              color="primary"
+                              type="submit"
+                            >
+                              Submit Form
+                            </Button>
                           }
                         >
                           <Modal.Content>
                             <HelpSubSuccess />
                           </Modal.Content>
                         </Modal>
-                       <img className='ui image' src={this.props.cameraData.selectedPic}/> 
+                        </Grid>
                       </Grid>
-                    </FormGroup>
-                  </form>
-                </Grid>
-              </Card>
-            </Grid>
+                      <img
+                        className="ui image"
+                        src={this.props.cameraData.selectedPic}
+                      />
+                    </Grid>
+                  </FormGroup>
+                </form>
+              </Grid>
+            </Card>
           </Grid>
-        
+        </Grid>
       </Fragment>
     )
   }
 }
 
 const mapState = ({cameraData, ticketForm}) => {
-  console.log(cameraData, 'cameradata ----------------------------------------------------')
   return {
     cameraData,
     ticketForm

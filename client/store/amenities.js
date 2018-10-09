@@ -2,12 +2,18 @@ import axios from 'axios';
 
 //ACTION TYPES
 const GET_AMENITIES = 'GET_AMENITIES';
+const GOT_SELECTED_AMENITIES = 'GET_SELECTED_AMENITIES'
 
 //ACTION CREATORS
 const getAmenities = amenities => ({
     type: GET_AMENITIES,
     amenities
 });
+
+const gotSelectedAmenities = id =>({
+    type: GOT_SELECTED_AMENITIES,
+    data
+})
 
 //REDUCER
 export default function reducer(amenities = [], action) {
@@ -25,5 +31,12 @@ export const fetchAmenities = () => {
         const res = await axios.get('/api/amenities');
         // console.log('data', res.data);
         dispatch(getAmenities(res.data));
+    }
+}
+
+export const getSelectedAmenities = id => {
+    return async (dispatch)=>{
+        const {data} = await axios.get(`/api/amenities/${id}`)
+        dispatch(gotSelectedAmenities(data))
     }
 }

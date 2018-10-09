@@ -6,7 +6,7 @@ import {logout} from '../store'
 import {Menu} from 'semantic-ui-react'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <Menu inverted attached="top" stackable style={{height: 60}}>
+  <Menu className='navBar' inverted attached="top" stackable style={{height: 60}}>
     {isLoggedIn ? (
       <React.Fragment>
         {/* The navbar will show these links after you log in */}
