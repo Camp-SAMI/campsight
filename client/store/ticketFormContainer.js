@@ -32,7 +32,7 @@ export function ticketForm(ticketFormData = {}, action) {
 export function cameraData(camera = {}, action) {
   switch (action.type) {
     case SET_CAMERA_DATA:
-      console.log(action.cameraData, 'camera data')
+      // console.log(action.cameraData, 'camera data')
       return action.cameraData
     default:
       return camera

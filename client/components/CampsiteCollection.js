@@ -41,7 +41,11 @@ class CampsiteCollection extends Component {
                 }
               >
                 <Modal.Content>
-                  <CampsiteDetail id={campsite.id} />
+                  <CampsiteDetail
+                    id={campsite.id}
+                    filteredStartTime={this.props.filteredStartTime}
+                    filteredEndTime={this.props.filteredEndTime}
+                  />
                 </Modal.Content>
               </Modal>
             </Grid.Column>

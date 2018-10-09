@@ -31,9 +31,11 @@ export default function reducer(ticket = {}, action) {
 export const createTicket = form => {
   return async dispatch => {
     try {
-      const data = await axios.post('/api/tickets', form)
+      const {data} = await axios.post('/api/tickets', form)
+      dispatch(getTicket(data))
     } catch (err) {
       console.log(err)
+      dispatch(getTicketError())
     }
   }
 }
@@ -41,7 +43,6 @@ export const createTicket = form => {
 export const fetchTicket = id => {
   return async dispatch => {
     try {
-      // console.log(id, 'fetchTicket----------------------')
       const res = await axios.get(`/api/tickets/${id}`)
       dispatch(getTicket(res.data))
     } catch (err) {
