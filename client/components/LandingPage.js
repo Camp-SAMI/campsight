@@ -156,7 +156,7 @@ class LandingPage extends Component {
     } = this.props
 
     const {contextRef} = this.state
-    console.log(this.state.contextRef, 'contextRef ----------------------')
+    // console.log(this.state.contextRef, 'contextRef ----------------------')
     return (
       <div className="MainContainer">
         <div className="ParallaxContainer">{/* <h1>Aloha!</h1> */}</div>
