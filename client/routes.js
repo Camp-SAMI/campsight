@@ -34,7 +34,6 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
-        <Route path="/dashboard" component={AdminDashboard} />
         <Route path="/ticketform" component={TicketFormContainer} />
         <Route path="/reservations" component={Reservations} />
         <Route path="/tickets" component={TicketList} />

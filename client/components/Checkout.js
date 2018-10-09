@@ -3,16 +3,13 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import Button from '@material-ui/core/Button'
 import {withRouter} from 'react-router-dom'
-import {differenceInCalendarDays} from 'date-fns'
 
 class Checkout extends React.Component {
+  state = {
+    reserved: false
+  }
+
   onToken = async (token, address) => {
-    // Calculate the total cost of camping
-    const totalCost =
-      this.props.cost *
-      differenceInCalendarDays(this.props.endTime, this.props.startTime)
-    console.log('The total cost is =>', this.totalCost)
-    // Call Axios ...
     try {
       const res = await axios.post(`/api/reservations`, {
         campsiteId: this.props.campsiteId,
@@ -23,14 +20,21 @@ class Checkout extends React.Component {
         lastName: this.props.lastName,
         email: this.props.email,
         address: address,
-        totalCost,
+        totalCost: this.props.totalCost,
         token: JSON.stringify(token)
       })
       // Use an alert module ...
       console.log('Returned after making a Reservation backend', res.data)
       alert('Please check your email for Order confirmation')
 
-      // Redirect to home page.
+      // Disable reserve button
+      this.setState({reserved: true})
+
+      /**
+       * Close current modal,
+       * Trigger next modal with Reservation summary
+       * Close Reservation Summmary modal
+       */
       this.props.history.push(`/`)
     } catch (err) {
       console.error(err)
@@ -45,7 +49,7 @@ class Checkout extends React.Component {
         image="https://react.semantic-ui.com/images/avatar/large/matthew.png" // the pop-in header image (default none)
         ComponentClass="div"
         panelLabel="Checkout" // prepended to the amount in the bottom pay button
-        amount={this.totalCost} // cents
+        amount={this.props.totalCost} // cents
         currency="USD"
         stripeKey="pk_test_E0MMENnIPp3UuKcEwdSvVuZ4"
         locale="en"
@@ -70,7 +74,13 @@ class Checkout extends React.Component {
         // useful if you're using React-Tap-Event-Plugin
         // triggerEvent="onTouchTap"
       >
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+          disabled={this.state.reserved}
+        >
           Reserve
         </Button>
       </StripeCheckout>
