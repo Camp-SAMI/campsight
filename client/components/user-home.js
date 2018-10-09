@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Container, Divider} from 'semantic-ui-react'
+import {Grid} from 'semantic-ui-react'
 import AdminSidebar from './AdminSidebar'
 
 /**
@@ -9,14 +9,19 @@ import AdminSidebar from './AdminSidebar'
  */
 export const UserHome = props => {
   const {email} = props
-
+  const bob = false
+  const stan = true
   return (
-    <Fragment>
-      <div style={styles.div}>
-        <AdminSidebar style={{position: 'relative'}} />
-      </div>
-      <h3>Welcome, {email}</h3>
-    </Fragment>
+    <Grid>
+      <Grid.Column width={2}>
+        <div style={styles.div}>
+          <AdminSidebar />
+        </div>
+      </Grid.Column>
+      <Grid.Column width={12}>
+        <h1>HELLO WORLD</h1>
+      </Grid.Column>
+    </Grid>
   )
 }
 
@@ -41,6 +46,7 @@ UserHome.propTypes = {
 /**STYLES */
 const styles = {
   div: {
-    height: '100vh'
+    height: '100vh',
+    marginTop: -2
   }
 }

@@ -13,15 +13,15 @@ class AdminSidebar extends Component {
   }
   render() {
     return (
-      <Sidebar.Pushable>
-        <Sidebar
+      // <div>
+      <Menu style={styles.div}>
+        <Menu.Menu
           as={Menu}
           animation="overlay"
           icon="labeled"
           inverted
           vertical
-          visible
-          width="thin"
+          color="teal"
         >
           <Menu.Item href="/campers">
             <Icon name="users" />
@@ -42,9 +42,22 @@ class AdminSidebar extends Component {
             <Icon name="image outline" />
             Campsites
           </Menu.Item>
-        </Sidebar>
-      </Sidebar.Pushable>
+          <Menu.Item>
+            <Icon name="line graph" />
+            Analitics
+          </Menu.Item>
+        </Menu.Menu>
+      </Menu>
+      // </div>
     )
+  }
+}
+
+const styles = {
+  div: {
+    height: '100%',
+    backgroundColor: '#1CB5AC',
+    width: '10%'
   }
 }
 
