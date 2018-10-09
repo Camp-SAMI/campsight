@@ -70,7 +70,7 @@ form div {
 .ContentContainer {
   position: relative;
   display: block;
-  background-color: rgb(232, 236, 239);
+  background-color: whitesmoke;
   /* background-image: linear-gradient(rgb(54, 61, 71), rgb(135, 151, 163)); */
   z-index: 1;
 }
@@ -80,6 +80,7 @@ form div {
   margin: 0 auto;
   padding: 75px 0;
   min-height: 100%;
+  z-index: 1;
 }
 
 p {
@@ -96,14 +97,14 @@ p {
   justify-content: center;
   align-items: center;
   transform: translateZ(-1px) scale(2);
-  background: url('/image4.png');
+  background: url('/image6.jpg');
   /* background-color: rgb(250, 228, 216); */
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
-.submenu {
-  background-color: aquamarine;
+.mapBox {
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 /* dark-gary-blue */
@@ -112,44 +113,44 @@ p {
 /* rgb(70, 82, 99) */
 
 /* tents */
-/* https://cdn.muenchen-p.de/.imaging/stk/responsive/image980/dms/lhm/tourismus/camping-l/document/camping-l.jpg */
-/* http://s3.amazonaws.com/ncc-ccn/images/_cardWide/camping-card.jpg?mtime=20170425165109 */
-/* https://media-cdn.tripadvisor.com/media/photo-s/0d/71/ff/2c/oloiden-camping-grounds.jpg */
-/* https://sabtusore.com/wp-content/uploads/2017/10/camping-tourist.jpg */
-/* https://www.volcanohuts.com/images/accommodation/21835_295299363154_294919853154_3480307_3300667_n-1.jpe */
-/* https://media-cdn.tripadvisor.com/media/photo-s/0e/3d/60/df/camping-grounds.jpg */
-/* https://idsb.tmgrup.com.tr/2015/07/10/HaberDetay/1436552118171.jpg */
-/* http://unl-sd.org/img/new-forest-dating-services.jpg */
-/* https://images.dnr.state.mn.us/destinations/state_forests/state-forest_garrison-lake-banner.jpg */
-/* http://50campfires.com/wp-content/uploads/2014/04/tent2-620x330.jpg */
+/* ------https://cdn.muenchen-p.de/.imaging/stk/responsive/image980/dms/lhm/tourismus/camping-l/document/camping-l.jpg ---------- */
+/* ----------http://s3.amazonaws.com/ncc-ccn/images/_cardWide/camping-card.jpg?mtime=20170425165109 */
+/* -----------https://media-cdn.tripadvisor.com/media/photo-s/0d/71/ff/2c/oloiden-camping-grounds.jpg */
+/* ---------https://sabtusore.com/wp-content/uploads/2017/10/camping-tourist.jpg */
+/* ----------------https://www.volcanohuts.com/images/accommodation/21835_295299363154_294919853154_3480307_3300667_n-1.jpe */
+/* ---------------https://media-cdn.tripadvisor.com/media/photo-s/0e/3d/60/df/camping-grounds.jpg */
+/* ---------------https://idsb.tmgrup.com.tr/2015/07/10/HaberDetay/1436552118171.jpg */
+/* --------------http://unl-sd.org/img/new-forest-dating-services.jpg */
+/* --------------https://images.dnr.state.mn.us/destinations/state_forests/state-forest_garrison-lake-banner.jpg */
+/* ----------------http://50campfires.com/wp-content/uploads/2014/04/tent2-620x330.jpg */
 
 /* other images */
-/* https://vtstateparks.com/assets/images/branbury-tent-site.jpg */
-/* https://www.nps.gov/maca/planyourvisit/images/MapleSpringsCampground-Campsite.jpg?maxwidth=1200&maxheight=1200&autorotate=false */
-/* https://www.visitstaugustine.com/sites/default/files/styles/large/public/taxonomy/faver_dykes_st_augustine_florida.jpg */
-/* https://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5302302.jpg */
-/* https://www.outsideonline.com/sites/default/files/styles/img_948x622/public/2017/05/05/best-car-camping-tents-dusk-campsite_h.jpg?itok=Fd-Vh4hw */
-/* https://mnresortsandcampgrounds.com/wp-content/uploads/2017/08/lake12-400x282.jpg */
-/* https://media-cdn.tripadvisor.com/media/photo-s/06/72/ff/26/koa-kampgrounds.jpg */
-/* https://wisconsinstateparks.reserveamerica.com/webphotos/WI/pid60026/0/540x360.jpg */
-/* https://www.co.sauk.wi.us/sites/default/files/styles/gallery500/public/imageattachments/environmental-health/page/1874/camp-1163419_1280.jpg?itok=TW_uOZmR */
-/* https://cdnstep-americantownscom.netdna-ssl.com/img/article/wi-backpack-camping-1.jpg */
+/* -----https://vtstateparks.com/assets/images/branbury-tent-site.jpg */
+/* -----https://www.nps.gov/maca/planyourvisit/images/MapleSpringsCampground-Campsite.jpg?maxwidth=1200&maxheight=1200&autorotate=false */
+/* -------https://www.visitstaugustine.com/sites/default/files/styles/large/public/taxonomy/faver_dykes_st_augustine_florida.jpg */
+/* --------https://www.fs.usda.gov/Internet/FSE_MEDIA/stelprdb5302302.jpg */
+/* --------https://www.outsideonline.com/sites/default/files/styles/img_948x622/public/2017/05/05/best-car-camping-tents-dusk-campsite_h.jpg?itok=Fd-Vh4hw */
+/* --------https://mnresortsandcampgrounds.com/wp-content/uploads/2017/08/lake12-400x282.jpg */
+/* ------https://media-cdn.tripadvisor.com/media/photo-s/06/72/ff/26/koa-kampgrounds.jpg */
+/* -------https://wisconsinstateparks.reserveamerica.com/webphotos/WI/pid60026/0/540x360.jpg */
+/* --------https://www.co.sauk.wi.us/sites/default/files/styles/gallery500/public/imageattachments/environmental-health/page/1874/camp-1163419_1280.jpg?itok=TW_uOZmR */
+/* ---------https://cdnstep-americantownscom.netdna-ssl.com/img/article/wi-backpack-camping-1.jpg */
 
 /* campers */
-/* https://www.kennedypark.co.nz/assets/Uploads/powered-site.jpg */
-/* https://camperrevamper.files.wordpress.com/2010/10/red_shasta.jpg */
-/* https://s3.amazonaws.com/images.gearjunkie.com/uploads/2017/03/woolrich-campers-woods.jpg */
-/* http://www.southsidervoice.com/uploads/1/8/6/1/18619172/ssv-campers-cummings-2_orig.jpg */
+/* ------https://www.kennedypark.co.nz/assets/Uploads/powered-site.jpg */
+/* ------https://camperrevamper.files.wordpress.com/2010/10/red_shasta.jpg */
+/* -------https://s3.amazonaws.com/images.gearjunkie.com/uploads/2017/03/woolrich-campers-woods.jpg */
+/* ------http://www.southsidervoice.com/uploads/1/8/6/1/18619172/ssv-campers-cummings-2_orig.jpg */
 /* https://c1.staticflickr.com/5/4360/37100418336_deaba61820_b.jpg */
 
 /* cabins */
-/* http://grapevinelogcabins.com/images/home.collage3.jpg */
-/* http://www.bnblist.com/ohio-bed-and-breakfast-directory/cabin-at-glenking-bed-and-breakfast-minerva-ohio/cabin_spring.JPG */
-/* https://ididaride.com/wp-content/uploads/2017/06/adobe-cpl-cabins-1-e1497671704746.jpg */
-/* https://lh3.googleusercontent.com/-0QcDUBgagI8/V8lrXsaaGaI/AAAAAAAAAE4/RaunM_4wqcMG8sJGl2u9xjT_AJfa5qv4gCLIB/w500-h500-k/ */
-/* https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Fwww.sunset.com%2Fwp-content%2Fuploads%2Fe432198a38f38ffaf05aa80378d6131b-800x0-c-default.jpg&w=700&q=85 */
-/* https://cdn.narcity.com/u/2018/04/19/8b0b06682d46e1da05dcee639998bc45ac916847.jpg_1200x630.jpg */
-/* http://www.lazylanecabins.com/images/campingcabins/Camping_Cabins1.jpg */
-/* https://media-cdn.tripadvisor.com/media/photo-s/06/90/27/f0/forest-hill-motel-cottages.jpg */
-/* https://mostateparks.com/sites/mostateparks/files/Twain%20SP%20cabin%20exterior.jpg */
-/* http://www.gocampingamerica.com/sites/gocampingamerica.com/files/images/camping_cabin.jpg */
+/* --------http://grapevinelogcabins.com/images/home.collage3.jpg */
+/* ------------http://www.bnblist.com/ohio-bed-and-breakfast-directory/cabin-at-glenking-bed-and-breakfast-minerva-ohio/cabin_spring.JPG */
+/* -------https://ididaride.com/wp-content/uploads/2017/06/adobe-cpl-cabins-1-e1497671704746.jpg */
+/* --------https://lh3.googleusercontent.com/-0QcDUBgagI8/V8lrXsaaGaI/AAAAAAAAAE4/RaunM_4wqcMG8sJGl2u9xjT_AJfa5qv4gCLIB/w500-h500-k/ */
+/* ------------https://imagesvc.timeincapp.com/v3/mm/image?url=https%3A%2F%2Fwww.sunset.com%2Fwp-content%2Fuploads%2Fe432198a38f38ffaf05aa80378d6131b-800x0-c-default.jpg&w=700&q=85 */
+/* -------https://cdn.narcity.com/u/2018/04/19/8b0b06682d46e1da05dcee639998bc45ac916847.jpg_1200x630.jpg */
+/* -----------ttp://www.lazylanecabins.com/images/campingcabins/Camping_Cabins1.jpg */
+/* ---------https://media-cdn.tripadvisor.com/media/photo-s/06/90/27/f0/forest-hill-motel-cottages.jpg */
+/* -------https://mostateparks.com/sites/mostateparks/files/Twain%20SP%20cabin%20exterior.jpg */
+/* --------http://www.gocampingamerica.com/sites/gocampingamerica.com/files/images/camping_cabin.jpg */

@@ -46,6 +46,7 @@
     "express": "^4.16.3",
     "express-session": "^1.15.1",
     "history": "^4.6.3",
+    "jw-react-pagination": "^1.0.7",
     "lodash": "^4.17.11",
     "material-ui-pickers": "^1.0.0-rc.17",
     "moment": "^2.22.2",

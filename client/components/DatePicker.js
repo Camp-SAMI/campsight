@@ -31,7 +31,7 @@ export default class DatePicker extends Component {
       <Form style={{marginRight: 20, marginTop: 10}}>
         <DateInput
           dateFormat="MM-DD-YYYY"
-          placeholder="startTime"
+          placeholder="Start Time"
           name="startTime"
           value={this.state.startTime}
           iconPosition="left"
@@ -42,7 +42,7 @@ export default class DatePicker extends Component {
         />
         <DateInput
           dateFormat="MM-DD-YYYY"
-          placeholder="endTime"
+          placeholder="End Time"
           name="endTime"
           value={this.state.endTime}
           iconPosition="left"

@@ -22,7 +22,6 @@ const campsiteReservationsQuantity = 2000
 const numberOfCampers = 2000
 const numberOfCampsites = 214
 
-
 chance.mixin({
   camper: () => ({
     firstName: chance.first(),
@@ -48,18 +47,18 @@ for (let i = 0; i < numberOfCampers; i++) {
 
 const reservations = []
 for (let i = 0; i < reservationQuantity; i++) {
-  
   const startTimeRes = chance.date({year: 2018})
-
+  console.log(startTimeRes)
   const days = chance.integer({min: 1, max: 14})
   startTimeRes.addDays = function() {
     startTimeRes.setDate(startTimeRes.getDate() + days)
     return startTimeRes
   }
 
-  console.log('days', days);
-  const endTime = new Date(startTimeRes);
-  endTime.setDate(startTimeRes.getDate() + days);
+
+  const endTime = new Date(startTimeRes)
+  endTime.setDate(startTimeRes.getDate() + days)
+
 
   chance.mixin({
     reservation: () => ({
@@ -89,15 +88,18 @@ for (let i = 0; i < campsiteResIdCreator.length; i++) {
   })
 }
 
-const numberOfCampsitesArray = chance.unique(chance.integer, numberOfCampsites, {min:1,max: numberOfCampsites})
+const numberOfCampsitesArray = chance.unique(
+  chance.integer,
+  numberOfCampsites,
+  {min: 1, max: numberOfCampsites}
+)
 const campsiteAmenitiesArray = []
-for (let i = 0; i < numberOfCampsitesArray.length; i++){
+for (let i = 0; i < numberOfCampsitesArray.length; i++) {
   campsiteAmenitiesArray.push({
-     amenityId: chance.integer({min: 1, max: 3}),
-     campsiteId: numberOfCampsitesArray[i]
+    amenityId: chance.integer({min: 1, max: 3}),
+    campsiteId: numberOfCampsitesArray[i]
   })
 }
-
 
 async function seed() {
   await db.sync({force: true})
@@ -113,6 +115,11 @@ async function seed() {
   await Reservation.bulkCreate(reservations)
   await campsiteReservations.bulkCreate(campsiteReservationsArray)
   await campsiteAmenities.bulkCreate(campsiteAmenitiesArray)
+  await User.create({
+    email: 'admin@admin.com',
+    password: '1234',
+    isAdmin: true
+  })
 
   console.log(`seeded successfully`)
 }
