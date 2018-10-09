@@ -1,5 +1,5 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux'
-import { createSelector } from 'reselect';
+import {createSelector} from 'reselect'
 import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
@@ -14,7 +14,12 @@ import campers from './campers'
 import camper from './camper'
 import ticket from './ticket'
 import tickets from './tickets'
-import {toggleCameraReducer,cameraData,ticketForm} from './ticketFormContainer'
+import {
+  toggleCameraReducer,
+  cameraData,
+  ticketForm
+} from './ticketFormContainer'
+import itinerary from './itinerary'
 
 const reducer = combineReducers({
   amenities,
@@ -30,22 +35,24 @@ const reducer = combineReducers({
   tickets,
   toggleCameraReducer,
   cameraData,
-  ticketForm
+  ticketForm,
+  itinerary
 })
 
-export const selectTicketsList = (state) => state.tickets;
+export const selectTicketsList = state => state.tickets
 
-export const getUnassignedTickets = createSelector(selectTicketsList,
-  (ticketList) => ticketList.filter(t => t.priority === 'null')
-);
+export const getUnassignedTickets = createSelector(
+  selectTicketsList,
+  ticketList => ticketList.filter(t => t.priority === 'null')
+)
 
-export const getClosedTickets = createSelector(selectTicketsList,
-  (ticketList) => ticketList.filter(t => t.status === 'close')
-);
+export const getClosedTickets = createSelector(selectTicketsList, ticketList =>
+  ticketList.filter(t => t.status === 'close')
+)
 
-export const getOpenTickets = createSelector(selectTicketsList,
-  (ticketList) => ticketList.filter(t => t.status !== 'close' && t.priority !== 'null')
-);
+export const getOpenTickets = createSelector(selectTicketsList, ticketList =>
+  ticketList.filter(t => t.status !== 'close' && t.priority !== 'null')
+)
 
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
