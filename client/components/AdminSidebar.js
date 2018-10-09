@@ -9,7 +9,6 @@ class AdminSidebar extends Component {
   }
 
   handleClick(event) {
-    console.log('EVENT', event.value)
     this.props.history.push(`/${event.value}`)
   }
   render() {
