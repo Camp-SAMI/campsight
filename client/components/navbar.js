@@ -6,12 +6,21 @@ import {logout} from '../store'
 import {Menu} from 'semantic-ui-react'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <Menu className='navBar' inverted attached="top" stackable style={{height: 60}}>
+  <Menu
+    className="navBar"
+    inverted
+    attached="top"
+    stackable
+    style={{height: 60}}
+  >
     {isLoggedIn ? (
       <React.Fragment>
         {/* The navbar will show these links after you log in */}
-        <Menu.Item as={Link} to="/home">
+        <Menu.Item as={Link} to="/">
           Home
+        </Menu.Item>
+        <Menu.Item as={Link} to="/home">
+          Dashboard
         </Menu.Item>
         <Menu.Item as="a" to="#" onClick={handleClick}>
           Logout
@@ -19,9 +28,10 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <Menu.Item as={Link} to="/home">
-          Dashboard
+        <Menu.Item as={Link} to="/">
+          Home
         </Menu.Item>
+
         <Menu.Menu position="right">
           {/* The navbar will show these links before you log in */}
           {/* <Menu.Item as={Link} to="/home">
