@@ -3,15 +3,51 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-import {Menu} from 'semantic-ui-react'
+import {
+  Menu,
+  Dropdown,
+  Responsive,
+  Button,
+  Segment,
+  Icon
+} from 'semantic-ui-react'
+
+// const DropdownExampleDivider = () => (
+//   <Dropdown
+//     text="Menu"
+//     icon="align justify"
+//     floating
+//     labeled
+//     button
+//     className="icon"
+//   >
+//     <Dropdown.Menu>
+//       <Dropdown.Header icon="tags" content="Filter by tag" />
+//       <Dropdown.Divider />
+//       <Dropdown.Item>Important</Dropdown.Item>
+//       <Dropdown.Item>Announcement</Dropdown.Item>
+//       <Dropdown.Item>Discussion</Dropdown.Item>
+//     </Dropdown.Menu>
+//   </Dropdown>
+// )
 
 const Navbar = ({handleClick, isLoggedIn}) => (
-  <Menu inverted attached="top" stackable style={{height: 60}}>
+  <Menu
+    className="navBar"
+    inverted
+    color="teal"
+    attached="top"
+    stackable
+    style={{height: 60}}
+  >
     {isLoggedIn ? (
       <React.Fragment>
         {/* The navbar will show these links after you log in */}
-        <Menu.Item as={Link} to="/home">
+        <Menu.Item as={Link} to="/">
           Home
+        </Menu.Item>
+        <Menu.Item as={Link} to="/home">
+          Dashboard
         </Menu.Item>
         <Menu.Item as="a" to="#" onClick={handleClick}>
           Logout
@@ -19,8 +55,32 @@ const Navbar = ({handleClick, isLoggedIn}) => (
       </React.Fragment>
     ) : (
       <React.Fragment>
-        <Menu.Item as={Link} to="/home">
-          Dashboard
+        <Segment.Group>
+          <Responsive as={Segment} {...Responsive.onlyMobile}>
+            <Menu
+              style={{
+                margin: -20,
+                padding: 0,
+                backgroundColor: 'black',
+                color: 'white'
+              }}
+            >
+              <Dropdown className="link item" text="Menu" simple item>
+                <Dropdown.Menu
+                  style={{backgroundColor: 'black', color: 'white'}}
+                >
+                  <Dropdown.Item
+                    style={{backgroundColor: 'black', color: 'white'}}
+                  >
+                    <Link to="/TicketForm">Guest Help Form</Link>
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Menu>
+          </Responsive>
+        </Segment.Group>
+        <Menu.Item as={Link} to="/">
+          Home
         </Menu.Item>
         <Menu.Menu position="right">
           {/* The navbar will show these links before you log in */}

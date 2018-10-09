@@ -10,8 +10,14 @@ class Amenities extends Component {
   }
 
   render() {
-    const {amenities, onAmenitiesChange } = this.props
-    const amenityItems = amenities.map(function(amenity) { return {key: amenity.category, text: amenity.category, value: amenity.category} } );
+    const {amenities, onAmenitiesChange} = this.props
+    const amenityItems = amenities.map(function(amenity) {
+      return {
+        key: amenity.category,
+        text: amenity.category,
+        value: amenity.category
+      }
+    })
     // const amenities = [
     //   {key: 'meteor', text: 'Meteor', value: 'meteor'},
     //   {key: 'node', text: 'NodeJS', value: 'node'},
@@ -32,8 +38,6 @@ class Amenities extends Component {
         multiple
         selection
         options={amenityItems}
-        simple
-        item
         onChange={onAmenitiesChange}
       />
     )

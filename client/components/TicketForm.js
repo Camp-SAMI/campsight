@@ -163,22 +163,31 @@ class TicketForm extends Component {
                           </Button>
                         </Grid>
                       </Grid>
-                      <Modal
-                        trigger={
-                          <Button
-                            variant="raised"
-                            style={styles.button}
-                            color="primary"
-                            type="submit"
+                      <Grid justify="center" alignContent="center" container>
+                        <Grid item>
+                          <Modal
+                            style={{
+                              height: 65,
+                              justifyContent: 'center',
+                              alignContent: 'center'
+                            }}
+                            trigger={
+                              <Button
+                                variant="raised"
+                                style={styles.button}
+                                color="primary"
+                                type="submit"
+                              >
+                                Submit Form
+                              </Button>
+                            }
                           >
-                            Submit Form
-                          </Button>
-                        }
-                      >
-                        <Modal.Content>
-                          <HelpSubSuccess />
-                        </Modal.Content>
-                      </Modal>
+                            <Modal.Content>
+                              <HelpSubSuccess />
+                            </Modal.Content>
+                          </Modal>
+                        </Grid>
+                      </Grid>
                       <img
                         className="ui image"
                         src={this.props.cameraData.selectedPic}

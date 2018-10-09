@@ -37,7 +37,7 @@ class MapView extends Component {
   render() {
     const {campsites, campsite} = this.props
     return (
-      <div>
+      <div className="mapContainer">
         <Map
           google={this.props.google}
           initialCenter={{lat: 43.769405, lng: -89.202743}}

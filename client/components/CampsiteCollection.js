@@ -30,16 +30,13 @@ class CampsiteCollection extends Component {
   render() {
     if (this.state.pageOfItems) {
       return (
-        <Grid>
+        <Grid style={{marginLeft: 20}}>
           {this.state.pageOfItems.map(campsite => (
             <Grid.Column key={campsite.id} width={8}>
               <Modal
                 trigger={
                   <div>
-                    <CampsiteBlock
-                      campsite={campsite}
-                      onClick={this.handleOpen}
-                    />
+                    <CampsiteBlock campsite={campsite} />
                   </div>
                 }
               >
