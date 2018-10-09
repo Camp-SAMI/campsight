@@ -4,15 +4,15 @@ import StripeCheckout from 'react-stripe-checkout'
 import Button from '@material-ui/core/Button'
 import {withRouter} from 'react-router-dom'
 import {differenceInCalendarDays} from 'date-fns'
+import {gotItinerary} from '../store/itinerary'
+import {connect} from 'react-redux'
 
 class Checkout extends React.Component {
+  state = {
+    reserved: false
+  }
+
   onToken = async (token, address) => {
-    // Calculate the total cost of camping
-    const totalCost =
-      this.props.cost *
-      differenceInCalendarDays(this.props.endTime, this.props.startTime)
-    console.log('The total cost is =>', this.totalCost)
-    // Call Axios ...
     try {
       const res = await axios.post(`/api/reservations`, {
         campsiteId: this.props.campsiteId,
@@ -23,15 +23,15 @@ class Checkout extends React.Component {
         lastName: this.props.lastName,
         email: this.props.email,
         address: address,
-        totalCost,
+        totalCost: this.props.totalCost,
         token: JSON.stringify(token)
       })
       // Use an alert module ...
       console.log('Returned after making a Reservation backend', res.data)
-      alert('Please check your email for Order confirmation')
+      // alert('Please check your email for Order confirmation')
+      this.props.gotItinerary(res.data)
 
-      // Redirect to home page.
-      this.props.history.push(`/`)
+      this.props.history.push(`/itinerary`)
     } catch (err) {
       console.error(err)
     }
@@ -45,7 +45,7 @@ class Checkout extends React.Component {
         image="https://react.semantic-ui.com/images/avatar/large/matthew.png" // the pop-in header image (default none)
         ComponentClass="div"
         panelLabel="Checkout" // prepended to the amount in the bottom pay button
-        amount={this.totalCost} // cents
+        amount={this.props.totalCost} // cents
         currency="USD"
         stripeKey="pk_test_E0MMENnIPp3UuKcEwdSvVuZ4"
         locale="en"
@@ -70,7 +70,13 @@ class Checkout extends React.Component {
         // useful if you're using React-Tap-Event-Plugin
         // triggerEvent="onTouchTap"
       >
-        <Button variant="contained" color="primary">
+        <Button
+          variant="contained"
+          color="primary"
+          size="large"
+          fullWidth
+          disabled={this.state.reserved}
+        >
           Reserve
         </Button>
       </StripeCheckout>
@@ -78,4 +84,7 @@ class Checkout extends React.Component {
   }
 }
 
-export default withRouter(Checkout)
+const mapDispatchToProps = dispatch => ({
+  gotItinerary: itinerary => dispatch(gotItinerary(itinerary))
+})
+export default connect(null, mapDispatchToProps)(withRouter(Checkout))

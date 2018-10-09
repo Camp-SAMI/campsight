@@ -101,14 +101,14 @@ for (let i = 0; i < numberOfCampsitesArray.length; i++){
 
 async function seed() {
   await db.sync({force: true})
-  await Campsite.bulkCreate(camperSites)
-  await Campsite.bulkCreate(tentSites)
-  await Campsite.bulkCreate(cabinSites)
   await Amenity.bulkCreate([
     {category: 'Power'},
     {category: 'Sewege'},
     {category: 'water'}
   ])
+  await Campsite.bulkCreate(camperSites)
+  await Campsite.bulkCreate(tentSites)
+  await Campsite.bulkCreate(cabinSites)
   await Camper.bulkCreate(camper)
   await Reservation.bulkCreate(reservations)
   await campsiteReservations.bulkCreate(campsiteReservationsArray)

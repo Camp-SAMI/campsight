@@ -4,9 +4,6 @@ import { fetchTickets, updateTicketToServer } from '../store/tickets';
 import { fetchTicket } from '../store/ticket';
 import { Divider, Header } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import UnassignedTicketTable from './UnassignedTicketTable';
-import OpenTicketTable from './OpenTicketTable';
-import ClosedTicketTable from './ClosedTicketTable';
 import TicketTable from './TicketTable';
 
 function mapStateToProps(state){
@@ -31,10 +28,12 @@ class TicketList extends Component {
         this.editSubmit = this.editSubmit.bind(this);
     }
     async componentDidMount() {
-        await this.props.fetchTickets();
+        if (this.props.fetchTickets)
+            await this.props.fetchTickets();
     }
 
    editSubmit(ticket, e) {
+        console.log('tick', ticket);
         this.props.updateTicket(ticket);
     }
 
