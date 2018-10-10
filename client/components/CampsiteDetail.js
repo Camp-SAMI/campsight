@@ -14,6 +14,7 @@ import {connect} from 'react-redux'
 import {fetchCampsite} from '../store/campsite'
 import ReservationForm from './ReservationForm'
 import {formatPrice} from '../utils/formatPrice'
+import {chooseAmenityIcon} from '../utils/amenitiesIconChoser'
 // import {fetchLatestCampsiteReservation} from '../store/reservation'
 
 class CampsiteDetail extends Component {
@@ -64,7 +65,9 @@ class CampsiteDetail extends Component {
                       amenities.map(amenity => (
                         <List.Item key={amenity.category}>
                           <List.Icon
-                            name={amenity.category.toLowerCase() || 'bandcamp'}
+                            name={chooseAmenityIcon(
+                              amenity.category.toLowerCase()
+                            )}
                             size="large"
                             verticalAlign="middle"
                           />
