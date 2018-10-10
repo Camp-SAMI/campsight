@@ -24,6 +24,7 @@ import campersToggle from './campersToggle'
 import ticketsToggle from './ticketsToggle'
 import reservationsToggle from './reservationsToggle'
 import campsitesToggle from './campsitesToggle'
+import analiticsToggle from './analiticsToggle'
 
 const reducer = combineReducers({
   amenities,
@@ -44,7 +45,8 @@ const reducer = combineReducers({
   campersToggle,
   ticketsToggle,
   reservationsToggle,
-  campsitesToggle
+  campsitesToggle,
+  analiticsToggle
 })
 
 export const selectTicketsList = state => state.tickets
