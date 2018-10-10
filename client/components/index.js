@@ -30,3 +30,4 @@ export {default as HelpSubSuccess} from './HelpSubSuccess'
 export {default as Itinerary} from './Itinerary'
 export {default as TopCampsitesThisWeek } from './TopCampsitesThisWeek';
 export {default as CampsiteTypeChart } from './CampsiteTypeChart';
+export {default as PriorReservationsChart } from './PriorReservationsChart';
