@@ -38,7 +38,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     color="teal"
     attached="top"
     stackable
-    style={{height: 60}}
+    style={{height: 65}}
   >
     {isLoggedIn ? (
       <React.Fragment>
@@ -118,8 +118,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             </Menu>
           </Responsive>
         </Segment.Group>
-        <Segment.Group>
-         <Responsive as={Segment} {...Responsive.onlyLargeScreen}>
+        {/* <Segment.Group> */}
+         {/* <Responsive as={Segment} {...Responsive.onlyComputer}> */}
         <Menu.Item as={Link} to="/">
           Home
         </Menu.Item>
@@ -138,8 +138,8 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             Sign Up
           </Menu.Item> */}
         </Menu.Menu>
-      </Responsive>
-      </Segment.Group>
+      {/* </Responsive> */}
+      {/* </Segment.Group> */}
       </React.Fragment>
     )}
   </Menu>
