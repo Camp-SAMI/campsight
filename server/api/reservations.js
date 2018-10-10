@@ -9,6 +9,7 @@ const formatPrice = require('../utils/formatPrice')
 router.get('/', async (req, res, next) => {
   try {
     const reservations = await Reservation.findAll({
+      limit: 15,
       include: [{model: Camper}, {model: Campsite}],
       order: [['id', 'DESC']]
     })
