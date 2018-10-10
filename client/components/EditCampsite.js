@@ -45,24 +45,25 @@ class EditCampsite extends Component {
     componentDidMount() {
         this.props.fetchAmenities();
         // await this.props.fetchCampsite(this.props.id);
-        const imagesStr = this.props.images ? this.props.images.join(', ') : '';
+        const imagesStr = this.props.campsite.images ? this.props.campsite.images.join(', ') : '';
         this.setState({
             name: this.props.campsite.name,
             latitude: this.props.campsite.location.coordinates[0],
             longitude: this.props.campsite.location.coordinates[1],
-            coverImage: this.props.coverImage || '',
+            coverImage: this.props.campsite.coverImage || '',
             images: imagesStr,
-            amenities: this.props.amenities,
-            typing: this.props.typing,
-            desc: this.props.desc,
-            cost: this.props.cost
+            amenities: this.props.campsite.amenities,
+            typing: this.props.campsite.typing,
+            desc: this.props.campsite.desc,
+            cost: this.props.campsite.cost
         });
     }
 
     handleChange(e, {name, value}) {
-        this.setState({
+        this.setState(() => ({
             [name]: value
-        });
+        }), () => console.log(this.state));
+        // console.log(this.state);
     }
 
     handleSubmit(event) {
@@ -87,6 +88,7 @@ class EditCampsite extends Component {
 
     render() {
         const { campsite, amenities, editSubmit } = this.props;
+        console.log('campsite', this.campsite);
         const ims = campsite.images ? campsite.images.join(', ') : '';
         const amenityOptions = amenities.map(function(amenity) {
             return { key: amenity.category, value: amenity.category, text: amenity.category }
@@ -133,7 +135,7 @@ class EditCampsite extends Component {
                                 label="Cover Image URL"
                                 name="coverImage"
                                 defaultValue={campsite.coverImage}
-                                onChange={this.onChange}
+                                onChange={this.handleChange}
                             />
                             <Form.Input
                                 fluid
@@ -141,7 +143,7 @@ class EditCampsite extends Component {
                                 label="Image URLs"
                                 name="images"
                                 defaultValue={ims}
-                                onChange={this.onChange}
+                                onChange={this.handleChange}
                             />
                         </Form.Group>
                         <Form.Group widths="equal">
@@ -155,12 +157,12 @@ class EditCampsite extends Component {
                                 simple
                                 item
                                 onChange={this.handleChange}
-                                defaultValue={campsite.amenities}
+                                // defaultValue={campsite.amenities}
                             />
                             <Form.Dropdown
                                 fluid
                                 selection
-                                name="type"
+                                name="typing"
                                 label="Typing"
                                 options={types}
                                 defaultValue={campsite.typing}
