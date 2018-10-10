@@ -8,12 +8,12 @@ const CamperRow = props => {
   return (
     <Table.Row key={camper.id}>
       <Table.Cell>
-        <NavLink to={`/campers/${camper.id}`}>{camper.id}</NavLink>
+        <NavLink to={`/home/campers/${camper.id}`}>{camper.id}</NavLink>
       </Table.Cell>
       <Table.Cell>{camper.firstName}</Table.Cell>
       <Table.Cell>{camper.lastName}</Table.Cell>
       <Table.Cell>
-        <NavLink to={`/campers/${camper.id}`}>{camper.email}</NavLink>
+        <NavLink to={`/home/campers/${camper.id}`}>{camper.email}</NavLink>
       </Table.Cell>
       <Table.Cell>{format(camper.updatedAt, 'MM/dd/yyyy')}</Table.Cell>
     </Table.Row>

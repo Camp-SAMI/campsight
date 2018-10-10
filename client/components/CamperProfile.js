@@ -38,7 +38,7 @@ class CamperProfile extends Component {
                   reservations.map(reservation => (
                     <Table.Row key={reservation.id}>
                       <Table.Cell>
-                        <NavLink to={`reservations/${reservation.id}`}>
+                        <NavLink to={`/reservations/${reservation.id}`}>
                           {reservation.id}
                         </NavLink>
                       </Table.Cell>
@@ -79,10 +79,12 @@ class CamperProfile extends Component {
                   tickets.map(ticket => (
                     <Table.Row key={ticket.id}>
                       <Table.Cell>
-                        <NavLink to={`tickets/${ticket.id}`}>ticket.id</NavLink>
+                        <NavLink to={`/tickets/${ticket.id}`}>
+                          {ticket.id}
+                        </NavLink>
                       </Table.Cell>
                       <Table.Cell>
-                        <NavLink to={`tickets/${ticket.id}`}>
+                        <NavLink to={`/tickets/${ticket.id}`}>
                           {ticket.title}
                         </NavLink>
                       </Table.Cell>
