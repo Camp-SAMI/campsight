@@ -14,7 +14,7 @@ import {
   Divider,
   Header,
   Button,
-  Segment
+  Icon
 } from 'semantic-ui-react'
 import {formatPrice} from '../utils/formatPrice'
 import locationConverter from '../utils/locationConverter'
@@ -109,7 +109,9 @@ export class AdminCampsites extends Component {
             <Fragment>
               <Header as="h2" floated="right">
                 <Button basic color="blue">
-                  <NavLink to="/campsites/add">Add New Campsite</NavLink>
+                  <NavLink to="/campsites/add">
+                    <Icon name="add circle" /> New Campsite
+                  </NavLink>
                 </Button>
               </Header>
               <Divider hidden />
