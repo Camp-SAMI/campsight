@@ -39,7 +39,8 @@ class TopCampsitesThisWeek extends Component {
         return (
             <Container>
                 <Header>Top Ten Most Popular Campsites This Week</Header>
-                <VictoryChart domainPadding={{x: [40, 0]}} >
+                <VictoryChart domainPadding={{x: [40, 0]}} 
+                    animate={{duration: 500}}>
                     <VictoryAxis
                         tickValues={[0,1,2,3,4,5,6,7,8,9]}
                         tickFormat={campsiteNames}
