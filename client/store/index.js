@@ -20,6 +20,10 @@ import {
   ticketForm
 } from './ticketFormContainer'
 import itinerary from './itinerary'
+import campersToggle from './campersToggle'
+import ticketsToggle from './ticketsToggle'
+import reservationsToggle from './reservationsToggle'
+import campsitesToggle from './campsitesToggle'
 
 const reducer = combineReducers({
   amenities,
@@ -36,7 +40,11 @@ const reducer = combineReducers({
   toggleCameraReducer,
   cameraData,
   ticketForm,
-  itinerary
+  itinerary,
+  campersToggle,
+  ticketsToggle,
+  reservationsToggle,
+  campsitesToggle
 })
 
 export const selectTicketsList = state => state.tickets

@@ -1,25 +1,39 @@
 import React, {Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Container, Divider} from 'semantic-ui-react'
+import {Grid} from 'semantic-ui-react'
 import AdminSidebar from './AdminSidebar'
-import TopCampsitesThisWeek from './TopCampsitesThisWeek';
-import Insights from './Insights';
+import CampersList from './CampersList'
+import TicketList from './TicketList'
+import Reservations from './Reservations'
+import AdminCamsites from './AdminCampsites'
+import TopCampsitesThisWeek from './TopCampsitesThisWeek'
+import Insights from './Insights'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
   const {email} = props
-
+  const campers = props.campersToggle
+  const tickets = props.ticketsToggle
+  const reservations = props.reservationsToggle
+  const campsites = props.campsitesToggle
   return (
-    <Fragment>
-      <div style={styles.div}>
-        <AdminSidebar style={{position: 'relative'}} />
-      </div>
-      <h3>Welcome, {email}</h3>
-      <Insights />
-    </Fragment>
+    <Grid>
+      <Grid.Column width={2}>
+        <div style={styles.div}>
+          <AdminSidebar />
+        </div>
+      </Grid.Column>
+      <Grid.Column width={12}>
+        <Insights />
+        {campers && <CampersList />}
+        {reservations && <Reservations />}
+        {tickets && <TicketList />}
+        {campsites && <AdminCamsites />}
+      </Grid.Column>
+    </Grid>
   )
 }
 
@@ -28,7 +42,11 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    campersToggle: state.campersToggle,
+    ticketsToggle: state.ticketsToggle,
+    reservationsToggle: state.reservationsToggle,
+    campsitesToggle: state.campsitesToggle
   }
 }
 
@@ -44,6 +62,7 @@ UserHome.propTypes = {
 /**STYLES */
 const styles = {
   div: {
-    height: '100vh'
+    height: '100vh',
+    marginTop: -2
   }
 }
