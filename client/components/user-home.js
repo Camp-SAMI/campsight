@@ -7,6 +7,7 @@ import CampersList from './CampersList'
 import TicketList from './TicketList'
 import Reservations from './Reservations'
 import AdminCamsites from './AdminCampsites'
+import CamperProfile from './CamperProfile'
 import Insights from './Insights'
 import {Route, Switch} from 'react-router-dom'
 
@@ -24,9 +25,14 @@ export const UserHome = props => {
       </Grid.Column>
       <Grid.Column width={12}>
         <Switch>
-          <Route path="/home/campers" component={CampersList} />
+          <Route
+            exact
+            path="/home/campers/:camperId"
+            component={CamperProfile}
+          />
+          <Route exact path="/home/campers" component={CampersList} />
           <Route path="/home/tickets" component={TicketList} />
-          <Route path="/home/reservations" component={Reservations} />
+          <Route exact path="/home/reservations" component={Reservations} />
           <Route path="/home/campsites" component={AdminCamsites} />
           <Route path="/home" component={Insights} />
         </Switch>
