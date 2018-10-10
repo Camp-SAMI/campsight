@@ -72,7 +72,9 @@ class Checkout extends React.Component {
       >
         <Button
           variant="contained"
-          color="primary"
+          style={{
+            backgroundColor: '#1cb5ac',color:'white'
+          }}
           size="large"
           fullWidth
           disabled={this.state.reserved}

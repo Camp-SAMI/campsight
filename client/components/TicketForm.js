@@ -234,10 +234,12 @@ const styles = {
   },
   button: {
     width: '50vw',
-    margin: 10
+    margin: 10,
+    backgroundColor: '#1cb5ac'
   },
   smButton: {
     width: '120px',
-    margin: 10
+    margin: 10,
+    backgroundColor: '#1cb5ac'
   }
 }
