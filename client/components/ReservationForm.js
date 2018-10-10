@@ -1,4 +1,4 @@
-import {addDays, lastDayOfYear, differenceInCalendarDays} from 'date-fns'
+import {addDays, differenceInCalendarDays, format} from 'date-fns'
 
 import React, {PureComponent, Fragment} from 'react'
 import {connect} from 'react-redux'
@@ -13,14 +13,16 @@ import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsPr
 import {InlineDatePicker} from 'material-ui-pickers/DatePicker'
 
 import Checkout from './Checkout'
-import {fetchLatestCampsiteReservation} from '../store/reservation'
+import {fetchCurrentCampsiteReservations} from '../store/reservation'
 import {formatPrice} from '../utils/formatPrice'
 
 class ReservationForm extends PureComponent {
-  START_DATE = lastDayOfYear(new Date())
+  START_DATE = new Date()
   state = {
-    selectedStartDate: this.START_DATE,
-    selectedEndDate: addDays(this.START_DATE, 7),
+    selectedStartDate:
+      new Date(this.props.filteredStartTime) || this.START_DATE,
+    selectedEndDate:
+      new Date(this.props.filteredEndTime) || addDays(this.START_DATE, 1),
     partyNumber: '1',
     firstName: '',
     lastName: '',
@@ -37,8 +39,12 @@ class ReservationForm extends PureComponent {
     })
   }
 
+  disableBookedDays = date => {
+    return this.props.currentReservations.includes(format(date, 'MM/DD/YYYY'))
+  }
+
   componentDidMount() {
-    this.props.fetchLatestCampsiteReservation(this.props.id)
+    this.props.fetchCurrentCampsiteReservations(this.props.id)
   }
 
   render() {
@@ -50,13 +56,11 @@ class ReservationForm extends PureComponent {
       partyNumber,
       email
     } = this.state
-    const latestDate = addDays(this.props.latestReservation.endTime, 1)
-    const totalCost =
+
+    // Subtotal of costs
+    const subtotal =
       this.props.cost *
-      differenceInCalendarDays(
-        this.state.selectedEndDate,
-        this.state.selectedStartDate
-      )
+      differenceInCalendarDays(selectedEndDate, selectedStartDate)
 
     return (
       <Fragment>
@@ -65,12 +69,15 @@ class ReservationForm extends PureComponent {
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <InlineDatePicker
                 keyboard
+                allowKeyboardControl
                 variant="outlined"
                 label="Start Date"
                 disablePast
-                minDate={latestDate}
+                // minDate={selectedStartDate}
+                // minDateMessage="Campsite is not available"
                 value={selectedStartDate}
                 onChange={this.handleDateChange('selectedStartDate')}
+                shouldDisableDate={this.disableBookedDays}
                 format="MM/dd/yyyy"
                 mask={[
                   /\d/,
@@ -94,9 +101,11 @@ class ReservationForm extends PureComponent {
                 variant="outlined"
                 label="End Date"
                 disablePast
-                minDate={addDays(latestDate, 1)}
+                minDate={addDays(selectedStartDate, 1)}
+                minDateMessage="Campsite is not available"
                 value={selectedEndDate}
                 onChange={this.handleDateChange('selectedEndDate')}
+                shouldDisableDate={this.disableBookedDays}
                 format="MM/dd/yyyy"
                 mask={[
                   /\d/,
@@ -156,7 +165,7 @@ class ReservationForm extends PureComponent {
           <Grid item xs={12} sm={6}>
             <TextField
               id="outlined-number"
-              label="Campers"
+              label="Total Campers"
               value={partyNumber}
               onChange={this.handleChange('partyNumber')}
               type="number"
@@ -173,11 +182,14 @@ class ReservationForm extends PureComponent {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="display2" component="h2">
-              {`Total Cost = ${formatPrice(totalCost)}`}
+              {`Subtotal = ${formatPrice(subtotal)}`}
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Checkout
+              style={{
+                backgroundColor: '#1cb5ac'
+              }}
               campsiteId={this.props.id}
               startTime={this.state.selectedStartDate}
               endTime={this.state.selectedEndDate}
@@ -185,7 +197,7 @@ class ReservationForm extends PureComponent {
               firstName={this.state.firstName}
               lastName={this.state.lastName}
               email={this.state.email}
-              totalCost={totalCost}
+              totalCost={subtotal}
             />
           </Grid>
         </Grid>
@@ -195,12 +207,12 @@ class ReservationForm extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  latestReservation: state.reservation
+  currentReservations: state.reservation.currentReservations
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchLatestCampsiteReservation: campsiteId =>
-    dispatch(fetchLatestCampsiteReservation(campsiteId))
+  fetchCurrentCampsiteReservations: campsiteId =>
+    dispatch(fetchCurrentCampsiteReservations(campsiteId))
 })
 
 export default withRouter(

@@ -13,15 +13,12 @@ class ReservationRow extends Component {
   }
 
   handleClick(id) {
-    // console.log('EVENT', event.target.value)
     this.props.fetchSingleReservation(id)
   }
 
   render() {
     const {reserv} = this.props
     const {reservation} = this.props
-    console.log('props', this.props);
-    console.log('RESERVARION', reservation)
     return (
       <Table.Row key={reserv.id}>
         <Table.Cell>

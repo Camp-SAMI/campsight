@@ -35,20 +35,6 @@ export const fetchReservations = camperId => {
   }
 }
 
-export const fetchReservationsThisWeek = () => {
-  return async dispatch => {
-    console.log('ai')
-    try {
-      const res = await axios.get('/api/reservations/');
-      const data = res.data;
-      console.log('data', data);
-      dispatch(getReservations(data));
-    } catch (err) {
-      dispatch(getReservationsError())
-    }
-  }
-}
-
 //REDUCER
 export default function reducer(reservations = [], action) {
   switch (action.type) {
