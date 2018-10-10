@@ -19,10 +19,12 @@ import {formatPrice} from '../utils/formatPrice'
 class ReservationForm extends PureComponent {
   START_DATE = new Date()
   state = {
-    selectedStartDate:
-      new Date(this.props.filteredStartTime) || this.START_DATE,
-    selectedEndDate:
-      new Date(this.props.filteredEndTime) || addDays(this.START_DATE, 1),
+    selectedStartDate: new Date(
+      this.props.filteredStartTime || this.START_DATE
+    ),
+    selectedEndDate: new Date(
+      this.props.filteredEndTime || addDays(this.START_DATE, 1)
+    ),
     partyNumber: '1',
     firstName: '',
     lastName: '',
@@ -73,8 +75,8 @@ class ReservationForm extends PureComponent {
                 variant="outlined"
                 label="Start Date"
                 disablePast
-                // minDate={selectedStartDate}
-                // minDateMessage="Campsite is not available"
+                minDate={selectedStartDate}
+                minDateMessage="Campsite is not available on this day"
                 value={selectedStartDate}
                 onChange={this.handleDateChange('selectedStartDate')}
                 shouldDisableDate={this.disableBookedDays}
@@ -102,7 +104,7 @@ class ReservationForm extends PureComponent {
                 label="End Date"
                 disablePast
                 minDate={addDays(selectedStartDate, 1)}
-                minDateMessage="Campsite is not available"
+                minDateMessage="Campsite is not available on this day"
                 value={selectedEndDate}
                 onChange={this.handleDateChange('selectedEndDate')}
                 shouldDisableDate={this.disableBookedDays}

@@ -55,10 +55,8 @@ for (let i = 0; i < reservationQuantity; i++) {
     return startTimeRes
   }
 
-
   const endTime = new Date(startTimeRes)
   endTime.setDate(startTimeRes.getDate() + days)
-
 
   chance.mixin({
     reservation: () => ({
@@ -106,7 +104,7 @@ async function seed() {
   await Amenity.bulkCreate([
     {category: 'Power'},
     {category: 'Sewage'},
-    {category: 'water'}
+    {category: 'Water'}
   ])
   await Campsite.bulkCreate(camperSites)
   await Campsite.bulkCreate(tentSites)

@@ -93,6 +93,7 @@ router.post('/', async (req, res, next) => {
     const reservationNumber = `${address.billing_address_zip}${
       address.billing_address_state
     }${newReservation.id}${campsiteId}${partyNumber}`
+    
     // Send email to dummy address
     // Generate SMTP service account from ethereal.email
 
