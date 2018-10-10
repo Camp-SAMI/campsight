@@ -35,9 +35,9 @@ router.post('/', async (req, res, next) => {
       coverImage: req.body.coverImage ? req.body.coverImage : '',
       images: req.body.images.length ? req.body.images : [],
       typing: req.body.typing,
-      cost: req.body.cost
+      cost: req.body.cost,
     })
-    let amenItems = req.body.amenities.map(amen => amen.toLowerCase())
+    let amenItems = req.body.amenities;
     const amenities = await Amenity.findAll()
     const amenityInfos = amenities.filter(a => amenItems.includes(a.category))
     await newCampsite.setAmenities(amenityInfos)
@@ -50,11 +50,28 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:campsiteId', async (req, res, next) => {
   try {
-    const [count, [campsiteUpdate]] = await Campsite.update(req.body, {
+    const [count, [campsiteUpdate]] = await Campsite.update({
+      name: req.body.name,
+      location: {
+        type: "Point",
+        coordinates: [req.body.latitude, req.body.longitude]
+      },
+      coverImage: req.body.coverImage ? req.body.coverImage: '',
+      images: req.body.images,
+      typing: req.body.typing,
+      cost: req.body.cost
+    }, {
       where: {id: req.params.campsiteId},
       returning: true
-    })
-    res.json(campsiteUpdate)
+    });
+    let amenItems = req.body.amenities.length ? req.body.amenities : [];
+    const amenities = await Amenity.findAll()
+    const amenityInfos = amenities.filter(a => amenItems.includes(a.category))
+    await campsiteUpdate.setAmenities(amenityInfos);
+    await campsiteUpdate.save();
+    // const updatedCamp = await Campsite.findById(campsiteUpdate.id, {include: [{model: Amenity}]});
+    // console.log('update', updatedCamp.amenities);
+    res.json(campsiteUpdate);
   } catch (err) {
     next(err)
   }
