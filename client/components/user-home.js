@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Container, Divider} from 'semantic-ui-react'
 import AdminSidebar from './AdminSidebar'
+import TopCampsitesThisWeek from './TopCampsitesThisWeek';
+import Insights from './Insights';
 
 /**
  * COMPONENT
@@ -16,6 +18,7 @@ export const UserHome = props => {
         <AdminSidebar style={{position: 'relative'}} />
       </div>
       <h3>Welcome, {email}</h3>
+      <Insights />
     </Fragment>
   )
 }
