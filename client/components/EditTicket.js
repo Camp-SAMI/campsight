@@ -7,11 +7,12 @@ import {
   Dropdown,
   TextArea,
   Segment,
-  Form
+  Form,
+  Grid
 } from 'semantic-ui-react'
 import {fetchTicket} from '../store/ticket'
 import {updateTicketToServer} from '../store/tickets'
-import {MapView} from '../components'
+import TicketMapView from './TicketMapView'
 
 const statusOptions = [
   {value: 'open', text: 'Open'},
@@ -140,10 +141,19 @@ class EditTicket extends Component {
                 defaultValue={ticket.status}
               />
             </Form.Group>
-            <img src={ticket.image} />
+            <Grid divided='vertically' >
+            <Grid.Row columns={2} padded>
+              <Grid.Column>
+                <img src={ticket.image} style={{width: '100%'}} />
+              </Grid.Column>
+              <Grid.Column>
+                <TicketMapView style={{width: '100%'}} />
+              </Grid.Column>
+            </Grid.Row>
             <Button color="green" basic>
               Update
             </Button>
+            </Grid>
           </Form>
         </Segment>
       </Container>
