@@ -9,46 +9,33 @@ import {typgoraphy} from '@material-ui/core/styles'
 // if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 class TicketMapView extends Component {
-
-  
-
-  
   //For each campsite in campsites, render a marker. If clicked on, it should open the modal page. If hovered over, it should display a small info window?
   render() {
-    console.log(this.props.google, 'this.props.google')
-    
+    console.log(this.props.location, 'this.props.location')
+    const location = this.props.location
     return (
-      <div className="mapContainer">
+      <div>
         <Map
           google={this.props.google}
-          initialCenter={{lat: 43.769405, lng: -89.202743}}
+          initialCenter={{
+            lat: location.coordinates[0],
+            lng: location.coordinates[1]
+          }}
           zoom={17}
-          style={styles.map}
         >
-        
-              {/* <Marker
-                key={camp.id}
-                name={camp.name}
-                onClick={e => this.openModal(camp, e)}
-                position={{
-                  lat: camp.location.coordinates[0],
-                  lng: camp.location.coordinates[1]
-                }}
-                icon={{
-                  url: '/campericon.png'
-                }} /> */}
-          
+          <Marker
+            name="ticket"
+            position={{
+              lat: location.coordinates[0],
+              lng: location.coordinates[1]
+            }}
+            // icon={{
+            //   url: '/campericon.png'
+            // }}
+          />
         </Map>
-
-      
       </div>
     )
-  }
-}
-
-const styles = {
-  map: {
-    height: 100
   }
 }
 

@@ -141,20 +141,20 @@ class EditTicket extends Component {
                 defaultValue={ticket.status}
               />
             </Form.Group>
-            <Grid divided='vertically' >
-            <Grid.Row columns={2} padded>
-              <Grid.Column>
-                <img src={ticket.image} style={{width: '100%'}} />
-              </Grid.Column>
-              <Grid.Column>
-                <TicketMapView style={{width: '100%'}} />
-              </Grid.Column>
-            </Grid.Row>
-            <Button color="green" basic>
+            <Button style={{margin: 15}} color="green" basic>
               Update
             </Button>
-            </Grid>
           </Form>
+            <Grid>
+            <Grid.Row columns={2} >
+              <Grid.Column floated='left' >
+                <img src={ticket.image} style={{width:'100%'}} />
+              </Grid.Column>
+              <Grid.Column floated='right'>
+                <TicketMapView location={this.state.location} style={{width:'80%'}}/>
+              </Grid.Column>
+            </Grid.Row>
+            </Grid>
         </Segment>
       </Container>
     )
