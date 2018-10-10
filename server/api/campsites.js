@@ -37,7 +37,7 @@ router.post('/', async (req, res, next) => {
       typing: req.body.typing,
       cost: req.body.cost,
     })
-    let amenItems = req.body.amenities.map(amen => amen.toLowerCase())
+    let amenItems = req.body.amenities;
     const amenities = await Amenity.findAll()
     const amenityInfos = amenities.filter(a => amenItems.includes(a.category))
     await newCampsite.setAmenities(amenityInfos)
@@ -64,7 +64,7 @@ router.put('/:campsiteId', async (req, res, next) => {
       where: {id: req.params.campsiteId},
       returning: true
     });
-    let amenItems = req.body.amenities.length ? req.body.amenities.map(amen => amen.toLowerCase()) : [];
+    let amenItems = req.body.amenities.length ? req.body.amenities : [];
     const amenities = await Amenity.findAll()
     const amenityInfos = amenities.filter(a => amenItems.includes(a.category))
     await campsiteUpdate.setAmenities(amenityInfos);
