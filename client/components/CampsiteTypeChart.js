@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { fetchCampsites } from '../store/campsites';
 import { VictoryPie } from 'victory';
 import getCampsiteTypeData from '../utils/getCampsiteTypeData';
+import { Header, Container } from 'semantic-ui-react'
+
 
 const mapStateToProps = state => {
     return {
@@ -34,10 +36,13 @@ class CampsiteTypeChart extends Component {
         const { data } = this.state;
         if (data.length < 1) return (<h3>Loading...</h3>)
         return (
-            <VictoryPie
-                colorScale={["gold", "cyan", "navy" ]}
-                data={data}
-            />
+            <Container>
+                <Header>Campsite Types Reserved This Week</Header>
+                <VictoryPie
+                    colorScale={["gold", "cyan", "navy" ]}
+                    data={data}
+                />
+            </Container>
         )
     }
 }
