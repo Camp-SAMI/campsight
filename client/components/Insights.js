@@ -9,19 +9,21 @@ export default function Insights() {
         <Fragment>
             <Divider hidden />
             <Segment>
-                <Header as="h1" floated="center">
+                <Header as="h1" >
                     Insights
                 </Header>
             </Segment>
             <Grid celled>
-                <Grid.Row>
+            <Grid.Row>
+                <Grid.Column >
                     <TopCampsitesThisWeek />
+                </Grid.Column>
+                <Grid.Column>
+                    <PriorReservationsChart />
+                </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
                     <CampsiteTypeChart />
-                </Grid.Row>
-                <Grid.Row>
-                    <PriorReservationsChart />
                 </Grid.Row>
             </Grid>
         </Fragment>
