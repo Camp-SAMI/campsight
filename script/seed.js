@@ -107,7 +107,7 @@ async function seed() {
   await Amenity.bulkCreate([
     {category: 'Power'},
     {category: 'Sewage'},
-    {category: 'water'}
+    {category: 'Water'}
   ])
   await Campsite.bulkCreate(camperSites)
   await Campsite.bulkCreate(tentSites)

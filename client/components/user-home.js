@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Grid} from 'semantic-ui-react'
@@ -7,18 +7,14 @@ import CampersList from './CampersList'
 import TicketList from './TicketList'
 import Reservations from './Reservations'
 import AdminCamsites from './AdminCampsites'
-import TopCampsitesThisWeek from './TopCampsitesThisWeek'
 import Insights from './Insights'
+import {Route, Switch} from 'react-router-dom'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
   const {email} = props
-  const campers = props.campersToggle
-  const tickets = props.ticketsToggle
-  const reservations = props.reservationsToggle
-  const campsites = props.campsitesToggle
   return (
     <Grid>
       <Grid.Column width={2}>
@@ -27,11 +23,13 @@ export const UserHome = props => {
         </div>
       </Grid.Column>
       <Grid.Column width={12}>
-        <Insights />
-        {campers && <CampersList />}
-        {reservations && <Reservations />}
-        {tickets && <TicketList />}
-        {campsites && <AdminCamsites />}
+        <Switch>
+          <Route path="/home/campers" component={CampersList} />
+          <Route path="/home/tickets" component={TicketList} />
+          <Route path="/home/reservations" component={Reservations} />
+          <Route path="/home/campsites" component={AdminCamsites} />
+          <Route path="/home" component={Insights} />
+        </Switch>
       </Grid.Column>
     </Grid>
   )
@@ -42,11 +40,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email,
-    campersToggle: state.campersToggle,
-    ticketsToggle: state.ticketsToggle,
-    reservationsToggle: state.reservationsToggle,
-    campsitesToggle: state.campsitesToggle
+    email: state.user.email
   }
 }
 

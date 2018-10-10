@@ -8,7 +8,7 @@ router.get('/', async (req, res, next) => {
     const campers = await Camper.findAll({
       limit: 25,
       include: [{model: Reservation}],
-      order: [['id', 'ASC']]
+      order: [['id', 'DESC']]
     })
     res.json(campers)
   } catch (err) {
