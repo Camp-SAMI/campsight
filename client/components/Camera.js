@@ -50,14 +50,21 @@ class Camera extends Component {
     return (
       <Grid container justify="center" alignContent="center">
         <Card raised>
-          
           <Grid container justify="center" alignContent="center">
             <div>
               <Grid item>
                 {this.state.image ? (
                   <img src={this.state.image} />
                 ) : (
-                  <Webcam ref={this.setRef} screenshotFormat="image/jpeg" />
+                  <Webcam
+                    ref={this.setRef}
+                    audio={false}
+                    screenshotFormat="image/jpeg"
+                    videoConstraints={{
+                      width: 1280,
+                      height: 720
+                    }}
+                  />
                 )}
               </Grid>
               <Grid item>
