@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {getUnassignedTickets, getOpenTickets, getClosedTickets} from '../store'
 import {fetchTickets, updateTicketToServer} from '../store/tickets'
 import {fetchTicket} from '../store/ticket'
-import {Divider, Header} from 'semantic-ui-react'
+import {Divider, Header, Container} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import TicketTable from './TicketTable'
 
@@ -39,16 +39,21 @@ class TicketList extends Component {
     const {tickets, unassignedTickets, openTickets, closedTickets} = this.props
     return (
       <Fragment>
-        <Divider hidden />
-        <Header as="h1" floated="left">
-          All Tickets
-        </Header>
-        <Divider hidden />
-        <TicketTable tickets={unassignedTickets} editSubmit={this.editSubmit} />
-        <Divider hidden />
-        <TicketTable tickets={openTickets} editSubmit={this.editSubmit} />
-        <Divider hidden />
-        <TicketTable tickets={closedTickets} editSubmit={this.editSubmit} />
+        <Container>
+          <Divider hidden />
+          <Header as="h1" floated="left">
+            All Tickets
+          </Header>
+          <Divider hidden />
+          <TicketTable
+            tickets={unassignedTickets}
+            editSubmit={this.editSubmit}
+          />
+          <Divider hidden />
+          <TicketTable tickets={openTickets} editSubmit={this.editSubmit} />
+          <Divider hidden />
+          <TicketTable tickets={closedTickets} editSubmit={this.editSubmit} />
+        </Container>
       </Fragment>
     )
   }

@@ -196,7 +196,8 @@ class ReservationForm extends PureComponent {
               firstName={this.state.firstName}
               lastName={this.state.lastName}
               email={this.state.email}
-              totalCost={subtotal}
+              // Added a 10% tax
+              totalCost={subtotal + subtotal * 0.1}
             />
           </Grid>
         </Grid>

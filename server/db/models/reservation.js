@@ -2,7 +2,8 @@ const _ = require('lodash')
 const compareDesc = require('date-fns/compareDesc')
 const compareAsc = require('date-fns/compareAsc')
 const eachDayOfInterval = require('date-fns/eachDayOfInterval')
-var format = require('date-fns/format')
+const differenceInDays = require('date-fns/differenceInDays')
+const format = require('date-fns/format')
 
 const Sequelize = require('sequelize')
 const Op = require('sequelize').Op
@@ -32,7 +33,12 @@ const reservation = db.define('reservation', {
   },
   totalCost: {
     type: Sequelize.INTEGER,
-    defaultValue: 99999999
+    get() {
+      return (
+        differenceInDays(this.endTime, this.startTime) * 3000 +
+        differenceInDays(this.endTime, this.startTime) * 3000 * 0.1
+      )
+    }
   }
 })
 
@@ -71,7 +77,8 @@ reservation.getCurrentCampsiteReservations = async function(campsiteId) {
       }, [])
       .sort((a, b) => compareAsc(a, b))
       .map(data => format(new Date(data), 'MM/DD/YYYY'))
-    return _.uniq(currentBookedDays)
+
+    return _.sortedUniq(currentBookedDays)
   } catch (error) {
     return `${error.message}`
   }

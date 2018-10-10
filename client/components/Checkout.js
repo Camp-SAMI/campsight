@@ -3,7 +3,7 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout'
 import Button from '@material-ui/core/Button'
 import {withRouter} from 'react-router-dom'
-import {differenceInCalendarDays} from 'date-fns'
+// import {differenceInCalendarDays} from 'date-fns'
 import {gotItinerary} from '../store/itinerary'
 import {connect} from 'react-redux'
 
@@ -29,6 +29,11 @@ class Checkout extends React.Component {
       // Use an alert module ...
       console.log('Returned after making a Reservation backend', res.data)
       // alert('Please check your email for Order confirmation')
+
+      // Add first name to returned data
+      res.data.firstName = this.props.firstName
+
+      // pass stuff to Itinerary
       this.props.gotItinerary(res.data)
 
       this.props.history.push(`/itinerary`)
