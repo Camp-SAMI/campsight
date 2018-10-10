@@ -75,8 +75,8 @@ class ReservationForm extends PureComponent {
                 variant="outlined"
                 label="Start Date"
                 disablePast
-                // minDate={selectedStartDate}
-                // minDateMessage="Campsite is not available"
+                minDate={selectedStartDate}
+                minDateMessage="Campsite is not available on this day"
                 value={selectedStartDate}
                 onChange={this.handleDateChange('selectedStartDate')}
                 shouldDisableDate={this.disableBookedDays}
@@ -104,7 +104,7 @@ class ReservationForm extends PureComponent {
                 label="End Date"
                 disablePast
                 minDate={addDays(selectedStartDate, 1)}
-                minDateMessage="Campsite is not available"
+                minDateMessage="Campsite is not available on this day"
                 value={selectedEndDate}
                 onChange={this.handleDateChange('selectedEndDate')}
                 shouldDisableDate={this.disableBookedDays}
@@ -199,7 +199,8 @@ class ReservationForm extends PureComponent {
               firstName={this.state.firstName}
               lastName={this.state.lastName}
               email={this.state.email}
-              totalCost={subtotal}
+              // Added a 10% tax
+              totalCost={subtotal + subtotal * 0.1}
             />
           </Grid>
         </Grid>
