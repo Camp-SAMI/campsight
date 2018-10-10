@@ -19,10 +19,12 @@ import {formatPrice} from '../utils/formatPrice'
 class ReservationForm extends PureComponent {
   START_DATE = new Date()
   state = {
-    selectedStartDate:
-      new Date(this.props.filteredStartTime) || this.START_DATE,
-    selectedEndDate:
-      new Date(this.props.filteredEndTime) || addDays(this.START_DATE, 1),
+    selectedStartDate: new Date(
+      this.props.filteredStartTime || this.START_DATE
+    ),
+    selectedEndDate: new Date(
+      this.props.filteredEndTime || addDays(this.START_DATE, 1)
+    ),
     partyNumber: '1',
     firstName: '',
     lastName: '',

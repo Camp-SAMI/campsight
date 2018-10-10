@@ -1,6 +1,12 @@
 import React, {Component} from 'react'
 import {Sidebar, Menu, Icon} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {toggleAnalitics} from '../store'
+import {toggleCampers} from '../store/campersToggle'
+import {toggleTickets} from '../store/ticketsToggle'
+import {toggleReservations} from '../store/reservationsToggle'
+import {toggleCampsites} from '../store/campsitesToggle'
 
 class AdminSidebar extends Component {
   constructor() {
@@ -9,7 +15,19 @@ class AdminSidebar extends Component {
   }
 
   handleClick(event) {
-    this.props.history.push(`/${event.value}`)
+    // console.log('EVEEEENT', event.value)
+    if (event.value === 'campers') {
+      this.props.toggleCampers()
+    }
+    if (event.value === 'reservations') {
+      this.props.toggleReservations()
+    }
+    if (event.value === 'tickets') {
+      this.props.toggleTickets()
+    }
+    if (event.value === 'campsites') {
+      this.props.toggleCampsites()
+    }
   }
   render() {
     return (
@@ -23,22 +41,19 @@ class AdminSidebar extends Component {
           vertical
           color="teal"
         >
-          <Menu.Item href="/campers">
+          <Menu.Item onClick={() => this.handleClick({value: 'campers'})}>
             <Icon name="users" />
             Campers
           </Menu.Item>
-          <Menu.Item href="/tickets">
+          <Menu.Item onClick={() => this.handleClick({value: 'tickets'})}>
             <Icon name="sticky note outline" />
             Tickets
           </Menu.Item>
-          <Menu.Item
-            value="reservations"
-            onClick={() => this.handleClick({value: 'reservations'})}
-          >
+          <Menu.Item onClick={() => this.handleClick({value: 'reservations'})}>
             <Icon name="calendar check" />
             Reservations
           </Menu.Item>
-          <Menu.Item href="/campsites">
+          <Menu.Item onClick={() => this.handleClick({value: 'campsites'})}>
             <Icon name="image outline" />
             Campsites
           </Menu.Item>
@@ -53,6 +68,14 @@ class AdminSidebar extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => ({
+  toggleCampers: () => dispatch(toggleCampers()),
+  toggleTickets: () => dispatch(toggleTickets()),
+  toggleReservations: () => dispatch(toggleReservations()),
+  toggleCampsites: () => dispatch(toggleCampsites()),
+  toggleAnalitics: () => dispatch(toggleAnalitics())
+})
+
 const styles = {
   div: {
     height: '100%',
@@ -61,4 +84,4 @@ const styles = {
   }
 }
 
-export default withRouter(AdminSidebar)
+export default connect(null, mapDispatchToProps)(withRouter(AdminSidebar))

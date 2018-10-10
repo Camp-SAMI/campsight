@@ -3,14 +3,20 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Grid} from 'semantic-ui-react'
 import AdminSidebar from './AdminSidebar'
+import CampersList from './CampersList'
+import TicketList from './TicketList'
+import Reservations from './Reservations'
+import AdminCamsites from './AdminCampsites'
 
 /**
  * COMPONENT
  */
 export const UserHome = props => {
   const {email} = props
-  const bob = false
-  const stan = true
+  const campers = props.campersToggle
+  const tickets = props.ticketsToggle
+  const reservations = props.reservationsToggle
+  const campsites = props.campsitesToggle
   return (
     <Grid>
       <Grid.Column width={2}>
@@ -19,7 +25,10 @@ export const UserHome = props => {
         </div>
       </Grid.Column>
       <Grid.Column width={12}>
-        <h1>HELLO WORLD</h1>
+        {campers && <CampersList />}
+        {reservations && <Reservations />}
+        {tickets && <TicketList />}
+        {campsites && <AdminCamsites />}
       </Grid.Column>
     </Grid>
   )
@@ -30,7 +39,11 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    email: state.user.email,
+    campersToggle: state.campersToggle,
+    ticketsToggle: state.ticketsToggle,
+    reservationsToggle: state.reservationsToggle,
+    campsitesToggle: state.campsitesToggle
   }
 }
 
