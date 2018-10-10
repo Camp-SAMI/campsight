@@ -19,6 +19,7 @@ export const UserHome = props => {
   const tickets = props.ticketsToggle
   const reservations = props.reservationsToggle
   const campsites = props.campsitesToggle
+  const analitics = props.analiticsToggle
   return (
     <Grid>
       <Grid.Column width={2}>
@@ -27,11 +28,11 @@ export const UserHome = props => {
         </div>
       </Grid.Column>
       <Grid.Column width={12}>
-        <Insights />
         {campers && <CampersList />}
         {reservations && <Reservations />}
         {tickets && <TicketList />}
         {campsites && <AdminCamsites />}
+        {analitics && <Insights />}
       </Grid.Column>
     </Grid>
   )
@@ -46,7 +47,8 @@ const mapState = state => {
     campersToggle: state.campersToggle,
     ticketsToggle: state.ticketsToggle,
     reservationsToggle: state.reservationsToggle,
-    campsitesToggle: state.campsitesToggle
+    campsitesToggle: state.campsitesToggle,
+    analiticsToggle: state.analiticsToggle
   }
 }
 

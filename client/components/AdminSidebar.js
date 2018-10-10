@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Sidebar, Menu, Icon} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {toggleAnalitics} from '../store'
+import {toggleAnalitics} from '../store/analiticsToggle'
 import {toggleCampers} from '../store/campersToggle'
 import {toggleTickets} from '../store/ticketsToggle'
 import {toggleReservations} from '../store/reservationsToggle'
@@ -27,6 +27,9 @@ class AdminSidebar extends Component {
     }
     if (event.value === 'campsites') {
       this.props.toggleCampsites()
+    }
+    if (event.value === 'analitics') {
+      this.props.toggleAnalitics()
     }
   }
   render() {
@@ -57,7 +60,7 @@ class AdminSidebar extends Component {
             <Icon name="image outline" />
             Campsites
           </Menu.Item>
-          <Menu.Item>
+          <Menu.Item onClick={() => this.handleClick({value: 'analitics'})}>
             <Icon name="line graph" />
             Analitics
           </Menu.Item>
