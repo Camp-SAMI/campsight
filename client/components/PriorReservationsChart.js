@@ -46,7 +46,10 @@ class PriorReservationsChart extends Component {
     return (
       <Container>
         <Header>Number of Reservations Over Past 6 Months</Header>
-        <VictoryChart theme={VictoryTheme.material} animate={{duration: 700}}>
+        <VictoryChart
+          theme={VictoryTheme.material}
+          animate={{duration: 2000, easing: 'bounce'}}
+        >
           <VictoryAxis
             tickValues={tickValues}
             tickFormat={monthNames}

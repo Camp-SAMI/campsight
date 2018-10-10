@@ -38,8 +38,17 @@ class CampsiteTypeChart extends Component {
       <Container>
         <Header>Campsite Types Reserved This Week</Header>
         <VictoryPie
-        animate={{duration: 2000}}
-          colorScale={['gold', 'cyan', 'navy']}
+          animate={{
+            duration: 90,
+            onLoad: {
+              duration: 900,
+              before: () => ({_y: -1200, label: ' '}),
+              after: datum => ({_y: datum._y})
+            }
+          }}
+          padAngle={2}
+          innerRadius={100}
+          colorScale={['#1cb5ac', 'cyan', 'navy']}
           data={data}
         />
       </Container>

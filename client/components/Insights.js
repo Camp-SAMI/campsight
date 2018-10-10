@@ -7,9 +7,11 @@ import CampsiteTypeChart from './CampsiteTypeChart'
 export default function Insights() {
   return (
     <Fragment>
-      <Divider hidden />
+      <Divider hidden style={{padding: 0, margin: 0}} />
       <Segment>
-        <Header as="h1">Insights</Header>
+        <Header style={{color: 'white', backgroundColor: '#1cb5ac'}} as="h1">
+          Insights
+        </Header>
       </Segment>
       <Grid>
         <Grid.Row columns={3}>
@@ -19,9 +21,9 @@ export default function Insights() {
           <Grid.Column floated="right" style={{width: 100}}>
             <PriorReservationsChart />
           </Grid.Column>
-        <Grid.Column>
-          <CampsiteTypeChart />
-        </Grid.Column>
+          <Grid.Column>
+            <CampsiteTypeChart />
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     </Fragment>

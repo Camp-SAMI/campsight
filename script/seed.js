@@ -10,9 +10,12 @@ const {
   Amenity,
   Reservation,
   campsiteReservations,
-  campsiteAmenities
+  campsiteAmenities,
+  Ticket
 } = require('../server/db/models/index')
 const {camperSites, tentSites, cabinSites} = require('../campSiteSeedData')
+
+const ticketSeedData = require('../ticketSeedData')
 
 const Chance = require('chance')
 const chance = new Chance(95698435)
@@ -113,6 +116,7 @@ async function seed() {
   await Reservation.bulkCreate(reservations)
   await campsiteReservations.bulkCreate(campsiteReservationsArray)
   await campsiteAmenities.bulkCreate(campsiteAmenitiesArray)
+  await Ticket.bulkCreate(ticketSeedData)
   await User.create({
     email: 'admin@admin.com',
     password: '1234',
