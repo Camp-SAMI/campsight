@@ -13,19 +13,19 @@ const AdminSidebar = props => {
         vertical
         color="teal"
       >
-        <Menu.Item as={NavLink} to="/home/campers">
+        <Menu.Item as={NavLink} to="/campers">
           <Icon name="users" />
           Campers
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/home/tickets">
+        <Menu.Item as={NavLink} to="/tickets">
           <Icon name="sticky note outline" />
           Tickets
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/home/reservations">
+        <Menu.Item as={NavLink} to="/reservations">
           <Icon name="calendar check" />
           Reservations
         </Menu.Item>
-        <Menu.Item as={NavLink} to="/home/campsites">
+        <Menu.Item as={NavLink} to="/campsites">
           <Icon name="image outline" />
           Campsites
         </Menu.Item>
