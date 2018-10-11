@@ -33,3 +33,4 @@ export {default as CampsiteTypeChart } from './CampsiteTypeChart';
 export {default as PriorReservationsChart } from './PriorReservationsChart';
 export {default as Insights } from './Insights';
 export {default as TicketMapView} from './TicketMapView'
+export {default as AdminSidebar} from './AdminSidebar';

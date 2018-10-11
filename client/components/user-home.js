@@ -18,22 +18,22 @@ export const UserHome = props => {
   const {email} = props
   return (
     <Grid>
-      <Grid.Column width={2}>
+      {/* <Grid.Column width={2}>
         <div style={styles.div}>
           <AdminSidebar />
         </div>
-      </Grid.Column>
+      </Grid.Column> */}
       <Grid.Column width={12}>
         <Switch>
-          <Route
+          {/* <Route
             exact
-            path="/home/campers/:camperId"
+            path="/campers/:camperId"
             component={CamperProfile}
-          />
-          <Route exact path="/home/campers" component={CampersList} />
-          <Route path="/home/tickets" component={TicketList} />
-          <Route exact path="/home/reservations" component={Reservations} />
-          <Route path="/home/campsites" component={AdminCamsites} />
+          /> */}
+          <Route path="/campers" component={CampersList} />
+          <Route path="/tickets" component={TicketList} />
+          <Route exact path="/reservations" component={Reservations} />
+          <Route path="campsites" component={AdminCamsites} />
           <Route path="/home" component={Insights} />
         </Switch>
       </Grid.Column>

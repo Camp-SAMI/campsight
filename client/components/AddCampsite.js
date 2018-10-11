@@ -76,7 +76,8 @@ class AddCampsite extends Component {
       desc: this.state.desc,
       cost: this.state.cost
     }
-    this.props.addCampsite(campsite)
+    this.props.addCampsite(campsite);
+    this.props.history.push(`/campsites`)
   }
 
   render() {
