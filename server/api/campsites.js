@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Campsite, Amenity, Reservation, Campground} = require('../db/models')
+const Op = require('sequelize').Op;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -25,6 +26,10 @@ router.get('/:campsiteId', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
+    const amenities = await Amenity.findAll({
+      where: {category: {[Op.in]: req.body.amenities}},
+      include: [{model: Campsite}]
+    });
     const newCampsite = await Campsite.create({
       name: req.body.name,
       location: {
@@ -35,14 +40,12 @@ router.post('/', async (req, res, next) => {
       coverImage: req.body.coverImage ? req.body.coverImage : '',
       images: req.body.images.length ? req.body.images : [],
       typing: req.body.typing,
-      cost: req.body.cost,
+      cost: req.body.cost
     })
-    let amenItems = req.body.amenities;
-    const amenities = await Amenity.findAll()
-    const amenityInfos = amenities.filter(a => amenItems.includes(a.category))
-    await newCampsite.setAmenities(amenityInfos)
-    await newCampsite.save()
-    res.json(newCampsite)
+    await newCampsite.addAmenities(amenities);
+    await newCampsite.save();
+    let nCamp = await Campsite.findOne({where: {id: newCampsite.id}, include: [Amenity]});
+    res.json(nCamp);
   } catch (err) {
     next(err)
   }
@@ -50,7 +53,11 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:campsiteId', async (req, res, next) => {
   try {
-    const [count, [campsiteUpdate]] = await Campsite.update({
+    const amenities = await Amenity.findAll({
+      where: {category: {[Op.in]: req.body.amenities}},
+      include: [{model: Campsite}]
+    });
+    await Campsite.update({
       name: req.body.name,
       location: {
         type: "Point",
@@ -64,14 +71,10 @@ router.put('/:campsiteId', async (req, res, next) => {
       where: {id: req.params.campsiteId},
       returning: true
     });
-    let amenItems = req.body.amenities.length ? req.body.amenities : [];
-    const amenities = await Amenity.findAll()
-    const amenityInfos = amenities.filter(a => amenItems.includes(a.category))
-    await campsiteUpdate.setAmenities(amenityInfos);
-    await campsiteUpdate.save();
-    // const updatedCamp = await Campsite.findById(campsiteUpdate.id, {include: [{model: Amenity}]});
-    // console.log('update', updatedCamp.amenities);
-    res.json(campsiteUpdate);
+    let campo = await Campsite.findById(req.params.campsiteId, { include: [{model: Amenity}]})
+    await campo.setAmenities(amenities);
+    await campo.save();
+    res.json(campo);
   } catch (err) {
     next(err)
   }
