@@ -62,7 +62,7 @@ class EditCampsite extends Component {
     handleChange(e, {name, value}) {
         this.setState(() => ({
             [name]: value
-        }), () => console.log(this.state));
+        }));
         // console.log(this.state);
     }
 
