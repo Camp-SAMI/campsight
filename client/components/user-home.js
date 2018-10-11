@@ -25,11 +25,11 @@ export const UserHome = props => {
       </Grid.Column> */}
       <Grid.Column width={12}>
         <Switch>
-          {/* <Route
+          <Route
             exact
             path="/campers/:camperId"
             component={CamperProfile}
-          /> */}
+          />
           <Route path="/campers" component={CampersList} />
           <Route path="/tickets" component={TicketList} />
           <Route exact path="/reservations" component={Reservations} />
