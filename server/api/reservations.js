@@ -112,8 +112,8 @@ router.post('/', async (req, res, next) => {
         // port: 587,
         service: 'gmail',
         auth: {
-          user: 'campsight.samillc@gmail.com',
-          pass: 'SAMILL04-1807'
+          user: process.env.EMAIL_USERID,
+          pass: process.env.EMAIL_PASSWORD
           // user: 'dedkmcuyhxbpplax@ethereal.email',
           // pass: 'WHpBvYqrJ6WvtdRDzu'
         }
@@ -121,7 +121,7 @@ router.post('/', async (req, res, next) => {
 
       // Message object
       let message = {
-        from: 'SAMI LLC <campsight@samillc.com>',
+        from: process.env.EMAIL_USERID,
         to: `${firstName + ' ' + lastName} <${email}>`,
         subject: `Confirmation for your CAMPSIGHT Reservation -#${reservationNumber}`,
 
