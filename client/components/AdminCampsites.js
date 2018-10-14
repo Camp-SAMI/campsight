@@ -90,7 +90,7 @@ export class AdminCampsites extends Component {
   }
 
   render() {
-    if (this.props.campsites.length && this.state.numPages) {
+    if (this.props.campsites && this.state.numPages) {
       const campsites = this.props.campsites
       // const amenities = this.props.amenities;
       const startIndex = (this.state.activePage - 1) * this.state.perPage
@@ -154,7 +154,7 @@ export class AdminCampsites extends Component {
           </Header>
         </Fragment>
       )
-    } else return <h3>Sorry, you are not authorized to view this page.</h3>
+    } else return null
   }
 }
 

@@ -1,10 +1,13 @@
 const formatRelative = require('date-fns/formatRelative')
+const endOfDay = require('date-fns/endOfDay')
+const startOfDay = require('date-fns/startOfDay')
 const nodemailer = require('nodemailer')
 const router = require('express').Router()
 const {Reservation, Camper, Campsite} = require('../db/models')
 const isAdmin = require('../auth/isAdmin')
 const isStaffOrAdmin = require('../auth/isStafforAdmin')
 const formatPrice = require('../utils/formatPrice')
+const {Op} = require('sequelize')
 
 router.get('/', async (req, res, next) => {
   try {
@@ -41,12 +44,74 @@ router.get(`/:campsiteId/latest`, async (req, res, next) => {
       campsiteId
     )
     if (reservations.length) {
-      console.log(`Current reservations =>`, reservations)
+      // console.log(`Current reservations =>`, reservations)
       res.status(200).json(reservations)
     } else {
       res.status(404)
     }
   } catch (err) {
+    next(err)
+  }
+})
+
+router.get(`/filter/:columnValue/:searchValue`, async (req, res, next) => {
+  let {columnValue, searchValue} = req.params
+  try {
+    // Consider search by Camper details
+    let reservations
+    const camperFields = ['firstName', 'lastName', 'email']
+    const dateFields = ['startTime', 'endTime']
+
+    if (camperFields.includes(columnValue)) {
+      const campers = await Camper.findAll({
+        where: {
+          [columnValue]: searchValue
+        }
+      })
+      columnValue = 'camperId'
+      searchValue = campers.map(camper => ({[Op.eq]: camper.id}))
+
+      reservations = await Reservation.findAll({
+        limit: 15,
+        include: [{model: Camper}, {model: Campsite}],
+        where: {
+          [columnValue]: {
+            [Op.or]: searchValue
+          }
+        }
+      })
+    } else if (dateFields.includes(columnValue)) {
+      // console.log(
+      //   'Start of day =>',
+      //   startOfDay(new Date(searchValue)),
+      //   'End of Day =>',
+      //   endOfDay(new Date(searchValue))
+      // )
+      reservations = await Reservation.findAll({
+        limit: 15,
+        include: [{model: Camper}, {model: Campsite}],
+        where: {
+          [columnValue]: {
+            [Op.between]: [
+              startOfDay(new Date(searchValue)),
+              endOfDay(new Date(searchValue))
+            ]
+          }
+        }
+      })
+    } else {
+      reservations = await Reservation.findAll({
+        limit: 15,
+        include: [{model: Camper}, {model: Campsite}],
+        where: {
+          [columnValue]: searchValue
+        }
+      })
+    }
+
+    res.status(200).json(reservations)
+  } catch (err) {
+    // console.log(err)
     next(err)
   }
 })

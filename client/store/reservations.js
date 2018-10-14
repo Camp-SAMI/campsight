@@ -1,7 +1,7 @@
-import axios from 'axios';
-import areIntervalsOverlapping from 'date-fns/areIntervalsOverlapping';
-import startOfWeek from 'date-fns/startOfWeek';
-import endOfWeek from 'date-fns/endOfWeek';
+import axios from 'axios'
+// import areIntervalsOverlapping from 'date-fns/areIntervalsOverlapping'
+// import startOfWeek from 'date-fns/startOfWeek'
+// import endOfWeek from 'date-fns/endOfWeek'
 
 //ACTION TYPES
 const GET_RESERVATIONS = 'GET_RESERVATIONS'
@@ -29,6 +29,19 @@ export const fetchReservations = camperId => {
         result = await axios.get(`/api/reservations`)
       }
       dispatch(getReservations(result.data))
+    } catch (err) {
+      dispatch(getReservationsError())
+    }
+  }
+}
+
+export const getFilteredReservations = (columnValue, searchValue) => {
+  return async dispatch => {
+    try {
+      const res = await axios.get(
+        `/api/reservations/filter/${columnValue}/${searchValue}`
+      )
+      dispatch(getReservations(res.data))
     } catch (err) {
       dispatch(getReservationsError())
     }
