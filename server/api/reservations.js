@@ -121,7 +121,7 @@ router.post('/', async (req, res, next) => {
 
       // Message object
       let message = {
-        from: process.env.EMAIL_USERID,
+        from: 'campsight.samillc@gmail.com',
         to: `${firstName + ' ' + lastName} <${email}>`,
         subject: `Confirmation for your CAMPSIGHT Reservation -#${reservationNumber}`,
 
