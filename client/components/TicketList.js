@@ -41,19 +41,24 @@ class TicketList extends Component {
       <Fragment>
         <Container>
           <Divider hidden />
-          <Header as="h1" floated="left">
-            All Tickets
-          </Header>
-          <Divider hidden />
+          <Header as="h1">All Tickets</Header>
           <TicketTable
             headerName="Unassigned Tickets"
             tickets={unassignedTickets}
             editSubmit={this.editSubmit}
           />
           <Divider hidden />
-          <TicketTable headerName="Open Tickets" tickets={openTickets} editSubmit={this.editSubmit} />
+          <TicketTable
+            headerName="Open Tickets"
+            tickets={openTickets}
+            editSubmit={this.editSubmit}
+          />
           <Divider hidden />
-          <TicketTable headerName="Closed Tickets" tickets={closedTickets} editSubmit={this.editSubmit} />
+          <TicketTable
+            headerName="Closed Tickets"
+            tickets={closedTickets}
+            editSubmit={this.editSubmit}
+          />
         </Container>
       </Fragment>
     )

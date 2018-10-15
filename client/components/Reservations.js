@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Table, Divider, Container, Header} from 'semantic-ui-react'
 import {fetchReservations} from '../store/reservations'
 import ReservationRow from './ReservationRow'
+import SearchBar from './SearchBar'
 import {withRouter} from 'react-router-dom'
 
 class Reservations extends Component {
@@ -15,14 +16,12 @@ class Reservations extends Component {
       <Fragment>
         <Container>
           <Divider hidden />
-          <Header as="h1" floated="left">
-            All Reservations
-          </Header>
-          <Divider hidden />
+          <Header as="h1">All Reservations</Header>
+          <SearchBar />
           <Table celled>
             <Table.Header>
               <Table.Row>
-                <Table.HeaderCell>ID</Table.HeaderCell>
+                <Table.HeaderCell>Id</Table.HeaderCell>
                 <Table.HeaderCell>Firts Name</Table.HeaderCell>
                 <Table.HeaderCell>Last Name</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
