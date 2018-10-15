@@ -1,10 +1,19 @@
 const router = require('express').Router()
 const {Campsite, Amenity, Reservation} = require('../db/models')
 const Op = require('sequelize').Op
+const parseQueryToObject = require('../utils/parseQueryToObject');
 
 router.get('/', async (req, res, next) => {
   try {
+    let fieldTypes = await Campsite.describe();
+    let queryParams = [];
+    if (req.query.search) {
+      queryParams = req.query.search.split(',');
+    }
+    let queryObj = {};
+    queryObj = parseQueryToObject(fieldTypes, queryParams);
     const campsites = await Campsite.findAll({
+      where: {...queryObj},
       limit: 75,
       include: [{model: Amenity}, {model: Reservation}]
     })

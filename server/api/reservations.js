@@ -8,19 +8,25 @@ const isAdmin = require('../auth/isAdmin')
 const isStaffOrAdmin = require('../auth/isStafforAdmin')
 const formatPrice = require('../utils/formatPrice')
 const {Op} = require('sequelize')
+const camelCase = require('../utils/camelCase');
+const parseQueryToObject = require('../utils/parseQueryToObject');
 
 router.get('/', async (req, res, next) => {
   try {
+    let fieldTypes = await Reservation.describe();
+    let queryParams = [];
+    if (req.query.search) {
+      queryParams = req.query.search.split(',');
+    }
+    let queryObj = {};
+    queryObj = parseQueryToObject(fieldTypes, queryParams);
     const reservations = await Reservation.findAll({
+      where: {...queryObj},
       limit: 15,
       include: [{model: Camper}, {model: Campsite}],
       order: [['id', 'DESC']]
     })
-    if (reservations.length) {
-      res.status(200).json(reservations)
-    } else {
-      res.status(404)
-    }
+    res.json(reservations)
   } catch (err) {
     next(err)
   }
@@ -43,12 +49,7 @@ router.get(`/:campsiteId/latest`, async (req, res, next) => {
     const reservations = await Reservation.getCurrentCampsiteReservations(
       campsiteId
     )
-    if (reservations.length) {
-      // console.log(`Current reservations =>`, reservations)
-      res.status(200).json(reservations)
-    } else {
-      res.status(404)
-    }
+    res.status(200).json(reservations)
   } catch (err) {
     next(err)
   }

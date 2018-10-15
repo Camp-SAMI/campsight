@@ -1,11 +1,20 @@
 const router = require('express').Router()
 const {Camper, Reservation} = require('../db/models')
+const parseQueryToObject = require('../utils/parseQueryToObject');
 // const isAdmin = require('../auth/isAdmin')
 // const isStafforAdmin = require('../auth/isStafforAdmin')
 
 router.get('/', async (req, res, next) => {
   try {
+    let fieldTypes = await Camper.describe();
+    let queryParams = [];
+    if (req.query.search) {
+      queryParams = req.query.search.split(',');
+    }
+    let queryObj = {};
+    queryObj = parseQueryToObject(fieldTypes, queryParams);
     const campers = await Camper.findAll({
+      where: {...queryObj},
       limit: 25,
       include: [{model: Reservation}],
       order: [['id', 'DESC']]
