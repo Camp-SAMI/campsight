@@ -1,6 +1,6 @@
-import React, {Component} from 'react'
-import {NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
+import React from 'react'
+// import {NavLink} from 'react-router-dom'
+// import {connect} from 'react-redux'
 import {Card, Image, Icon} from 'semantic-ui-react'
 import {formatPrice} from '../utils/formatPrice'
 

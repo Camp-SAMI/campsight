@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react'
-import {Container, Divider, Header, Segment, Grid} from 'semantic-ui-react'
+import React, {Fragment} from 'react'
+import {Divider, Header, Segment, Grid} from 'semantic-ui-react'
 import PriorReservationsChart from './PriorReservationsChart'
 import TopCampsitesThisWeek from './TopCampsitesThisWeek'
 import CampsiteTypeChart from './CampsiteTypeChart'

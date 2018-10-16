@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
+// import {connect} from 'react-redux'
 import {
   Container,
   Input,
@@ -10,8 +10,8 @@ import {
   Form,
   Grid
 } from 'semantic-ui-react'
-import {fetchTicket} from '../store/ticket'
-import {updateTicketToServer} from '../store/tickets'
+// import {fetchTicket} from '../store/ticket'
+// import {updateTicketToServer} from '../store/tickets'
 import TicketMapView from './TicketMapView'
 
 const statusOptions = [

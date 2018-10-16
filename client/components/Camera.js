@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import Webcam from 'react-webcam'
-import {Typography, Button, Grid, Card} from '@material-ui/core'
+import {Button, Grid, Card} from '@material-ui/core'
 import {connect} from 'react-redux'
 import {toggleCamera, setCameraData} from '../store/ticketFormContainer'
 

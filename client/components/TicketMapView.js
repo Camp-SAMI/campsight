@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
 import {GoogleApiWrapper, Map, Marker} from 'google-maps-react'
 import {GOOGLE_MAPS_API_KEY} from '../secrets'
-import {Modal} from 'semantic-ui-react'
-import CampsiteDetail from './CampsiteDetail'
+
 // if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 class TicketMapView extends Component {

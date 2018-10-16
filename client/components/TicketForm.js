@@ -2,12 +2,12 @@ import React, {Component, Fragment} from 'react'
 import {
   Card,
   Grid,
-  Paper,
+  // Paper,
   TextField,
   FormGroup,
   Typography,
   Button,
-  Snackbar
+  // Snackbar
 } from '@material-ui/core'
 import {Modal} from 'semantic-ui-react'
 import {connect} from 'react-redux'

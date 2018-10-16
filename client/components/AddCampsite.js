@@ -9,7 +9,6 @@ import {
   Segment,
   Button
 } from 'semantic-ui-react'
-import locationConverter from '../utils/locationConverter'
 import {fetchCampsites, addNewCampsiteToServer} from '../store/campsites'
 import {fetchAmenities} from '../store/amenities'
 

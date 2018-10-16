@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react'
-import {Form, Segment, Button, Divider, Header, Table} from 'semantic-ui-react'
+import {Form, Segment, Button} from 'semantic-ui-react'
 import {format} from 'date-fns'
 
 class SingleReservation extends Component {

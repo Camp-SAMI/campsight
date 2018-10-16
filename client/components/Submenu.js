@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Menu, Dropdown} from 'semantic-ui-react'
+import {Menu} from 'semantic-ui-react'
 import Amenities from './Amenities'
 import Type from './Type'
 import DatePicker from './DatePicker'

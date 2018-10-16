@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {Form, Icon, Menu} from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchReservations, getFilteredReservations} from '../store/reservations'
+// import {fetchReservations, getFilteredReservations} from '../store/reservations'
 
 class SearchBar extends Component {
   constructor() {

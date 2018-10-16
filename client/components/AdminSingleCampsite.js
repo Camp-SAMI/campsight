@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchCampsite } from '../store/campsite';
-import { Container, Divider, Header, Grid, Image, List } from 'semantic-ui-react';
+// import { Container, Divider, Header, Grid, Image, List } from 'semantic-ui-react';
 
 function mapStateToProps(state) {
     return {

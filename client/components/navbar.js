@@ -7,9 +7,9 @@ import {
   Menu,
   Dropdown,
   Responsive,
-  Button,
+  // Button,
   Segment,
-  Icon
+  // Icon
 } from 'semantic-ui-react'
 
 // const DropdownExampleDivider = () => (

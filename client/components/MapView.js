@@ -3,9 +3,6 @@ import {GoogleApiWrapper, Map, Marker} from 'google-maps-react'
 import {GOOGLE_MAPS_API_KEY} from '../secrets'
 import {Modal} from 'semantic-ui-react'
 import CampsiteDetail from './CampsiteDetail'
-
-import Typogragphy from '@material-ui/core/Typography'
-import {typgoraphy} from '@material-ui/core/styles'
 // if (process.env.NODE_ENV !== 'production') require('../secrets')
 
 class MapView extends Component {
@@ -55,7 +52,7 @@ class MapView extends Component {
                   lng: camp.location.coordinates[1]
                 }}
                 icon={{
-                  url: '/campericon.png'
+                  url: '/camperIcon.png'
                 }}
               />
             )

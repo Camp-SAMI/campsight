@@ -5,7 +5,7 @@ import {
   updateCampsiteToServer,
   addNewCampsiteToServer
 } from '../store/campsites'
-import {fetchAmenities} from '../store/amenities'
+// import {fetchAmenities} from '../store/amenities'
 import {NavLink} from 'react-router-dom'
 import {
   Pagination,
@@ -16,8 +16,8 @@ import {
   Button,
   Icon
 } from 'semantic-ui-react'
-import {formatPrice} from '../utils/formatPrice'
-import locationConverter from '../utils/locationConverter'
+// import {formatPrice} from '../utils/formatPrice'
+// import locationConverter from '../utils/locationConverter'
 import CampsiteRow from './CampsiteRow'
 import SearchBar from './SearchBar';
 
