@@ -40,3 +40,10 @@ export const getSelectedAmenities = id => {
     dispatch(gotSelectedAmenities(data))
   }
 }
+
+// export const getFilteredAmenities = (column, searchValue) => {
+//   return async dispatch => {
+//     const res = await axios.get(`/api/amenities/filter/${column}/${searchValue}`)
+//     dispatch(getAmenities(res.data))
+//   }
+// }

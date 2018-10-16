@@ -39,9 +39,10 @@ const reducer = (campsites = [], action) => {
 }
 
 //THUNK MIDDLEWARE
-export const fetchCampsites = () => {
+export const fetchCampsites = (searchStr='') => {
+  const queryStr = searchStr ? `search=${searchStr}` : searchStr;
   return async dispatch => {
-    const res = await axios.get('/api/campsites')
+    const res = await axios.get(`/api/campsites?${queryStr}`);
     dispatch(getCampsites(res.data))
   }
 }

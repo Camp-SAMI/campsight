@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Header, Container, Divider } from 'semantic-ui-react'
+import {Table, Header, Container, Divider} from 'semantic-ui-react'
 import TicketRow from './TicketRow'
 import {connect} from 'react-redux'
 
@@ -16,7 +16,7 @@ class TicketTable extends React.Component {
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>ID</Table.HeaderCell>
+              <Table.HeaderCell>Id</Table.HeaderCell>
               <Table.HeaderCell>Title</Table.HeaderCell>
               <Table.HeaderCell>Email</Table.HeaderCell>
               <Table.HeaderCell>Status</Table.HeaderCell>

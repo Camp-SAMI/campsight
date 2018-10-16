@@ -178,7 +178,7 @@ class LandingPage extends Component {
                     filteredEndTime={this.state.endTime}
                   />
                 </Grid.Column>
-                {/* <Sticky> */}
+                <Sticky>
                 <Grid.Column width={9}>
                   <MapView
                     campsites={filteredCampsites}
@@ -187,7 +187,7 @@ class LandingPage extends Component {
                     filteredEndTime={this.state.endTime}
                   />
                 </Grid.Column>
-                {/* </Sticky> */}
+                </Sticky>
               </Grid.Row>
             </Grid>
           </div>

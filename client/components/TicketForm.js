@@ -21,7 +21,7 @@ class TicketForm extends Component {
     name: '',
     email: '',
     campsite: '',
-    description: ''
+    content: ''
   }
 
   componentDidMount() {
@@ -173,6 +173,7 @@ class TicketForm extends Component {
                             }}
                             trigger={
                               <Button
+                                disabled={!this.state.content}
                                 variant="raised"
                                 style={styles.button}
                                 color="primary"

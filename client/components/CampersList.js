@@ -3,7 +3,7 @@ import {Table, Divider, Container, Header} from 'semantic-ui-react'
 import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-
+import SearchBar from './SearchBar'
 import {fetchCampers} from '../store/campers'
 import CamperRow from './CamperRow'
 
@@ -21,6 +21,7 @@ class CampersList extends Component {
           <Header as="h1" floated="left">
             All Campers:
           </Header>
+          <SearchBar fetcher={this.props.fetchCampers} />
           <Divider hidden />
           <Table celled>
             <Table.Header>
@@ -50,7 +51,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  fetchCampers: () => dispatch(fetchCampers())
+  fetchCampers: (str) => dispatch(fetchCampers(str))
 })
 
 export default withRouter(

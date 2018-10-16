@@ -1,7 +1,7 @@
-import axios from 'axios';
-import areIntervalsOverlapping from 'date-fns/areIntervalsOverlapping';
-import startOfWeek from 'date-fns/startOfWeek';
-import endOfWeek from 'date-fns/endOfWeek';
+import axios from 'axios'
+// import areIntervalsOverlapping from 'date-fns/areIntervalsOverlapping'
+// import startOfWeek from 'date-fns/startOfWeek'
+// import endOfWeek from 'date-fns/endOfWeek'
 
 //ACTION TYPES
 const GET_RESERVATIONS = 'GET_RESERVATIONS'
@@ -19,16 +19,25 @@ export const getReservationsError = reservations => ({
 })
 
 //THUNK CREATORS
-export const fetchReservations = camperId => {
+export const fetchReservations = (searchStr='') => {
+  const queryStr = searchStr ? `search=${searchStr}` : searchStr;
   return async dispatch => {
     try {
-      let result
-      if (camperId) {
-        result = await axios.get(`/api/reservations/search/${camperId}`)
-      } else {
-        result = await axios.get(`/api/reservations`)
-      }
+      const result = await axios.get(`/api/reservations?${queryStr}`);
       dispatch(getReservations(result.data))
+    } catch (err) {
+      dispatch(getReservationsError())
+    }
+  }
+}
+
+export const getFilteredReservations = (columnValue, searchValue) => {
+  return async dispatch => {
+    try {
+      const res = await axios.get(
+        `/api/reservations/filter/${columnValue}/${searchValue}`
+      )
+      dispatch(getReservations(res.data))
     } catch (err) {
       dispatch(getReservationsError())
     }

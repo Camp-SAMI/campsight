@@ -1,10 +1,20 @@
 const router = require('express').Router()
-const {Campsite, Amenity, Reservation, Campground} = require('../db/models')
-const Op = require('sequelize').Op;
+const {Campsite, Amenity, Reservation} = require('../db/models')
+const Op = require('sequelize').Op
+const parseQueryToObject = require('../utils/parseQueryToObject');
 
 router.get('/', async (req, res, next) => {
   try {
+    let fieldTypes = await Campsite.describe();
+    let queryParams = [];
+    if (req.query.search) {
+      queryParams = req.query.search.split(',');
+    }
+    let queryObj = {};
+    queryObj = parseQueryToObject(fieldTypes, queryParams);
     const campsites = await Campsite.findAll({
+      where: {...queryObj},
+      limit: 75,
       include: [{model: Amenity}, {model: Reservation}]
     })
     res.json(campsites)
@@ -29,7 +39,7 @@ router.post('/', async (req, res, next) => {
     const amenities = await Amenity.findAll({
       where: {category: {[Op.in]: req.body.amenities}},
       include: [{model: Campsite}]
-    });
+    })
     const newCampsite = await Campsite.create({
       name: req.body.name,
       location: {
@@ -42,10 +52,13 @@ router.post('/', async (req, res, next) => {
       typing: req.body.typing,
       cost: req.body.cost
     })
-    await newCampsite.addAmenities(amenities);
-    await newCampsite.save();
-    let nCamp = await Campsite.findOne({where: {id: newCampsite.id}, include: [Amenity]});
-    res.json(nCamp);
+    await newCampsite.addAmenities(amenities)
+    await newCampsite.save()
+    let nCamp = await Campsite.findOne({
+      where: {id: newCampsite.id},
+      include: [Amenity]
+    })
+    res.json(nCamp)
   } catch (err) {
     next(err)
   }
@@ -56,25 +69,30 @@ router.put('/:campsiteId', async (req, res, next) => {
     const amenities = await Amenity.findAll({
       where: {category: {[Op.in]: req.body.amenities}},
       include: [{model: Campsite}]
-    });
-    await Campsite.update({
-      name: req.body.name,
-      location: {
-        type: "Point",
-        coordinates: [req.body.latitude, req.body.longitude]
+    })
+    await Campsite.update(
+      {
+        name: req.body.name,
+        location: {
+          type: 'Point',
+          coordinates: [req.body.latitude, req.body.longitude]
+        },
+        coverImage: req.body.coverImage ? req.body.coverImage : '',
+        images: req.body.images,
+        typing: req.body.typing,
+        cost: req.body.cost
       },
-      coverImage: req.body.coverImage ? req.body.coverImage: '',
-      images: req.body.images,
-      typing: req.body.typing,
-      cost: req.body.cost
-    }, {
-      where: {id: req.params.campsiteId},
-      returning: true
-    });
-    let campo = await Campsite.findById(req.params.campsiteId, { include: [{model: Amenity}]})
-    await campo.setAmenities(amenities);
-    await campo.save();
-    res.json(campo);
+      {
+        where: {id: req.params.campsiteId},
+        returning: true
+      }
+    )
+    let campo = await Campsite.findById(req.params.campsiteId, {
+      include: [{model: Amenity}]
+    })
+    await campo.setAmenities(amenities)
+    await campo.save()
+    res.json(campo)
   } catch (err) {
     next(err)
   }

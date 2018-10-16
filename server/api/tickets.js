@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Ticket, Camper, Reservation, Campsite} = require('../db/models')
+const parseQueryToObject = require('../utils/parseQueryToObject');
 // const requireAdmin = require('../auth/isAdmin')
 // const requireStaffOrAdmin = require('../auth/isStafforAdmin')
 module.exports = router
@@ -7,7 +8,15 @@ module.exports = router
 //all tickets route
 router.get('/', async (req, res, next) => {
   try {
+    let fieldTypes = await Ticket.describe();
+    let queryParams = [];
+    if (req.query.search){
+      queryParams = req.query.search.split(',');
+    }
+    let queryObj = {};
+    queryObj = parseQueryToObject(fieldTypes, queryParams);
     const tickets = await Ticket.findAll({
+      where: {...queryObj},
       include: [{model: Reservation}]
     })
     res.json(tickets)

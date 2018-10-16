@@ -1,23 +1,48 @@
 const formatRelative = require('date-fns/formatRelative')
+const endOfDay = require('date-fns/endOfDay')
+const startOfDay = require('date-fns/startOfDay')
 const nodemailer = require('nodemailer')
 const router = require('express').Router()
 const {Reservation, Camper, Campsite} = require('../db/models')
 const isAdmin = require('../auth/isAdmin')
 const isStaffOrAdmin = require('../auth/isStafforAdmin')
 const formatPrice = require('../utils/formatPrice')
+const {Op} = require('sequelize')
+const camelCase = require('../utils/camelCase');
+const parseQueryToObject = require('../utils/parseQueryToObject');
 
 router.get('/', async (req, res, next) => {
   try {
+    let fieldTypes = await Reservation.describe();
+    let queryParams = [];
+    if (req.query.search) {
+      queryParams = req.query.search.split(',');
+    }
+    let queryObj = {};
+    queryObj = parseQueryToObject(fieldTypes, queryParams);
+    let targetCamper = {};
+    let keys = queryParams.map(queryPar => camelCase(queryPar.split(':')[0].split(' ').join('').trim()));
+    let values = queryParams.map(queryPar => queryPar.split(':')[1].trim());
+    // let camperId;
+    if (keys.includes('firstName')) {
+      let fNameInd = keys.findIndex(key => key === 'firstName');
+      targetCamper.firstName = values[fNameInd];
+    }
+    if (keys.includes('lastName')) {
+      let lastNameInd = keys.findIndex(key => key === 'lastName');
+      targetCamper.lastName = values[lastNameInd];
+    }
+    if (keys.includes('email')) {
+      let emailInd = keys.findIndex(key => key === 'email');
+      targetCamper.email = values[emailInd];
+    }
     const reservations = await Reservation.findAll({
+      where: {...queryObj},
       limit: 15,
-      include: [{model: Camper}, {model: Campsite}],
+      include: [{model: Camper, where: {...targetCamper}}, {model: Campsite}],
       order: [['id', 'DESC']]
     })
-    if (reservations.length) {
-      res.status(200).json(reservations)
-    } else {
-      res.status(404)
-    }
+    res.json(reservations)
   } catch (err) {
     next(err)
   }
@@ -40,13 +65,70 @@ router.get(`/:campsiteId/latest`, async (req, res, next) => {
     const reservations = await Reservation.getCurrentCampsiteReservations(
       campsiteId
     )
-    if (reservations.length) {
-      console.log(`Current reservations =>`, reservations)
-      res.status(200).json(reservations)
-    } else {
-      res.status(404)
-    }
+    res.status(200).json(reservations)
   } catch (err) {
+    next(err)
+  }
+})
+
+router.get(`/filter/:columnValue/:searchValue`, async (req, res, next) => {
+  let {columnValue, searchValue} = req.params
+  try {
+    // Consider search by Camper details
+    let reservations
+    const camperFields = ['firstName', 'lastName', 'email']
+    const dateFields = ['startTime', 'endTime']
+
+    if (camperFields.includes(columnValue)) {
+      const campers = await Camper.findAll({
+        where: {
+          [columnValue]: searchValue
+        }
+      })
+      columnValue = 'camperId'
+      searchValue = campers.map(camper => ({[Op.eq]: camper.id}))
+
+      reservations = await Reservation.findAll({
+        limit: 15,
+        include: [{model: Camper}, {model: Campsite}],
+        where: {
+          [columnValue]: {
+            [Op.or]: searchValue
+          }
+        }
+      })
+    } else if (dateFields.includes(columnValue)) {
+      // console.log(
+      //   'Start of day =>',
+      //   startOfDay(new Date(searchValue)),
+      //   'End of Day =>',
+      //   endOfDay(new Date(searchValue))
+      // )
+      reservations = await Reservation.findAll({
+        limit: 15,
+        include: [{model: Camper}, {model: Campsite}],
+        where: {
+          [columnValue]: {
+            [Op.between]: [
+              startOfDay(new Date(searchValue)),
+              endOfDay(new Date(searchValue))
+            ]
+          }
+        }
+      })
+    } else {
+      reservations = await Reservation.findAll({
+        limit: 15,
+        include: [{model: Camper}, {model: Campsite}],
+        where: {
+          [columnValue]: searchValue
+        }
+      })
+    }
+
+    res.status(200).json(reservations)
+  } catch (err) {
+    // console.log(err)
     next(err)
   }
 })
@@ -112,8 +194,8 @@ router.post('/', async (req, res, next) => {
         // port: 587,
         service: 'gmail',
         auth: {
-          user: 'campsight.samillc@gmail.com',
-          pass: 'SAMILL04-1807'
+          user: process.env.EMAIL_USERID,
+          pass: process.env.EMAIL_PASSWORD
           // user: 'dedkmcuyhxbpplax@ethereal.email',
           // pass: 'WHpBvYqrJ6WvtdRDzu'
         }
@@ -121,7 +203,7 @@ router.post('/', async (req, res, next) => {
 
       // Message object
       let message = {
-        from: 'SAMI LLC <campsight@samillc.com>',
+        from: 'campsight.samillc@gmail.com',
         to: `${firstName + ' ' + lastName} <${email}>`,
         subject: `Confirmation for your CAMPSIGHT Reservation -#${reservationNumber}`,
 

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Grid} from 'semantic-ui-react'
-import AdminSidebar from './AdminSidebar'
+// import AdminSidebar from './AdminSidebar'
 import CampersList from './CampersList'
 import TicketList from './TicketList'
 import Reservations from './Reservations'
@@ -25,11 +25,7 @@ export const UserHome = props => {
       </Grid.Column> */}
       <Grid.Column width={12}>
         <Switch>
-          <Route
-            exact
-            path="/campers/:camperId"
-            component={CamperProfile}
-          />
+          <Route exact path="/campers/:camperId" component={CamperProfile} />
           <Route path="/campers" component={CampersList} />
           <Route path="/tickets" component={TicketList} />
           <Route exact path="/reservations" component={Reservations} />
