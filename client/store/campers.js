@@ -9,10 +9,11 @@ export const gotCampers = campers => ({type: GOT_CAMPERS, campers})
 export const campersError = () => ({type: CAMPERS_ERROR})
 
 // THUNK MIDDLEWARE
-export const fetchCampers = () => {
+export const fetchCampers = (searchStr='') => {
+  const queryStr = searchStr ? `search=${searchStr}` : searchStr;
   return async dispatch => {
     try {
-      const result = await axios.get(`/api/campers`)
+      const result = await axios.get(`/api/campers?${queryStr}`);
       dispatch(gotCampers(result.data))
     } catch (err) {
       dispatch(campersError())

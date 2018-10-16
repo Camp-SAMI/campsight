@@ -8,11 +8,11 @@ import {fetchTickets} from '../store/tickets'
 import {formatPrice} from '../utils/formatPrice'
 
 class CamperProfile extends Component {
-  componentDidMount = () => {
-    this.props.fetchCamper(
+  async componentDidMount (){
+    await this.props.fetchCamper(
       Number(this.props.match.params.camperId) || this.props.camperId
     )
-    this.props.fetchTickets(this.props.camper.email)
+    this.props.fetchTickets(`email:${this.props.camper.email}`);
   }
 
   render() {

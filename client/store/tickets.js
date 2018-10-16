@@ -55,15 +55,16 @@ export default function reducer(tickets = [], action) {
 
 //THUNK CREATORS
 
-export const fetchTickets = camperEmail => {
+export const fetchTickets = (searchStr='') => {
+  const queryStr = searchStr ? `search=${searchStr}` : searchStr;
   return async dispatch => {
     try {
-      let result
-      if (camperEmail) {
-        result = await axios.get(`/api/tickets/search/${camperEmail}`)
-      } else {
-        result = await axios.get('/api/tickets')
-      }
+      // let result
+      // if (camperEmail) {
+      //   result = await axios.get(`/api/tickets/search/${camperEmail}`);
+      // } else {
+      const result = await axios.get(`/api/tickets?${queryStr}`);
+      // }
       dispatch(getTickets(result.data))
     } catch (err) {
       dispatch(ticketError())

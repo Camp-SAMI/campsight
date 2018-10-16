@@ -19,6 +19,7 @@ import {
 import {formatPrice} from '../utils/formatPrice'
 import locationConverter from '../utils/locationConverter'
 import CampsiteRow from './CampsiteRow'
+import SearchBar from './SearchBar';
 
 const mapStateToProps = state => {
   const campsites = state.campsites.sort((a, b) => a.id - b.id)
@@ -31,7 +32,7 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchCampsites: () => dispatch(fetchCampsites()),
+  fetchCampsites: (str) => dispatch(fetchCampsites(str)),
   // fetchAmenities: () => dispatch(fetchAmenities()),
   updateCampsite: campsite => dispatch(updateCampsiteToServer(campsite)),
   addCampsite: campsite => dispatch(addNewCampsiteToServer(campsite))
@@ -54,7 +55,7 @@ export class AdminCampsites extends Component {
 
   async componentDidMount() {
     if (this.props.fetchCampsites) {
-      await this.props.fetchCampsites()
+      await this.props.fetchCampsites('')
       const perPage = this.state.perPage
       const numPages = Math.ceil(this.props.campsites.length / perPage)
       // await this.props.fetchAmenities();
@@ -105,6 +106,7 @@ export class AdminCampsites extends Component {
             <Header as="h1" floated="left">
               All Campsites:
             </Header>
+            <SearchBar fetcher={this.props.fetchCampsites} />
             <Divider hidden />
             <Fragment>
               <Header as="h2" floated="right">
@@ -124,7 +126,7 @@ export class AdminCampsites extends Component {
                   <Table.HeaderCell>Name</Table.HeaderCell>
                   <Table.HeaderCell>Latitude</Table.HeaderCell>
                   <Table.HeaderCell>Longitude</Table.HeaderCell>
-                  <Table.HeaderCell>Type</Table.HeaderCell>
+                  <Table.HeaderCell>Typing</Table.HeaderCell>
                   <Table.HeaderCell>Cost</Table.HeaderCell>
                   <Table.HeaderCell>Actions</Table.HeaderCell>
                 </Table.Row>

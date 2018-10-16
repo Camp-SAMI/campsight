@@ -5,8 +5,7 @@ function parseQueryToObject(fieldTypes, queryParams) {
     let queryObj = {};
     for (let a = 0; a < queryParams.length; a++) {
         let curr = queryParams[a].split(':');
-        let key = camelCase(curr[0]);
-        let value = curr[1];
+        let key = camelCase(curr[0].split(' ').join('').trim());
         if (fieldTypes[key]) {
           if (fieldTypes[key].type === 'INTEGER'){
             queryObj[key] = parseInt(curr[1], 10);

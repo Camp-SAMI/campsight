@@ -5,6 +5,7 @@ import {fetchTicket} from '../store/ticket'
 import {Divider, Header, Container} from 'semantic-ui-react'
 import {connect} from 'react-redux'
 import TicketTable from './TicketTable'
+import SearchBar from './SearchBar'
 
 function mapStateToProps(state) {
   const {tickets} = state
@@ -17,7 +18,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchTickets: () => dispatch(fetchTickets()),
+  fetchTickets: (str) => dispatch(fetchTickets(str)),
   updateTicket: ticket => dispatch(updateTicketToServer(ticket)),
   fetchTicket: id => dispatch(fetchTicket(id))
 })
@@ -28,7 +29,7 @@ class TicketList extends Component {
     this.editSubmit = this.editSubmit.bind(this)
   }
   async componentDidMount() {
-    if (this.props.fetchTickets) await this.props.fetchTickets()
+    if (this.props.fetchTickets) await this.props.fetchTickets();
   }
 
   editSubmit(ticket, e) {
@@ -42,6 +43,7 @@ class TicketList extends Component {
         <Container>
           <Divider hidden />
           <Header as="h1">All Tickets</Header>
+          <SearchBar fetcher={this.props.fetchTickets} />
           <TicketTable
             headerName="Unassigned Tickets"
             tickets={unassignedTickets}
@@ -51,7 +53,7 @@ class TicketList extends Component {
           <TicketTable
             headerName="Open Tickets"
             tickets={openTickets}
-            editSubmit={this.editSubmit}
+            editSubmit={this.editSubmit}          
           />
           <Divider hidden />
           <TicketTable

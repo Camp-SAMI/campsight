@@ -20,10 +20,26 @@ router.get('/', async (req, res, next) => {
     }
     let queryObj = {};
     queryObj = parseQueryToObject(fieldTypes, queryParams);
+    let targetCamper = {};
+    let keys = queryParams.map(queryPar => camelCase(queryPar.split(':')[0].split(' ').join('').trim()));
+    let values = queryParams.map(queryPar => queryPar.split(':')[1].trim());
+    // let camperId;
+    if (keys.includes('firstName')) {
+      let fNameInd = keys.findIndex(key => key === 'firstName');
+      targetCamper.firstName = values[fNameInd];
+    }
+    if (keys.includes('lastName')) {
+      let lastNameInd = keys.findIndex(key => key === 'lastName');
+      targetCamper.lastName = values[lastNameInd];
+    }
+    if (keys.includes('email')) {
+      let emailInd = keys.findIndex(key => key === 'email');
+      targetCamper.email = values[emailInd];
+    }
     const reservations = await Reservation.findAll({
       where: {...queryObj},
       limit: 15,
-      include: [{model: Camper}, {model: Campsite}],
+      include: [{model: Camper, where: {...targetCamper}}, {model: Campsite}],
       order: [['id', 'DESC']]
     })
     res.json(reservations)

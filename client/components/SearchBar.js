@@ -5,9 +5,13 @@ import {connect} from 'react-redux'
 import {fetchReservations, getFilteredReservations} from '../store/reservations'
 
 class SearchBar extends Component {
-  state = {
-    searchTerm: '',
-    activeItem: 'all'
+  constructor() {
+    super();
+    this.state = {
+      searchTerm: '',
+      activeItem: 'all'
+    }
+    this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
 
   camelCase = strValue => strValue[0].toLowerCase() + strValue.slice(1)
@@ -17,33 +21,15 @@ class SearchBar extends Component {
 
   handleAllItemsClick = (e, {name}) => {
     this.setState({activeItem: name})
-    this.props.fetchEntityList()
+    this.props.fetcher();
   }
 
-  handleSearchSubmit = e => {
-    const searchArr = this.state.searchTerm.split(':')
-    const columnName = this.camelCase(
-      searchArr[0]
-        .split(' ')
-        .join('')
-        .trim()
-    )
-    let columnSearchValue = searchArr[1].trim()
-    if (columnName === 'startTime' || columnName === 'endTime') {
-      columnSearchValue = new Date(columnSearchValue).toISOString()
-      // columnSearchValue = this.replaceAll(columnSearchValue, '/', '-')
-      // columnSearchValue = format(new Date(columnSearchValue), 'YYYY/MM/DD')
-    }
-    // console.log(
-    //   'Column Name =>',
-    //   columnName,
-    //   'Column Search Value =>',
-    //   columnSearchValue
-    // )
-    this.props.fetchEntityListSearch(columnName, columnSearchValue)
+  handleSearchSubmit (e) {
+    this.props.fetcher(this.state.searchTerm);
   }
 
   render() {
+    // console.log('searchBarProps', this.props.fetcher);
     const {activeItem} = this.state.activeItem
     return (
       <Fragment>
@@ -90,10 +76,10 @@ const styles = {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchEntityList: () => dispatch(fetchReservations()),
-  fetchEntityListSearch: (columnName, columnSearchValue) =>
-    dispatch(getFilteredReservations(columnName, columnSearchValue))
-})
+// const mapDispatchToProps = dispatch => ({
+//   fetchEntityList: () => dispatch(fetchReservations()),
+//   fetchEntityListSearch: (columnName, columnSearchValue) =>
+//     dispatch(getFilteredReservations(columnName, columnSearchValue))
+// })
 
-export default withRouter(connect(null, mapDispatchToProps)(SearchBar))
+export default withRouter(connect(null)(SearchBar))
